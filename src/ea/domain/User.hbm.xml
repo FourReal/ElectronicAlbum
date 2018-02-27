@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="ea.domain">
+    <!-- 1 配置类和表对应
+    	class标签
+    	name属性，实体类全路径
+    	table属性，数据库表名称
+     -->
+     <class name="User" table="ea_user">
+         <id name="id">
+             <generator class="native"></generator>
+         </id>
+         <property name="loginName" />
+         <property name="password" />
+         <property name="name" />
+         <property name="gender" />
+         <property name="phoneNumber" />
+         <property name="email" />
+         <property name="description" />
+         
+   
+     </class> 
+     
+     
+</hibernate-mapping>
