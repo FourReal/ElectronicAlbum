@@ -27,6 +27,8 @@
 				<tr><td>密码</td>
 					<td><s:textfield name="password" cssClass="InputStyle" /></td>
 				</tr>
+				
+				
 				<tr><td>姓名</td>
 					<td><s:textfield name="name" cssClass="InputStyle" /> *</td>
 				</tr>

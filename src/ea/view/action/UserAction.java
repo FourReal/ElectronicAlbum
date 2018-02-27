@@ -101,6 +101,8 @@ public class UserAction extends BaseAction<User>{
 		return "toList";
 	}
 
+	
+	
 	/**登录页面*/
 	public String loginUI() throws Exception{
 		return "loginUI";

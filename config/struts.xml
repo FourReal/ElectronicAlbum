@@ -11,8 +11,6 @@
     <!-- 把主题配置为simple -->
     <constant name="struts.ui.theme" value="simple"></constant>
     
-    
-    
     <package name="demo1" extends="struts-default" namespace="/">
         <!-- 全局的Result结果配置 -->
         <global-results>

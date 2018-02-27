@@ -67,6 +67,8 @@
  	</bean>
  	
  	
+ 	
+ 	
  	<!-- 创建hibernatetemplate对象 -->
  	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
  	    <!-- 注入一个sessionFactory -->

@@ -11,9 +11,7 @@ public interface UserService extends DaoSupport<User>{
 	 * @param password 明文密码
 	 * @return
 	 */
-	
 	User findByLoginNameAndPassword(String loginName, String password);
-
 	User findByLoginName(String loginName);
 
 }
