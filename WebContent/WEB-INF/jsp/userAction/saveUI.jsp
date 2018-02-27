@@ -12,13 +12,20 @@
 		
 		<div class="ItemBlock_Title1"><!-- 信息说明 --><div class="ItemBlock_Title">用户信息:</div>
 		</div>
-		
+		<div>
+		<font color="red">
+			<s:fielderror/>
+		</font>
+		</div>
 		<!-- 表单内容显示 -->
 		<div class="ItemBlockBoder">
 			<table cellspacing="0" cellpadding="0" class="mainForm">
 				
 				<tr><td>登录名</td>
 					<td><s:textfield name="loginName" cssClass="InputStyle" /> *(登录名要唯一)</td>
+				</tr>
+				<tr><td>密码</td>
+					<td><s:textfield name="password" cssClass="InputStyle" /></td>
 				</tr>
 				<tr><td>姓名</td>
 					<td><s:textfield name="name" cssClass="InputStyle" /> *</td>

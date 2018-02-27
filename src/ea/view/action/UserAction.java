@@ -44,9 +44,22 @@ public class UserAction extends BaseAction<User>{
 	
 	/**添加*/
 	public String add() throws Exception{
-//		//封装到对象中 (当model是实体类型时，也可以使用model，但要设置未封装的属性)
-	
-		return "toList";
+		User user=userService.findByLoginName(model.getLoginName());
+		if(user!=null) {
+			addFieldError("regist", "用户名已被注册！");
+			return "saveUI";
+		}
+		else if(model.getPassword().equals("")) 
+		{
+			addFieldError("regist", "密码不能为空！");
+			return "saveUI";
+		}
+		else{
+			String md5Digest=DigestUtils.md5Hex(model.getPassword());
+			model.setPassword(md5Digest);
+			userService.save(model);
+			return "loginUI";
+		}
 	}
 	
 	/** 修改页面*/
@@ -108,11 +121,16 @@ public class UserAction extends BaseAction<User>{
 		
 	}
 	
+	
+	
 	/**注销*/
 	public String logout() throws Exception{
 		ActionContext.getContext().getSession().remove("user");
 		return "logout";
 	}
+	
+	
+	
 	
 	//----------------
 	public Long getDepartmentId() {

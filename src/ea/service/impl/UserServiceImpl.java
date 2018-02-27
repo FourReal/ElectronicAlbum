@@ -22,4 +22,14 @@ public class UserServiceImpl extends DaoSupportImpl<User> implements UserService
 				.uniqueResult();
 	}
 
+	@Override
+	public User findByLoginName(String loginName) {
+		return (User) getSession().createQuery(//
+				"FROM User u WHERE u.loginName=?")
+				.setParameter(0, loginName)
+				.uniqueResult();
+	
+	}
+
+	
 }
