@@ -79,7 +79,7 @@ public class UpFileAction extends ActionSupport {
 		System.out.println("uploadify:"+uploadify);
 		System.out.println("uploadifyFileName:"+uploadifyFileName);
 		System.out.println("savePath:"+savePath);
-		return "success";
+		return null;
 	}
 
 	// 批量保存图片地址
@@ -92,7 +92,7 @@ public class UpFileAction extends ActionSupport {
 		out.write("保存成功");
 		out.close();
 		out.flush();
-		return "success";
+		return null;
 
 	}
 
