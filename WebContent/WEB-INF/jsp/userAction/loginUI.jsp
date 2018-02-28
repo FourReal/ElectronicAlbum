@@ -26,14 +26,13 @@
 			<s:fielderror/>
 		</font>
 		</div>
-	
-	
-	
+
         <s:textfield name="loginName" size="20" tabindex="1" id="loginNameInput"></s:textfield>
         <input name="password" type="password">
         <br>
         <s:submit value="登录"></s:submit>
     </s:form>
+    
     <s:a action="user_addUI"><input type="button"  value="注册"/></s:a> 
 </body>
 </html>
