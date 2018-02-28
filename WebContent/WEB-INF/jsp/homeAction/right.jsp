@@ -175,7 +175,7 @@ ul li{list-style: none}
         </button>  
   
         <button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" onclick="dosubmint()">  
-            <span class="ui-button-icon-primary ui-icon ui-icon-locked"></span> <span class="ui-button-text">保存提交</span>  
+            <span class="ui-button-icon-primary ui-icon ui-icon-locked"></span> <span class="ui-button-text">完成</span>  
         </button>  
     </div> 
 </body>

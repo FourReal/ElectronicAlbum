@@ -65,7 +65,6 @@ public class UpFileAction extends ActionSupport {
 			FileUtils.copyFile(uploadify, new File(dest));
 			mfiles.add(savePath + "/" + fileName);
 
-		
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
