@@ -136,5 +136,4 @@ public class UpFileAction extends ActionSupport {
 		this.userid = userid;
 	}
 
-	////
 }
