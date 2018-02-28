@@ -21,28 +21,9 @@
 
 <div id="Menu">
 	<ul id="MenuUl">
-		<%--显示一级菜单 --%>
-		<s:iterator value="#application.topPrivilegeList">
-		<s:if test="#session.user.hasPrivilegeByName(name)">
-		<li class="level1">
-			<div onClick="menuClick(this);" class="level1Style">
-				${name}
-			</div>
-			<ul style="" class="MenuLevel2" id="atext">
-				<%--显示二级菜单 --%>
-				<s:iterator value="children">
-				<s:if test="#session.user.hasPrivilegeByName(name)">
-				<li class="level2">
-					<div class="level2Style">
-						<a target="right" href="${pageContext.request.contextPath}${url}.action"> ${name} </a>
-					</div>
-				</li>
-				</s:if>
-				</s:iterator>
-			</ul>
-		</li>
-		</s:if>
-		</s:iterator>
+		<s:a target="right" href="http://www.baidu.com"><li>个人信息管理</li></s:a>
+		<s:a target="right" href="http://www.baidu.com"><li>照片管理</li></s:a>
+		<s:a target="right" href="http://www.baidu.com"><li>相册制作</li></s:a>
 	</ul>
 </div>
 

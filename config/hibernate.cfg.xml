@@ -24,5 +24,6 @@
         
         <!-- 导入映射文件 -->
         <mapping resource="ea/domain/User.hbm.xml" />
+        <mapping resource="ea/domain/Photo.hbm.xml" />
     </session-factory>
 </hibernate-configuration>

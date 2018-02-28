@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="ea.domain">
+    <!-- 1 配置类和表对应
+    	class标签
+    	name属性，实体类全路径
+    	table属性，数据库表名称
+     -->
+     <class name="Photo" table="ea_photo">
+         <id name="PId">
+             <generator class="native"></generator>
+         </id>
+         <property name="PName" />
+         <property name="Paddr" />
+         <property name="OwnerId" />
+         <property name="updatetime" />
+       
+     </class> 
+     
+     
+</hibernate-mapping>
