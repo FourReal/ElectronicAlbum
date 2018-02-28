@@ -32,7 +32,7 @@ public class UpFileAction extends ActionSupport {
 	private File uploadify; 
 	private String uploadifyFileName;
 	private String uploadifyContentType;
-	private String savePath;// 文件上传后保存的路径
+	private static final String savePath = "imgs";// 文件上传后保存的路径
 	private String mvUrl;
 	private int userid;//标记哪个用户上传
 	
@@ -45,12 +45,12 @@ public class UpFileAction extends ActionSupport {
 	 * @throws Exception
 	 */
 	public String upload() throws Exception {
-		File dir = new File(getSavePath());
+		File dir = new File(savePath);
 		if (!dir.exists()) {
 			dir.mkdirs();
 		}
 		List<String> mfiles = new ArrayList<String>();
-		System.out.println("getSavePath():"+getSavePath());
+		System.out.println("getSavePath():");
 		System.out.println("userid:"+userid);
 		
 		//文件重命名，文件保存
@@ -60,7 +60,7 @@ public class UpFileAction extends ActionSupport {
 			ServletContext sc = (ServletContext) ac
 					.get(ServletActionContext.SERVLET_CONTEXT);
 			String realPath = sc.getRealPath("/");
-			String dest = realPath + getSavePath() + "/" + fileName;
+			String dest = realPath + savePath + "/" + fileName;
 			System.out.println("目标路径:"+dest);
 			FileUtils.copyFile(uploadify, new File(dest));
 			mfiles.add(savePath + "/" + fileName);
@@ -77,7 +77,7 @@ public class UpFileAction extends ActionSupport {
 		System.out.println("mfiles.get(0):"+mfiles.get(0));
 		System.out.println("uploadify:"+uploadify);
 		System.out.println("uploadifyFileName:"+uploadifyFileName);
-		System.out.println("savePath:"+savePath);
+		System.out.println("uploadifyContentType:"+uploadifyContentType);
 		return null;
 	}
 
@@ -92,7 +92,6 @@ public class UpFileAction extends ActionSupport {
 		out.close();
 		out.flush();
 		return null;
-
 	}
 
 
@@ -120,13 +119,6 @@ public class UpFileAction extends ActionSupport {
 		this.uploadifyContentType = uploadifyContentType;
 	}
 
-	public String getSavePath() {
-		return savePath;
-	}
-
-	public void setSavePath(String savePath) {
-		this.savePath = savePath;
-	}
 
 	public String getMvUrl() {
 		return mvUrl;
