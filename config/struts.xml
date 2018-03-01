@@ -10,8 +10,10 @@
     <constant name="struts.action.extension" value="action"></constant>
     <!-- 把主题配置为simple -->
     <constant name="struts.ui.theme" value="simple"></constant>
+    <!-- 上传图片最大为5M -->
+    <constant name="struts.multipart.maxSize" value="5242880"/>
     
-    <package name="demo1" extends="struts-default" namespace="/">
+    <package name="demo1" extends="struts-default" >
         <!-- 全局的Result结果配置 -->
         <global-results>
             <result name="loginUI">/WEB-INF/jsp/userAction/loginUI.jsp</result>
@@ -45,6 +47,13 @@
             <result name="{1}">/WEB-INF/jsp/homeAction/{1}.jsp</result>
         </action>
         
+		<action name="upload" class="ea.view.action.UpFileAction" method="upload" >
+			<result name="success"/>
+		</action>
+
+		<action name="savePath" class="ea.view.action.UpFileAction " method="savePath" >
+			<result name="success"/>
+		</action>
         
     </package>
 </struts>
