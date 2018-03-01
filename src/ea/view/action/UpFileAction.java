@@ -15,13 +15,18 @@ import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
+import ea.base.BaseAction;
+import ea.domain.Photo;
+import ea.domain.User;
+
 @Controller
 @Scope("prototype")
-public class UpFileAction extends ActionSupport {
+public class UpFileAction extends BaseAction<User>{
 	/**
 	 * 
 	 */
@@ -34,7 +39,7 @@ public class UpFileAction extends ActionSupport {
 	private String uploadifyContentType;
 	private static final String savePath = "imgs";// 文件上传后保存的路径
 	private String mvUrl;
-	private int userid;//标记哪个用户上传
+	private Long userid;//标记哪个用户上传
 	
 
 
@@ -45,25 +50,24 @@ public class UpFileAction extends ActionSupport {
 	 * @throws Exception
 	 */
 	public String upload() throws Exception {
-		File dir = new File(savePath);
-		if (!dir.exists()) {
-			dir.mkdirs();
-		}
 		List<String> mfiles = new ArrayList<String>();
-		System.out.println("getSavePath():");
-		System.out.println("userid:"+userid);
-		
+	
+		User user=(User)ActionContext.getContext().getSession().get("user");
+	
+		userid=user.getId();
+
 		//文件重命名，文件保存
-			String fileName = new SimpleDateFormat("yyyyMMddHHmmss")
-					.format(new Date()) + "_" + uploadifyFileName;
-			ActionContext ac = ActionContext.getContext();
-			ServletContext sc = (ServletContext) ac
-					.get(ServletActionContext.SERVLET_CONTEXT);
-			String realPath = sc.getRealPath("/");
-			String dest = realPath + savePath + "/" + fileName;
-			System.out.println("目标路径:"+dest);
-			FileUtils.copyFile(uploadify, new File(dest));
-			mfiles.add(savePath + "/" + fileName);
+		String updatadate=new SimpleDateFormat("yyyyMMddHHmmss")
+				.format(new Date());
+		String fileName =updatadate+ "_" + uploadifyFileName;
+		ActionContext ac = ActionContext.getContext();
+		ServletContext sc = (ServletContext) ac
+				.get(ServletActionContext.SERVLET_CONTEXT);
+		String realPath = sc.getRealPath("/");
+		String dest = realPath + savePath + "/" + fileName;
+		System.out.println("目标路径:"+dest);
+		FileUtils.copyFile(uploadify, new File(dest));
+		mfiles.add(savePath + "/" + fileName);
 
 		HttpServletResponse response = ServletActionContext.getResponse();
 		response.setCharacterEncoding("utf-8");
@@ -73,6 +77,13 @@ public class UpFileAction extends ActionSupport {
 		out.write(mfiles.get(0));
 		out.close();
 		out.flush();
+		
+		Photo photo=new Photo();
+		photo.setPName(fileName);
+		photo.setOwnerId(userid);
+		photo.setPaddr(dest);
+		photo.setUpdatetime(updatadate);
+		photoService.save(photo);
 		
 		System.out.println("mfiles.get(0):"+mfiles.get(0));
 		System.out.println("uploadify:"+uploadify);
@@ -128,12 +139,22 @@ public class UpFileAction extends ActionSupport {
 		this.mvUrl = mvUrl;
 	}
 
-	public int getUserid() {
+	public Long getUserid() {
 		return userid;
 	}
 
-	public void setUserid(int userid) {
+	public void setUserid(Long userid) {
 		this.userid = userid;
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public static String getSavepath() {
+		return savePath;
+	}
+
+	
 
 }
