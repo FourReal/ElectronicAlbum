@@ -54,6 +54,10 @@
 		<action name="savePath" class="ea.view.action.UpFileAction " method="savePath" >
 			<result name="success"/>
 		</action>
-        
+		
+		<!-- 照片管理 -->
+        <action name="photo_findPhotos" class="ea.view.action.PhotoAction" method="findPhotos">
+            <result name="photo_list" >/WEB-INF/jsp/photoAction/list.jsp</result>
+        </action>
     </package>
 </struts>

@@ -16,6 +16,7 @@ public class User implements java.io.Serializable{
 	private String phoneNumber;
 	private String email;
 	private String description;
+	private Photo[] photos;
 	
 	/**
 	 * 判断是否为超级管理员

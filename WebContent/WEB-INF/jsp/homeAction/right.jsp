@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<%@	taglib prefix="s" uri="/struts-tags" %>
 <%pageContext.setAttribute("baseURL", request.getContextPath()); %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>struts2 +jquey uploadify3.2 实现多文件上传，可预览、删除、排序</title>
@@ -178,5 +179,6 @@ ul li{list-style: none}
             <span class="ui-button-icon-primary ui-icon ui-icon-locked"></span> <span class="ui-button-text">完成</span>  
         </button>  
     </div> 
+    <s:a action="photo_findPhotos?userid=1"><input type="button"  value="查找"/></s:a>
 </body>
 </html>
