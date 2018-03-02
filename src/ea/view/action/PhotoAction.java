@@ -2,6 +2,8 @@ package ea.view.action;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -15,6 +17,7 @@ import ea.domain.User;
 @Scope("prototype")
 public class PhotoAction extends BaseAction<Photo>{
 	
+
 	/**
 	 * 照片展示
 	 * @return
@@ -23,10 +26,17 @@ public class PhotoAction extends BaseAction<Photo>{
 	public String list() throws Exception{
 		List<Photo> photoList=photoService.findAll();
 		ActionContext.getContext().put("photoList", photoList);
-		return "photo_list";
+		return "list";
 	}
 	
 	
+	/**
+	 * 照片删除
+	 */
+	public String delete() throws Exception{
+		photoService.delete(model.getId());
+		return "toList";
+	}
 	
 	/**
 	 * 照片查找
@@ -38,7 +48,16 @@ public class PhotoAction extends BaseAction<Photo>{
 		List<Photo> photolist=photoService.findPhotoByUserid(user.getId());
 		ActionContext.getContext().put("photoList", photolist);
 		
-		return "photo_list";
+		
+		return "list";
 	}
 	
+	/**
+	 * 照片上传
+	 * @return
+	 */
+	
+	public String add() {
+		return "addPhoto";
+	}
 }

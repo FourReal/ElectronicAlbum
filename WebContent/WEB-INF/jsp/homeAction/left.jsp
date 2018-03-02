@@ -21,7 +21,7 @@
 
 <div id="Menu">
 	<ul id="MenuUl">
-		<s:a target="right" href="http://www.baidu.com"><li>个人信息管理</li></s:a>
+		<s:a target="right" href="user_editUI.action"><li>个人信息管理</li></s:a>
 		
 		<s:a target="right" href="photo_findPhotos.action"><input type="button"  value="照片管理"/></s:a>
 		<s:a target="right" href="http://www.baidu.com"><li>相册制作</li></s:a>

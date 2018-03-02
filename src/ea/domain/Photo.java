@@ -1,16 +1,17 @@
 package ea.domain;
 
 public class Photo implements java.io.Serializable{
-	private Long PId;
+	private Long Id;
 	private String PName;
 	private String Paddr;
 	private Long OwnerId;
 	private String updatetime;
-	public Long getPId() {
-		return PId;
+	
+	public Long getId() {
+		return Id;
 	}
-	public void setPId(Long pId) {
-		PId = pId;
+	public void setId(Long id) {
+		Id = id;
 	}
 	public String getPName() {
 		return PName;
