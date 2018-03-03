@@ -34,8 +34,10 @@
         <action name="user_*" class="userAction" method="{1}">
             <result name="list">/WEB-INF/jsp/userAction/list.jsp</result>
             <result name="saveUI">/WEB-INF/jsp/userAction/saveUI.jsp</result>
+            <result name="editUI">/WEB-INF/jsp/userAction/editUI.jsp</result>
+            <result name="toPhotoList">/WEB-INF/jsp/photoAction/list.jsp</result>
             <result name="toList" type="redirectAction">user_list</result>
-            
+            <result name="editsuccess">/WEB-INF/jsp/userAction/editsuccess.jsp</result>
             <!-- 登录注销 -->
             
             <result name="logout">/WEB-INF/jsp/userAction/logout.jsp</result>
@@ -47,13 +49,19 @@
             <result name="{1}">/WEB-INF/jsp/homeAction/{1}.jsp</result>
         </action>
         
-		<action name="upload" class="ea.view.action.UpFileAction" method="upload" >
+		<action name="upload" class="userAction" method="upload" >
 			<result name="success"/>
 		</action>
 
 		<action name="savePath" class="ea.view.action.UpFileAction " method="savePath" >
 			<result name="success"/>
 		</action>
-        
+		
+		<!-- 照片管理 -->
+        <action name="photo_*" class="ea.view.action.PhotoAction" method="{1}">
+            <result name="list" >/WEB-INF/jsp/photoAction/list.jsp</result>
+            <result name="addPhoto" >/WEB-INF/jsp/photoAction/addUI.jsp</result>
+            <result name="toList" type="redirectAction">photo_list.action</result>
+        </action>
     </package>
 </struts>

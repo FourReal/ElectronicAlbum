@@ -9,7 +9,7 @@
     	table属性，数据库表名称
      -->
      <class name="Photo" table="ea_photo">
-         <id name="PId">
+         <id name="Id">
              <generator class="native"></generator>
          </id>
          <property name="PName" />

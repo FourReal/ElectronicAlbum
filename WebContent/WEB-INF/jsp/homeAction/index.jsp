@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 </head>
-<frameset rows="100,*,25" framespacing="0" border="1" frameborder="yes">
+<frameset name="index" rows="100,*,25" framespacing="0" border="1" frameborder="yes">
 	<frame noresize name="TopMenu" scrolling="no" src="${pageContext.request.contextPath}/home_top.action">
 	<frameset cols="180,*" id="resize">
 		<frame noresize name="menu" scrolling="yes" src="${pageContext.request.contextPath}/home_left.action">
