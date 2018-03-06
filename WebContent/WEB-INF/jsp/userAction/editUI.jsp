@@ -5,10 +5,10 @@
 	<%@	include file="/WEB-INF/jsp/public/commons.jspf" %>
 </head>
 <body>
-	<s:form action="user_edit.action">
+	<s:form action="user_edit">
 		<s:hidden name="id"></s:hidden>
 		
-		<div class="ItemBlock_Title1"><!-- 信息说明 --><div class="ItemBlock_Title">用户信息:</div>
+		<div class=""><!-- 信息说明 --><div class="">用户信息:</div>
 		</div>
 		<div>
 		<font color="red">
@@ -20,7 +20,7 @@
 			<table cellspacing="0" cellpadding="0" class="mainForm">	
 				<s:hidden name="id"></s:hidden>						
 				<tr><td>姓名</td>
-					<td><s:textfield name="name" cssClass="InputStyle" /> *</td>
+					<td><s:textfield name="name" cssClass="InputStyle" /></td>
 				</tr>
 				<tr><td>性别</td>
 					<td>

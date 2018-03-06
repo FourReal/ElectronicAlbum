@@ -5,8 +5,34 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
+<style type="text/css">
+            body {
+                padding: 0;
+                margin: 0 auto;
+            }
+
+            #footer {
+                height: 30px;
+                line-height: 30px;
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                text-align: center;
+                background: #fff;
+                color:#757575;
+                font-family: Arial;
+                font-size: 12px;
+                letter-spacing: 1px;
+            }
+
+            .content {
+                
+                width: 100%;
+                text-align: center;
+            }
+        </style>
 </head>
 <body>
-	这是页面的底部！
+	<div id="footer">&copy; 2018年FourReal版权所有，并保留所有权利。</div>
 </body>
 </html>

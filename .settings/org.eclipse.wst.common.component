@@ -4,7 +4,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/config"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/test"/>
-        <property name="context-root" value="ElectronicAlbum"/>
         <property name="java-output-path" value="/ElectronicAlbum/build/classes"/>
+        <property name="context-root" value="ElectronicAlbum"/>
     </wb-module>
 </project-modules>

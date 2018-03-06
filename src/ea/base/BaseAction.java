@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
+import ea.service.AlbumService;
 import ea.service.PhotoService;
 import ea.service.UserService;
 
@@ -41,5 +42,7 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 	protected UserService userService;
 	@Resource
 	protected PhotoService photoService;
-
+	@Resource
+	protected AlbumService albumService;
+	
 }

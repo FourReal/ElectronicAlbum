@@ -1,11 +1,15 @@
 package ea.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Photo implements java.io.Serializable{
-	private Long Id;
-	private String PName;
-	private String Paddr;
+	private Long Id;				//照片id
+	private String PName;			//照片name
+	private String Paddr;			//照片
 	private Long OwnerId;
 	private String updatetime;
+	private Set<Album> albumIds=new HashSet<Album>();
 	
 	public Long getId() {
 		return Id;
@@ -37,6 +41,13 @@ public class Photo implements java.io.Serializable{
 	public void setUpdatetime(String updatetime) {
 		this.updatetime = updatetime;
 	}
+	public Set<Album> getAlbumIds() {
+		return albumIds;
+	}
+	public void setAlbumIds(Set<Album> albumIds) {
+		this.albumIds = albumIds;
+	}
+	
 	
 	
 }

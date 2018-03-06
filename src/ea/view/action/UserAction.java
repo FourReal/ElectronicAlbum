@@ -122,7 +122,7 @@ public class UserAction extends BaseAction<User>{
 	public String addUI() throws Exception{
 		
 		
-		return "saveUI";
+		return "add";
 	}
 	
 	/**添加*/
@@ -130,12 +130,12 @@ public class UserAction extends BaseAction<User>{
 		User user=userService.findByLoginName(model.getLoginName());
 		if(user!=null) {
 			addFieldError("regist", "用户名已被注册！");
-			return "saveUI";
+			return "add";
 		}
 		else if(model.getPassword().equals("")) 
 		{
 			addFieldError("regist", "密码不能为空！");
-			return "saveUI";
+			return "add";
 		}
 		else{
 			String md5Digest=DigestUtils.md5Hex(model.getPassword());
@@ -147,19 +147,17 @@ public class UserAction extends BaseAction<User>{
 	
 	/** 修改页面*/
 	public String editUI() throws Exception{
-//		User user=userService.getById(model.getId());
-//		ActionContext.getContext().getValueStack().push(user);
-//		
-		return "editUI";
+		User user=(User)ActionContext.getContext().getSession().get("user");
+		ActionContext.getContext().getValueStack().push(user);
+		return "edit";
 	}
 	
 	/** 修改*/
 	public String edit() throws Exception{
-		//从数据库获取原对象
-		User user=userService.getById(model.getId());
-//		ActionContext.getContext().getValueStack().push(user);
 		
-		System.out.println("user:"+user.getId());
+		//从数据库获取原对象
+		User user=(User)ActionContext.getContext().getSession().get("user");
+		System.out.println("怎么还不成功啊！！！！________________________"+user);
 		//设置修改的属性
 		user.setName(model.getName());
 		user.setGender(model.getGender());
@@ -167,11 +165,16 @@ public class UserAction extends BaseAction<User>{
 		user.setEmail(model.getEmail());
 		user.setDescription(model.getDescription());
 		//保存到数据库
-		userService.update(user);
-		return "success";
+		
+		System.out.println("怎么还不成功啊！！！！________________________"+model.getName());
+//		userService.update(model);
+		return "toList";
 	}
 	
+	
+	
 	/**初始化密码功能*/
+	
 	public String initPassword()throws Exception{
 		//从数据库获取原对象
 		User user=userService.getById(model.getId());

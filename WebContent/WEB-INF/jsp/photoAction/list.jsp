@@ -14,7 +14,6 @@
 	<br>
 	<s:iterator value="#photoList">
 		<s:property value="PName"/>
-		<s:property value="Paddr"/>
 		<%-- <s:a action="role_delete?id=%{id}" onclick="return confirm('确定要删除吗?')">删除</s:a>
 		<s:a action="role_editUI?id=%{id}" >修改</s:a> --%>
 		<img src="/ElectronicAlbum/imgs/${PName}" name="mvUrl" width="100px" height="80px" class="myimg"/>

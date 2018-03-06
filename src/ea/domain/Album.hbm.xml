@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="ea.domain">
+    <!-- 1 配置类和表对应
+    	class标签
+    	name属性，实体类全路径
+    	table属性，数据库表名称
+     -->
+     <class name="Album" table="ea_album">
+         <id name="id">
+             <generator class="native"></generator>
+         </id>
+         <property name="albumName" />
+         <property name="description" />
+       
+         <!-- 与其他表的关系 -->
+         <!-- photos属性，本类与Photo的多对多的关系 -->
+         <set name="photos" table="ea_album_photo">
+             <key column="albumId"></key>
+             <many-to-many class="Photo" column="photoId"></many-to-many>
+         </set>
+         
+         
+         <!--  users属性，本类与User的多对多的关系 -->
+         <set name="users" table="ea_user_album" >
+             <key column="albumId"></key>
+             <many-to-many class="User" column="userId"></many-to-many>
+         </set>
+         
+         <!--  bgps属性，本类与AlbumBgp的多对多的关系-->
+          <set name="bgps" table="ea_album_albumbgp">
+             <key column="albumId"></key>
+             <many-to-many class="AlbumBgp" column="bgpId"></many-to-many>
+         </set>
+         
+         
+     </class> 
+     
+     
+</hibernate-mapping>

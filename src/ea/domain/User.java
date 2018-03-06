@@ -6,17 +6,19 @@ import java.util.Set;
 
 import com.opensymphony.xwork2.ActionContext;
 
+
 public class User implements java.io.Serializable{
 
-	private Long id;
-	private String loginName; //登录名
-	private String password;
-	private String name;	//真实姓名
-	private String gender;
+	private Long id;				//用户id
+	private String loginName; 		//登录名
+	private String password;		//密码
+	private String name;			//真实姓名
+	private String gender;	
 	private String phoneNumber;
 	private String email;
-	private String description;
-	private Photo[] photos;
+	private String description;		
+	private Set<Photo> photos=new HashSet<Photo>(); //用户拥有的照片
+	private Set<Album> albums=new HashSet<Album>(); //用户拥有的相册		
 	
 	/**
 	 * 判断是否为超级管理员
@@ -75,6 +77,29 @@ public class User implements java.io.Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+
+	public Set<Photo> getPhotos() {
+		return photos;
+	}
+
+
+	public void setPhotos(Set<Photo> photos) {
+		this.photos = photos;
+	}
+
+
+	public Set<Album> getAlbums() {
+		return albums;
+	}
+
+
+	public void setAlbums(Set<Album> albums) {
+		this.albums = albums;
+	}
+
+
+	
 	
 	
 }

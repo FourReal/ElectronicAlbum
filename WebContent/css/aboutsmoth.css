@@ -1,0 +1,22 @@
+*{padding:0;margin:0;list-style-type:none;}
+a,img{border:0;}
+body{font:12px/180% Arial, Helvetica, sans-serif, "新宋体";}
+/* demo */
+/*五张图片在缩略图时所显示的位置调整*/
+#demo li:nth-of-type(1) img{ transform: translate(-210px);}
+#demo li:nth-of-type(2) img{ transform: translate(-180px);}
+#demo li:nth-of-type(3) img{ transform: translate(-380px);}
+#demo li:nth-of-type(4) img{ transform: translate(-450px);}
+#demo li:nth-of-type(5) img{ transform: translate(-320px);}
+#demo{width:1160px;height:512px;margin:60px auto 0 auto;}
+#demo img{width: 820px; height: 512px; max-width: 820px;}
+#demo li{float:left;position:relative;width:82px;height:100%;overflow:hidden;cursor:pointer; transition:0.5s; transform-origin:bottom;filter:alpha(opacity=50);opacity:0.5;}
+#demo li img{transition:1.2s;}
+#demo li a{display:block;}
+#demo li div{position:absolute;bottom:0;left:0;width:100%;background:#000;line-height:32px;filter:alpha(opacity=70);opacity:0.7;text-indent:2em;}
+#demo li div a{color:#FFF;text-decoration:none;}
+#demo li div a:hover{color:#F00;text-decoration:none;}
+#demo li.active{cursor:pointer; transform:scale(1.02,1.08); z-index:3;width:820px;filter:alpha(opacity=100);opacity:1;}
+#demo li.active img{transform:translate(0px);}
+#demo li:nth-of-type(1){transform-origin:bottom left;}
+#demo li:nth-of-type(5){transform-origin:bottom right;}
