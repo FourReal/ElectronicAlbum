@@ -16,11 +16,8 @@
          <property name="remark" />
          
          
-         <!-- albumParents属性，本类与Album的多对多的关系 -->
-         <set name="albumParents" table="ea_album_albumbgp">
-             <key column="bgpId"></key>
-             <many-to-many class="Album" column="albumId"></many-to-many>
-         </set>
+         <!-- album属性，本类与Album的多对一的关系 -->
+         <many-to-one name="album" class="Album" column="albumId"></many-to-one>
          
      </class> 
      

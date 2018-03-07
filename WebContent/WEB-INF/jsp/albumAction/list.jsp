@@ -20,7 +20,7 @@
 		<tbody id="TableData" class="dataContainer">
 		<s:iterator value="#albumList">
 			<tr class="TableDatail template">
-				<td><s:a action="album_show">${albumName}</s:a>&nbsp;</td>
+				<td><s:a action="album_show?id=%{id}">${albumName}</s:a>&nbsp;</td>
 				<td>${description}&nbsp;</td>
 				<td>
 					<s:a action="album_delete?id=%{id}" onclick="return confirm('您确定要删除该用户吗？')">删除</s:a>

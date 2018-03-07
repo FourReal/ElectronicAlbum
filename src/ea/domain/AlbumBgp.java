@@ -7,7 +7,7 @@ public class AlbumBgp implements java.io.Serializable{
 	private Long id;
 	private String addr;
 	private String remark;
-	private Set<Album> albumParents=new HashSet<Album>();
+	private Album album;
 	
 	public Long getId() {
 		return id;
@@ -27,14 +27,12 @@ public class AlbumBgp implements java.io.Serializable{
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-	public Set<Album> getAlbumParents() {
-		return albumParents;
+	public Album getAlbum() {
+		return album;
 	}
-	public void setAlbumParents(Set<Album> albumParents) {
-		this.albumParents = albumParents;
+	public void setAlbum(Album album) {
+		this.album = album;
 	}
 
-    
-	
 	
 }

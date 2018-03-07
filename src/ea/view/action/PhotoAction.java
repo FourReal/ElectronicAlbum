@@ -24,8 +24,9 @@ public class PhotoAction extends BaseAction<Photo>{
 	 */
 	
 	public String list() throws Exception{
-		List<Photo> photoList=photoService.findAll();
-		ActionContext.getContext().put("photoList", photoList);
+		User user=(User)ActionContext.getContext().getSession().get("user");
+		List<Photo> photolist=photoService.findPhotoByUserid(user.getId());
+		ActionContext.getContext().put("photoList", photolist);
 		return "list";
 	}
 	

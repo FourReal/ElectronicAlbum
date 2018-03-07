@@ -29,10 +29,10 @@
              <many-to-many class="User" column="userId"></many-to-many>
          </set>
          
-         <!--  bgps属性，本类与AlbumBgp的多对多的关系-->
-          <set name="bgps" table="ea_album_albumbgp">
+         <!--  bgps属性，本类与AlbumBgp的一对多的关系-->
+         <set name="bgps">
              <key column="albumId"></key>
-             <many-to-many class="AlbumBgp" column="bgpId"></many-to-many>
+             <one-to-many class="AlbumBgp"/>
          </set>
          
          
