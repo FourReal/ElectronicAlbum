@@ -20,7 +20,7 @@ public class AlbumServiceImpl extends DaoSupportImpl<Album> implements AlbumServ
 
 	/**获取相册的所有背景图片*/
 	public List<AlbumBgp> findAllbgByAlbumId(Long id) {
-		System.out.println("album++++++++++"+id);
+//		System.out.println("album++++++++++"+id);
 		return (List<AlbumBgp>) getSession().createQuery(				
 			    "FROM AlbumBgp a WHERE a.album.id=?")
 				.setParameter(0, id)
@@ -65,5 +65,12 @@ public class AlbumServiceImpl extends DaoSupportImpl<Album> implements AlbumServ
 	 */
 	public Album getAlbumByBgp(AlbumBgp bgp) {
 		return bgp.getAlbum();
+	}
+
+	public List<AlbumBgp> findAllbgp() {
+		
+		return (List<AlbumBgp>) getSession().createQuery(				
+			    "FROM AlbumBgp a ")
+				.list();
 	}
 }

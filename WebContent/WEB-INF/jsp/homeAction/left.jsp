@@ -63,6 +63,13 @@
 			  <i class="fa fa-angle-left pull-right"></i>
 			</a>
 		  </li>
+		  <li class="treeview">
+			<a target="right" href="user_list.action">
+			  <i class="fa fa-files-o"></i>
+			  <span>用户管理</span>
+			  <i class="fa fa-angle-left pull-right"></i>
+			</a>
+		  </li>
 		 <%--  <li>
 			<a href="#">
 			  <i class="fa fa-th"></i> <span>Widgets</span>

@@ -18,7 +18,7 @@ public class User implements java.io.Serializable{
 	private String email;
 	private String description;		
 	private Set<Photo> photos=new HashSet<Photo>(); //用户拥有的照片
-	private Set<Album> albums=new HashSet<Album>(); //用户拥有的相册		
+	private Set<Album> albums=new HashSet<Album>(); //用户收藏的相册		
 	
 	/**
 	 * 判断是否为超级管理员

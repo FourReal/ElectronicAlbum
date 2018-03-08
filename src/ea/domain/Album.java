@@ -10,7 +10,7 @@ public class Album implements java.io.Serializable{
 	private String description;	//相册描述
 	
 	private Set<Photo> photos=new HashSet<Photo>();   //相册中的照片
-	private Set<User> users=new HashSet<User>();		//拥有该相册的用户id
+	private Set<User> users=new HashSet<User>();		//收藏该相册的用户
 	
 	private Set<AlbumBgp> bgps=new HashSet<AlbumBgp>();    //相册的组成成分
 	

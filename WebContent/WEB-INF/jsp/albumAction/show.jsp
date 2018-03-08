@@ -5,10 +5,13 @@
 	<%@	include file="/WEB-INF/jsp/public/commons.jspf" %>
 </head>
 <body>
-	这是相册展示页面！！！！<br/>
-	album====${id }
+	这是相册展示页面！！！！
+	album====${id }<br/>
+	<a href="javascript:history.go(-1);">返回</a>
 	<!--<s:hidden name="id" value="%{id}"></s:hidden>  -->
 	<s:a action="album_make?id=%{id}">添加相册背景图</s:a>
+	<br/>
+	<s:a action="user_addalbum?id=%{id}">收藏该相册</s:a>
 	<br/>
 	<table cellspacing="0" cellpadding="0" class="TableStyle">	
 		<tbody id="TableData" class="dataContainer">

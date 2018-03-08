@@ -17,4 +17,8 @@ public interface AlbumService extends DaoSupport<Album>{
 	void deleteBgp(Long id);
 	
 	AlbumBgp findBgpByBgpId(Long id);
+
+	List<AlbumBgp> findAllbgp();
+	
+	
 }

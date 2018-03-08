@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +23,7 @@ import org.springframework.stereotype.Controller;
 import com.opensymphony.xwork2.ActionContext;
 
 import ea.base.BaseAction;
+import ea.domain.Album;
 import ea.domain.Photo;
 import ea.domain.User;
 
@@ -149,6 +151,7 @@ public class UserAction extends BaseAction<User>{
 	public String editUI() throws Exception{
 		User user=(User)ActionContext.getContext().getSession().get("user");
 		ActionContext.getContext().getValueStack().push(user);
+		showalbum();
 		return "edit";
 	}
 	
@@ -157,7 +160,8 @@ public class UserAction extends BaseAction<User>{
 		
 		//从数据库获取原对象
 		User user=(User)ActionContext.getContext().getSession().get("user");
-		System.out.println("怎么还不成功啊！！！！________________________"+user);
+		
+//		System.out.println("怎么还不成功啊！！！！________________________"+user);
 		//设置修改的属性
 		user.setName(model.getName());
 		user.setGender(model.getGender());
@@ -166,7 +170,7 @@ public class UserAction extends BaseAction<User>{
 		user.setDescription(model.getDescription());
 		//保存到数据库
 		
-		System.out.println("怎么还不成功啊！！！！________________________"+model.getName());
+//		System.out.println("怎么还不成功啊！！！！________________________"+model.getName());
 //		userService.update(model);
 		return "toList";
 	}
@@ -217,6 +221,80 @@ public class UserAction extends BaseAction<User>{
 	public String logout() throws Exception{
 		ActionContext.getContext().getSession().remove("user");
 		return "logout";
+	}
+	
+	
+	
+	/**
+	 * 收藏某个相册
+	 * @return
+	 */
+	public String addalbum()throws Exception{
+		User user=(User) ActionContext.getContext().getSession().get("user");
+//		System.out.println("Addalbum:user+++++++++++"+user);
+//		System.out.println("Addalbum:model.id+++++++++++"+model.getId());
+		Album album=albumService.getById(model.getId());
+//		System.out.println("Addalbum:album+++++++++++"+album);
+		Set<Album> albums=user.getAlbums();
+//		System.out.println("Addalbum:albums+++++++++++"+user.getAlbums());
+		int sign=0;
+		for(Album a:albums)
+		{
+			if(a.getId()==model.getId())
+			{
+				sign=1;
+				break;
+			}
+		}
+		if(sign!=1)
+		{
+			albums.add(album);
+			user.setAlbums(albums);
+			userService.update(user);
+		}
+		return "edit";
+	} 
+	
+	/**
+	 * 展示用户收藏的相册
+	 * @return
+	 */
+	public String showalbum()throws Exception{
+		User user=(User) ActionContext.getContext().getSession().get("user");
+
+		
+//		System.out.println("Showalbum:user++++++++++"+user);
+		Set<Album> albums=user.getAlbums();
+		List<Album> userAlbums=new ArrayList<Album>(albums);
+//		System.out.println("Showalbum:userAlbums++++++++++"+userAlbums);
+		ActionContext.getContext().put("userAlbums", userAlbums);
+		return "showalbumok";
+	}
+	
+	/**
+	 * 删除某个收藏的相册
+	 * @return
+	 * 
+	 */
+	public String delAlbum()throws Exception{
+//		System.out.println("DelAlbum:model++++++++++++++"+model.getId());
+		User user=(User) ActionContext.getContext().getSession().get("user");
+		Set<Album> albums=user.getAlbums();
+		Album album=albumService.getById(model.getId());
+//		System.out.println("DelAlbum:model++++++++++++++"+model);
+		
+		for(Album a:albums) {
+//			System.out.println("----------"+a.getId());
+			if(a.getId()==album.getId())
+				albums.remove(a);
+		}
+		
+//		System.out.println("DelAlbum:albums++++++++++++++"+albums.toString());
+		user.setAlbums(albums);
+//		System.out.println("DelAlbum:user++++++++++++++"+user.getId());
+		userService.update(user);
+
+		return "edit";
 	}
 	
 	

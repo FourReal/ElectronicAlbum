@@ -92,7 +92,7 @@ public class AlbumAction extends BaseAction<Album>{
 		return "toList";
 	}
 	
-	/** 展示相册*/
+	/** 展示相册背景图*/
 	public String show() throws Exception{
     	//System.out.println("show:album-------------------"+model.getId());
 		//准备相册数据
@@ -110,12 +110,14 @@ public class AlbumAction extends BaseAction<Album>{
 		
 		//传递参数
 		ActionContext.getContext().put("bgpList", bgpList);
+				
+		
 		return "show";
 	}
 	
 	/** 添加相册背景图*/
 	public String addBgp() throws Exception{
-		System.out.println("ADDBGP++++++++++++"+model.getId());
+//		System.out.println("ADDBGP++++++++++++"+model.getId());
 		Album album=(Album)albumService.getById(model.getId());
 		String updatadate=new SimpleDateFormat("yyyyMMddHHmmss")
 				.format(new Date());
@@ -145,17 +147,17 @@ public class AlbumAction extends BaseAction<Album>{
 		bgp.setAddr(saveaddr);
 		bgp.setAlbum(album);
 		albumService.addBgp(bgp);
-		System.out.println("addBgp()+=====id="+model.getId());
+//		System.out.println("addBgp()+=====id="+model.getId());
 		ActionContext.getContext().getSession().put("bgpid", model.getId());
 		return "toShow";
 	}
 	
 	/**删除相册中的背景图*/
 	public String deleteBgp()throws Exception{
-		System.out.println("DELETE===="+model.getId());
+//		System.out.println("DELETE===="+model.getId());
 		AlbumBgp bgp=(AlbumBgp)albumService.findBgpByBgpId(model.getId());
 		Album album=bgp.getAlbum();
-		System.out.println("albumBgp+++++++"+bgp.getId()+"+++++++"+bgp.getAddr());
+//		System.out.println("albumBgp+++++++"+bgp.getId()+"+++++++"+bgp.getAddr());
 		ActionContext.getContext().getSession().put("bgpid", album.getId());
 		albumService.deleteBgp(bgp.getId());
 	
@@ -170,6 +172,17 @@ public class AlbumAction extends BaseAction<Album>{
 	}
 
 	
+	/**
+	 * 展示相册全部背景图片
+	 * @return
+	 * @throws Exception
+	 */
+	public String bgpshow()throws Exception{
+		List<AlbumBgp> bgpsList=albumBgpService.findAll();
+		System.out.println("bgpshow:++++++++++++++++++"+bgpsList);
+		ActionContext.getContext().getSession().put("bgpsList", bgpsList);
+		return "bgpsshow";
+	}
 
 	
 	

@@ -22,7 +22,7 @@
          
          
          <!--albums属性，本类与Album的多对多的关系 -->
-         <set name="albums" table="ea_user_album">
+         <set name="albums" table="ea_user_album" lazy="false">
              <key column="userId"></key>
              <many-to-many class="Album" column="albumId"></many-to-many>
          </set>
