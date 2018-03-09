@@ -50,7 +50,7 @@
 		<s:iterator value="#userAlbums">
 			<tr class="TableDatail template">
 				<td>id=======${id }</td>
-				<td><s:a action="album_bgpshow?id=%{id}">${albumName}</s:a>&nbsp;</td>
+				<td><s:a action="album_getAllBgps">${albumName}</s:a>&nbsp;</td>
 				<td>${description}&nbsp;</td>
 				<td>
 					<s:a action="user_delAlbum?id=%{id}" onclick="return confirm('您确定要删除该相册吗？')">删除</s:a>

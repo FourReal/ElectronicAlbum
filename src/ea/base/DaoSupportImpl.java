@@ -8,9 +8,12 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
+
+import ea.domain.AlbumBgp;
 
 //该注解可以被继承
 //@Transactional对父类中的方法无效
@@ -20,7 +23,7 @@ public class DaoSupportImpl<T> implements DaoSupport<T>{
 
 	@Resource
 	private SessionFactory sessionFactory;
-	private Class<T> clazz=null;   //待解决的问题
+	private Class<T> clazz=null;   
 	
 	public DaoSupportImpl() {
 		//使用反射技术得到T的真实类型
@@ -86,5 +89,41 @@ public class DaoSupportImpl<T> implements DaoSupport<T>{
 				"FROM "+clazz.getSimpleName())//
 				.list();
 	}
+	
+	
+	/**
+	 * 分页形式查询T
+	 * @param pageNow
+	 * @param pageSize
+	 * @return
+	 */
+	
+	public List<T> getAll(int pageNow,int pageSize){  //查询所有T，实现分页 
+		Session session=getSession();
+		String hsql="FROM"+clazz.getSimpleName();
+		Query query=session.createQuery(hsql);  //执行查询操作
+		query.setFirstResult((pageNow-1)*pageSize);
+		query.setMaxResults(pageSize);
+		List<T> tList=query.list();
+		session.close();
+		session=null;
+		if(tList.size()>0)
+			return tList;
+		return null;
+	}
+	
+	
+	
+	
+	//---------------------------------
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
 
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+	
+	
 }

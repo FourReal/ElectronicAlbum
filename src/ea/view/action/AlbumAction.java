@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
@@ -26,6 +27,7 @@ import ea.domain.AlbumBgp;
 import ea.domain.Photo;
 import ea.domain.User;
 import ea.service.AlbumService;
+import ea.util.PageShow;
 
 @Controller
 @Scope("prototype")
@@ -36,6 +38,12 @@ public class AlbumAction extends BaseAction<Album>{
     private File image; //上传的文件  
     private String imageFileName; //文件名称  
     private String imageContentType; //文件类型
+    
+    private int pageNow=1;   //动态改变 页面获取
+    private int pageSize=5;    //固定不变
+    
+    
+    
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -180,12 +188,43 @@ public class AlbumAction extends BaseAction<Album>{
 	public String bgpshow()throws Exception{
 		List<AlbumBgp> bgpsList=albumBgpService.findAll();
 		System.out.println("bgpshow:++++++++++++++++++"+bgpsList);
-		ActionContext.getContext().getSession().put("bgpsList", bgpsList);
+		for(AlbumBgp a:bgpsList)
+		{
+			System.out.println(a.getId()+"++++"+a.getAddr());
+		}
+		ActionContext.getContext().put("bgpsList", bgpsList);
 		return "bgpsshow";
 	}
 
 	
-	
+	/**
+	 * 分页展示背景图片
+	 * @return
+	 */
+	public String getAllBgps() {
+//		if(ActionContext.getContext().getSession().get("page")!=null)
+//		{
+//			PageShow page=(PageShow) ActionContext.getContext().getSession().get("page");
+//			int pagenow=getPageNow();
+//			System.out.println("getAllBgps:page++++++++++++"+page.getPageNow()+"+++"+pagenow);
+//			pageNow=page.getPageNow();
+//		}
+		
+		System.out.println("getAllBgps:page++++++++++++"+getPageNow());
+		List<AlbumBgp> bgpsList=albumBgpService.findAllbgp(pageNow,pageSize);
+		System.out.println("getAllBgps:page++++++++++");
+		if(bgpsList.size()>0) {   //bgp列表
+			ActionContext.getContext().put("bgpsList", bgpsList);
+			PageShow page=new PageShow(pageNow,albumBgpService.findBgpSize(),pageSize);
+//			Map request=(Map) ActionContext.getContext().get("request");
+//			request.put("page", page);
+			ActionContext.getContext().getSession().put("page", page);
+			System.out.println("getAllBgps+++++++++"+page.getPageSize()+page.getPageNow());
+			
+		}
+		
+		return "bgpsshow";
+	}
 	
 	
 	//----------------------------------------
@@ -211,6 +250,22 @@ public class AlbumAction extends BaseAction<Album>{
 
 	public void setImageContentType(String imageContentType) {
 		this.imageContentType = imageContentType;
+	}
+
+	public int getPageNow() {
+		return pageNow;
+	}
+
+	public void setPageNow(int pageNow) {
+		this.pageNow = pageNow;
+	}
+
+	public int getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
 	}
 	
 	

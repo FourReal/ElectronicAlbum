@@ -52,7 +52,7 @@
 			</a>
 			<ul class="treeview-menu">
 			  <li><a href="${pageContext.request.contextPath}/user_editUI.action" target="right"><i class="fa fa-circle-o"></i> 个人信息</a></li>
-			  <li><a href="${pageContext.request.contextPath}/photo_findPhotos.action" target="right"><i class="fa fa-circle-o"></i> 照片管理</a></li>
+			  <li><a href="${pageContext.request.contextPath}/photo_getAllPhotos.action" target="right"><i class="fa fa-circle-o"></i> 照片管理</a></li>
 			  <!-- <li><a href="#"><i class="fa fa-circle-o"></i> 相册制作</a></li> -->
 			</ul>
 		  </li>
