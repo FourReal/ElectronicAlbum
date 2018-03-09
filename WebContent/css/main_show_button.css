@@ -1,0 +1,51 @@
+
+
+
+.ph-post1-wrapper {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 15.25em;
+    min-width: 10em;
+    font: 2em/1.4 "Bowlby One SC", Arial, sans-serif;
+    font-weight: 400; }
+
+.ph-post1-wrapper a {
+    text-decoration: none; }
+
+.ph-post1-wrapper .button {
+    display: block;
+    position: relative;
+    height: 3.4em;
+    width: 10em;
+    margin: .7em auto;
+    overflow: hidden; }
+.ph-post1-wrapper .button > span {
+    display: block;
+    position: absolute;
+    overflow: hidden;
+    left: 0;
+    top: 0;
+    width: 0%;
+    height: 100%;
+    -webkit-transition: 1s ease-in-out;
+    -moz-transition: 1s ease-in-out;
+    -o-transition: 1s ease-in-out;
+    transition: 1s ease-in-out; }
+.ph-post1-wrapper .button:after, .ph-post1-wrapper .button > span > span {
+    display: block;
+    text-align: center;
+    border-radius: 0.625em;
+    padding: 1em 0; }
+.ph-post1-wrapper .button:after {
+    content: attr(data-title);
+    width: 100%;
+    background: #4186b2;
+    color: #67d6c1; }
+.ph-post1-wrapper .button > span > span {
+    width: 10em;
+    background: #67d6c1;
+    color: #4186b2; }
+.ph-post1-wrapper .button:hover > span {
+    width: 100%; }
+
+

@@ -35,6 +35,8 @@
             <result name="list">/WEB-INF/jsp/userAction/list.jsp</result>
             <result name="add">/WEB-INF/jsp/userAction/addUI.jsp</result>
             <result name="edit">/WEB-INF/jsp/userAction/editUI.jsp</result>
+            <result name="index">/WEB-INF/jsp/userAction/userindex.jsp</result>
+            <result name="makeAlbum">/WEB-INF/jsp/userAction/makealb.jsp</result>
             <result name="toPhotoList">/WEB-INF/jsp/photoAction/list.jsp</result>
             <result name="toList" type="redirectAction">user_list</result>
             

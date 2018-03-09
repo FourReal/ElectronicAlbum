@@ -59,7 +59,7 @@
 		  <li class="treeview">
 			<a target="right" href="album_list.action">
 			  <i class="fa fa-files-o"></i>
-			  <span>相册制作</span>
+			  <span>相册模板制作</span>
 			  <i class="fa fa-angle-left pull-right"></i>
 			</a>
 		  </li>
@@ -67,6 +67,13 @@
 			<a target="right" href="user_list.action">
 			  <i class="fa fa-files-o"></i>
 			  <span>用户管理</span>
+			  <i class="fa fa-angle-left pull-right"></i>
+			</a>
+		  </li>
+		  <li class="treeview">
+			<a target="right" href="user_makeAlbum.action">
+			  <i class="fa fa-files-o"></i>
+			  <span>制作相册</span>
 			  <i class="fa fa-angle-left pull-right"></i>
 			</a>
 		  </li>

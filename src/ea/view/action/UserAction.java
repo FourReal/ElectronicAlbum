@@ -26,6 +26,7 @@ import ea.base.BaseAction;
 import ea.domain.Album;
 import ea.domain.Photo;
 import ea.domain.User;
+import ea.util.PageShow;
 
 
 @Controller
@@ -42,6 +43,10 @@ public class UserAction extends BaseAction<User>{
 	private static final String savePath = "imgs";// 文件上传后保存的路径
 	private String mvUrl;
 	private Long userid;//标记哪个用户上传
+	
+	private int pageNow=1;   //动态改变 页面获取
+    private int pageSize=5;    //固定不变
+	
 	
 	
 	/**
@@ -104,6 +109,14 @@ public class UserAction extends BaseAction<User>{
 		out.close();
 		out.flush();
 		return null;
+	}
+	
+	
+	/**
+	 * 用户首页
+	 */
+	public String index() throws Exception{
+		return "index";
 	}
 	
 	
@@ -297,9 +310,55 @@ public class UserAction extends BaseAction<User>{
 		return "edit";
 	}
 	
+	/**
+	 * 分页展示照片
+	 * @return
+	 */
+	public String getAllPhotos() {
+		User user=(User) ActionContext.getContext().getSession().get("user");
+		System.out.println("getAllBgps:user++++++++++++"+user.getId());
+		System.out.println("getAllBgps:page++++++++++++"+getPageNow());
+
+		List<Photo> photoList=photoService.findAllPhotosByUserid(pageNow,pageSize,user.getId());
+		if(photoList.size()>0) {   //bgp列表
+			ActionContext.getContext().put("photoList", photoList);
+			PageShow page=new PageShow(pageNow,photoService.findPhotoSizeByUserid(user.getId()),pageSize);
+
+			ActionContext.getContext().getSession().put("pagePhoto", page);
+		
+		}
+		
+		return "list";
+	}
 	
 	
-	//----------------
+	/**
+	 * 用户制作一个相册
+	 * @return
+	 */
+	public String makeAlbum()throws Exception{
+		
+		getAllPhotos();
+		Templist();
+		return "makeAlbum";
+	}
+	
+	
+	
+	/**
+	 * 展示相册模板
+	 * @return
+	 */
+	/** 列表*/
+	public String Templist() throws Exception{
+		List<Album> albumList=albumService.findAll();
+		ActionContext.getContext().put("albumList", albumList);
+		return "list";
+	}
+	
+	
+	
+	//----------------各属性set和get方法
 	
 	public File getUploadify() {
 		return uploadify;
@@ -348,6 +407,22 @@ public class UserAction extends BaseAction<User>{
 
 	public static String getSavepath() {
 		return savePath;
+	}
+
+	public int getPageNow() {
+		return pageNow;
+	}
+
+	public void setPageNow(int pageNow) {
+		this.pageNow = pageNow;
+	}
+
+	public int getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
 	}
 
 	

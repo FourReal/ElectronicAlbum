@@ -1,0 +1,6 @@
+.wraper{ width:1000px; padding-top:100px; margin:0 auto}
+.nav{ position:relative; width:100%; height:40px; background:#C70757; overflow:hidden}
+.nav-item{ position:relative; float:left; width:120px; height:40px; line-height:40px; text-align:center; font-size:14px; z-index:1}
+.nav-item a{ display:block; height:40px; color:#fff; }
+.nav-item a:hover{ color:#fff}
+.move-bg{ display:none;position:absolute;left:0;top:0; width:120px; height:40px; background:#4D0B33; z-index:0}

@@ -1,0 +1,230 @@
+:root {
+    --colorMain: #4EBCFF;
+    --colorLight: #93daff;
+    --colorAccent: #ceecff;
+}
+
+body {
+    height: 1000px;
+    /*background: linear-gradient(to bottom, #243B55, #141E30);*/
+    background: linear-gradient(rgba(255, 228, 225, 0.95), rgba(255, 228, 225, 0.95)), url("../images/tour03.jpg") repeat center center/cover;
+    position: relative;
+    overflow-x: hidden;
+    z-index: 0;
+    color: #555;
+}
+
+.background-lyrics {
+    color: #fff;
+    line-height: 1.4;
+    position: absolute;
+    font-family: 'Microsoft YaHei','Lantinghei SC','Open Sans',Arial,'Hiragino Sans GB','STHeiti','WenQuanYi Micro Hei','SimSun',sans-serif;
+    font-size: 54.5px;
+    font-weight: 500;
+    width: 131%;
+    z-index: -1;
+    top: -10%;
+    left: -10%;
+    transform: rotate(-8deg);
+    opacity: 0.03;
+}
+
+.container-tile .content {
+    margin: 0 auto 5em;
+    min-height: 50vh;
+    max-width: 1600px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.container-lyrics .content {
+    margin: 2em auto 5em;
+    padding: 10px;
+    min-height: 50vh;
+    max-width: 1600px;
+}
+
+h1 {
+    text-align: center;
+    min-width: 100%;
+    flex: 1;
+    font: 30px 'Microsoft YaHei','Lantinghei SC','Open Sans',Arial,'Hiragino Sans GB','STHeiti','WenQuanYi Micro Hei','SimSun',sans-serif;
+    margin: 40px 0 15px;
+}
+
+.tile ul {
+    display: none;
+}
+
+.tile {
+    width: 400px;
+    height: 250px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: transform .1s;
+    position: relative;
+    margin: 5px;
+    cursor: pointer;
+    background-image: url("../images/tour03.jpg");
+    background-repeat: no-repeat;
+    opacity: 0.7;
+}
+
+.tile:hover {
+    box-shadow: 0 20px 20px rgba(255, 0, 0, 0.2);
+    opacity: 0.9;
+}
+
+.tile:nth-child(2) {
+    background-position: -250px 0;
+}
+
+.tile:nth-child(3) {
+    background-position: -500px 0;
+}
+
+.tile:nth-child(4) {
+    background-position: 0 -250px;
+}
+
+.tile:nth-child(5) {
+    background-position: -250px -250px;
+}
+
+.tile:nth-child(6) {
+    background-position: -500px -250px;
+}
+
+.tile:nth-child(7) {
+    background-position: 0 -500px;
+}
+
+.tile:nth-child(8) {
+    background-position: -250px -500px;
+}
+
+.tile:nth-child(9) {
+    background-position: -500px -500px;
+}
+
+.tile .title {
+    font-family: 'Microsoft YaHei','Lantinghei SC','Open Sans',Arial,'Hiragino Sans GB','STHeiti','WenQuanYi Micro Hei','SimSun',sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: .5px;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 0 35px;
+    line-height: 1.1;
+}
+
+.tile .lines {
+    position: absolute;
+    width: 85%;
+    height: 85%;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border: 3px solid #fff;
+    transform: scale3d(0.9, 0.9, 1);
+    opacity: 0;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.tile:hover .lines {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+}
+
+.container-master {
+    position: relative;
+}
+
+.container-lyrics, .container-tile {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    transition: .5s ease;
+}
+
+.container-tile {
+    left: 0;
+}
+
+.container-lyrics {
+    left: 100%;
+}
+
+.back {
+    width: 30px;
+    height: 35px;
+    float: left;
+    margin: 18px 0;
+    position: relative;
+    cursor: pointer;
+    z-index: 2;
+    transition: all 600ms cubic-bezier(0.77, 0, 0.175, 1);
+}
+.back:before {
+    content: '';
+    height: 1px;
+    width: 15px;
+    background: #000;
+    position: absolute;
+    transform: rotate(-45deg);
+    top: 13px;
+    left: 7px;
+}
+.back:after {
+    content: '';
+    height: 1px;
+    width: 15px;
+    background: #000;
+    position: absolute;
+    transform: rotate(-135deg);
+    top: 23px;
+    left: 7px;
+}
+.back:hover {
+    background: rgba(255, 0, 0, 0.2);
+}
+
+.lyrics-title {
+    font-family: 'Microsoft YaHei','Lantinghei SC','Open Sans',Arial,'Hiragino Sans GB','STHeiti','WenQuanYi Micro Hei','SimSun',sans-serif;
+    font-size: 45px;
+    letter-spacing: 1px;
+    position: relative;
+    text-align: right;
+    margin: 0 0 25px;
+    transition: all 1s cubic-bezier(0.77, 0, 0.175, 1);
+    top: -250px;
+}
+
+.lyrics-card {
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+    margin: 20px 0;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 25px 30px;
+    font: 18px/1.5 'Microsoft YaHei','Lantinghei SC','Open Sans',Arial,'Hiragino Sans GB','STHeiti','WenQuanYi Micro Hei','SimSun',sans-serif;
+    top: 20px;
+    position: relative;
+    opacity: 0;
+}
+
+.container-master.toggled .container-tile {
+    left: 100%;
+}
+.container-master.toggled .container-lyrics {
+    left: 0;
+}
+.container-master.toggled .lyrics-title {
+    top: 0;
+}
+
+

@@ -1,0 +1,18 @@
+@charset "UTF-8";
+html,body{width:100%;margin:0px;padding:0px;background:#ffffff url('i/bg2.jpg');color:#000000;min-width:800px;}
+	body * { -webkit-tap-highlight-color: rgba(0,0,0,0); }
+	.links a:link,.links a:visited{color:black;text-decoration:none;font:20px sans-serif;}
+	.links a:hover{color:black;text-decoration:underline;}
+
+	.red {border:1px solid #ffc30d;}
+	.red-filled {background:#e0604a;border:1px solid #ffc30d;}
+	.blue {background:#67BCCF;}
+
+	.section {width:800px;border-radius:10px; margin:50px auto;}
+	.section p{text-align:center;margin:0px;padding:20px;font:16px sans-serif;line-height:140%;}
+	.section p strong {color:gold;}
+
+	.section-list {width:800px;border-radius:10px;margin:50px auto;}
+
+	.address{margin:0px auto 50px auto;padding:0px;width:800px;text-align:center;}
+	.address, .address a{font:16px arial, sans-serif;color:black;}

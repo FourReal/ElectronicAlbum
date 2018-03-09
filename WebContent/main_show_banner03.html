@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>main_show_banner03</title>
+
+    <link rel="stylesheet" href="css/main_show.css">
+    <link rel="stylesheet" href="css/main_show_banner.css">
+    <link rel="stylesheet" href="css/main_show_button.css">
+
+
+</head>
+<body>
+
+<div class="example">
+    <div class="ft-carousel" id="carousel_3">
+        <ul class="carousel-inner">
+           <li class="carousel-item"><img src="images/ly1.jpg"/></li>
+            <li class="carousel-item"><img src="images/ly2.jpg"/></li>
+            <li class="carousel-item"><img src="images/bb1.jpg"/></li>
+            <li class="carousel-item"><img src="images/aq1.jpg"/></li>
+            <li class="carousel-item"><img src="images/gr5.jpg"/></li>
+            <li class="carousel-item"><img src="images/gr3.jpg"/></li>
+            <li class="carousel-item"><img src="images/gr2.jpg"/></li>
+        </ul>
+    </div>
+</div>
+
+<!--按钮-->
+<div class="ph-post1-wrapper">
+
+
+    <a class="button" data-title="查看详情" href="#">
+        <span><span >查看详情</span></span>
+    </a>
+
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/ft-carousel.min.js"></script>
+<script type="text/javascript">
+    $("#carousel_3").FtCarousel({
+        index: 0,
+        auto: true,
+        time: 2000,
+        indicators: false,
+        buttons: true
+    });
+</script>
+
+</div>
+</body>
+</html>
