@@ -24,6 +24,7 @@ import com.opensymphony.xwork2.ActionContext;
 
 import ea.base.BaseAction;
 import ea.domain.Album;
+import ea.domain.AlbumBgp;
 import ea.domain.Photo;
 import ea.domain.User;
 import ea.util.PageShow;
@@ -47,6 +48,8 @@ public class UserAction extends BaseAction<User>{
 	private int pageNow=1;   //动态改变 页面获取
     private int pageSize=5;    //固定不变
 	
+    private int BgppageNow=1;   //动态改变 页面获取
+    private int BgppageSize=1;    //固定不变
 	
 	
 	/**
@@ -337,7 +340,23 @@ public class UserAction extends BaseAction<User>{
 	 * @return
 	 */
 	public String makeAlbum()throws Exception{
-		
+		if(model.getId()!=null)
+		{
+			System.out.println("makeAlbum++++++++++"+model.getId());
+//			List<AlbumBgp> modelBgps=albumService.findAlbumBgpsByAlbumid(BgppageNow, BgppageSize, model.getId());
+//			System.out.println("MakeAlbum+++++++++++"+modelBgps);
+//			if(modelBgps.size()>0)
+//			{
+//				ActionContext.getContext().put("modelBgps", modelBgps);
+//				PageShow page=new PageShow(BgppageNow,albumService.findAlbumBgpSizeByAlbumid(model.getId()),BgppageSize);
+//
+//				ActionContext.getContext().put("pageAlbumBgp", page);
+//			}
+			
+			List<AlbumBgp> modelBgps=albumService.findAllbgByAlbumId(model.getId());
+			if(modelBgps.size()>0)
+				ActionContext.getContext().put("modelBgps", modelBgps);
+		}
 		getAllPhotos();
 		Templist();
 		return "makeAlbum";
@@ -423,6 +442,22 @@ public class UserAction extends BaseAction<User>{
 
 	public void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
+	}
+
+	public int getBgppageNow() {
+		return BgppageNow;
+	}
+
+	public void setBgppageNow(int bgppageNow) {
+		BgppageNow = bgppageNow;
+	}
+
+	public int getBgppageSize() {
+		return BgppageSize;
+	}
+
+	public void setBgppageSize(int bgppageSize) {
+		BgppageSize = bgppageSize;
 	}
 
 	

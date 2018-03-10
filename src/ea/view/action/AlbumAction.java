@@ -102,11 +102,12 @@ public class AlbumAction extends BaseAction<Album>{
 	
 	/** 展示相册背景图*/
 	public String show() throws Exception{
-    	//System.out.println("show:album-------------------"+model.getId());
+    	System.out.println("show:album-------------------"+model.getClass());
 		//准备相册数据
+		
 		Album album=null;
 		Object obj=ActionContext.getContext().getSession().get("bgpid");
-		System.out.println("Show++++++++");
+		System.out.println("Show++++++++"+model.getId());
 		if(obj!=null)
 			album=(Album)albumService.getById(Long.parseLong(obj.toString()));
 		else
@@ -118,7 +119,8 @@ public class AlbumAction extends BaseAction<Album>{
 		
 		//传递参数
 		ActionContext.getContext().put("bgpList", bgpList);
-				
+		ActionContext.getContext().getSession().put("bgpid", null);
+		
 		
 		return "show";
 	}
@@ -129,12 +131,13 @@ public class AlbumAction extends BaseAction<Album>{
 		Album album=(Album)albumService.getById(model.getId());
 		String updatadate=new SimpleDateFormat("yyyyMMddHHmmss")
 				.format(new Date());
+		String filename=updatadate+"_"+imageFileName;
 		String realpath = ServletActionContext.getServletContext().getRealPath("/images");  
         System.out.println("realpath: "+realpath); 
-        String saveaddr="/Electronic/images/"+updatadate+"_"+imageFileName;
+        String saveaddr="/ElectronicAlbum/images/"+filename;
         System.out.println("--------"+saveaddr+"------------");
         if(image != null){  
-            File savefile = new File(new File(realpath), imageFileName);  
+            File savefile = new File(new File(realpath), filename);  
             System.out.println(savefile);  
             System.out.println(savefile.getParentFile());  
             if(savefile.getParentFile().exists()){  
@@ -225,6 +228,10 @@ public class AlbumAction extends BaseAction<Album>{
 		
 		return "bgpsshow";
 	}
+	
+	
+	
+	
 	
 	
 	//----------------------------------------

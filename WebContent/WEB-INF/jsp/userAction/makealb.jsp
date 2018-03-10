@@ -594,7 +594,21 @@ ul li{list-style: none}
 </div>
 
 <div class="middle">
-
+	<table>
+		<tr>
+			<td>bgpId</td>
+			<td>bgpaddr</td>
+			<td>bgpremark</td>
+		</tr>
+		
+		<s:iterator value="#modelBgps" id="bgp">  
+	    	<tr>  
+	        <td><s:property value="#bgp.id"></s:property></td>  
+	        <td><s:property value="#bgp.addr"></s:property></td>
+	        <td><s:property value="#bgp.remark"></s:property></td>  
+	        </tr>  
+    	</s:iterator> 		
+	</table>
 </div>
 
 <div class="right">
@@ -611,7 +625,7 @@ ul li{list-style: none}
 		<tbody id="TableData" class="dataContainer">
 		<s:iterator value="#albumList">
 			<tr class="TableDatail template">
-				<td><s:a action="album_show?id=%{id}">${albumName}</s:a>&nbsp;</td>
+				<td><s:a action="user_makeAlbum?id=%{id}">${albumName}</s:a>&nbsp;</td>
 				<td>${description}&nbsp;</td>
 			</tr>
 		</s:iterator>
