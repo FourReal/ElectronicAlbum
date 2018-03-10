@@ -402,7 +402,13 @@ function checkclick(imgid,ckid){
 	      //alert("隐藏模态窗口完毕");
 	    });
 	});
-
+	$(function(){
+		$("#tp1").click(function(){
+			console.log(document.getElementById('tp1').src);
+			console.log(this)
+			$(".middle").css("background","url("+this.src+")");
+		})
+	});
 </script>
 
 <style>
@@ -475,7 +481,7 @@ function checkclick(imgid,ckid){
 	.content {
 		border: 1px solid #ccc;
 		width: 90%;
-		height: 800px;
+		height: 700px;
 		position: relative;
 		margin: 0px auto;
 	}
@@ -493,14 +499,14 @@ function checkclick(imgid,ckid){
 
 	.middle {
 		background: #ffffcc;
-		width: 65%;
+		width: 1000px;
 		height: 100%;
 		float: left;
 		position: relative;
 		left: 2.5%;
 	}
 	.right {
-		background: #ffffcc;
+		background: #ccffff;
 		width: 15%;
 		height: 100%;
 		float: right;
@@ -576,8 +582,7 @@ ul li{list-style: none}
 </style>  
 </head>
 <body>
-
-<h1>相册编辑</h1>
+<h4>相册编辑</h4>
 <div id="content" class="content">
 <div class="left">
 	<div>选择图片</div>
@@ -594,44 +599,34 @@ ul li{list-style: none}
 </div>
 
 <div class="middle">
-	<table>
-		<tr>
-			<td>bgpId</td>
-			<td>bgpaddr</td>
-			<td>bgpremark</td>
-		</tr>
-		
-		<s:iterator value="#modelBgps" id="bgp">  
-	    	<tr>  
-	        <td><s:property value="#bgp.id"></s:property></td>  
-	        <td><s:property value="#bgp.addr"></s:property></td>
-	        <td><s:property value="#bgp.remark"></s:property></td>  
-	        </tr>  
-    	</s:iterator> 		
-	</table>
+
 </div>
 
 <div class="right">
 	<h4>模板</h4>
-	<table cellspacing="0" cellpadding="0" class="TableStyle">
-		
+	<div align="center">
+	<table  border="1"   cellpadding="10" class="TableStyle" >
 		<thead>
 			<tr align="center" valign="middle" id=TableTitle>
-				<td width="100px">相册名</td>
-				<td>描述</td>
+				<td><h5>模板名</h5></td>
+				<td><h5>描述</h5></td>
+				
 			</tr>
 		</thead>
-		
 		<tbody id="TableData" class="dataContainer">
-		<s:iterator value="#albumList">
+		<s:iterator value="#albumList" status="st">
 			<tr class="TableDatail template">
-				<td><s:a action="user_makeAlbum?id=%{id}">${albumName}</s:a>&nbsp;</td>
+				<td><s:a >${albumName}</s:a>
+				<s:a accesskey="user_makeAlbum"><img src="${bgps.iterator().next().addr}" id="tp${st.count}" height="80px" width="80px"></s:a>
+				&nbsp;</td>
 				<td>${description}&nbsp;</td>
+				<td>			
+				</td>
 			</tr>
 		</s:iterator>
 		</tbody>
 	</table>
-	
+	</div>
 </div>
 </div>
 <div class="modal fade" id="ipfalbdia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
