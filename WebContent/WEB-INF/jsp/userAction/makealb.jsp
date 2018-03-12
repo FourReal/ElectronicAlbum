@@ -8,7 +8,7 @@
 <%@	taglib prefix="s" uri="/struts-tags" %>
 <%pageContext.setAttribute("baseURL", request.getContextPath()); %>
 <meta charset="utf-8">
-<title>jQuery创建DIV块拖动布局代码 - 站长素材</title>
+<title>makealb</title>
 <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="${baseURL }/css/Huploadify.css"/>
@@ -24,15 +24,15 @@ $(function(){
 		auto:true,
 		fileTypeExts:'*.jpg;*.jpeg;*.gif;*.png;*.bmp',  
 		multi:true,
-		formData:{key:123456,key2:'vvvv'},
+		formData:{},
 		fileSizeLimit:9999,
 		showUploadedPercent:false,//是否实时显示上传的百分比，如20%
 		showUploadedSize:true,
 		removeTimeout:0,
 		fileObjName:'uploadify',  
 		buttonText:'从本地上传',
-		itemTemplate:'photo',
-		uploader:'${baseURL}/upload.action?savePath=imgs',
+		
+		uploader:'user_upload.action',
 		onUploadStart:function(){
 			//alert('开始上传');
 			},
@@ -55,6 +55,7 @@ $(function(){
 	});
 
 function checkclick(imgid,ckid){
+	console.log(imgid,ckid);
 	if(document.getElementById(ckid).checked ==true){
 		document.getElementById(ckid).checked = false;
 		document.getElementById(imgid).style="border:none";
@@ -367,6 +368,7 @@ function checkclick(imgid,ckid){
 		
 	$(function(){
 	   $("#ipfalbbtn").click(function(){
+
 		  var groupCheckbox=$("input[name='photoselect']");
 		  for(i=0;i<groupCheckbox.length;i++){
 			if(groupCheckbox[i].checked){
@@ -379,7 +381,36 @@ function checkclick(imgid,ckid){
 		  $("input[name='photoselect']").prop("checked",false);
 	   });
 	});
-
+	$(function(){
+		   $("#fralb").click(function(){
+				  console.log("从相册导入！")
+				    $.ajax({
+                    type : "post",
+                    url : 'photo_scanPhotos.action',
+                    dataType : "json",//设置需要返回的数据类型
+                    success : function(d) {
+                    	console.log(d);
+                    	//$('.selectphoto').append("<p>返回的图片</p>");
+	                    	for(var i in d){
+	                    		$('.selectphoto').append('<span><img src="/ElectronicAlbum/imgs/'+d[i]+'" class="photols" name="allphoto" id="'+i+'"  width="100px" height="100px" onclick="checkclick(id,\'ck\'+id)"/><input type="checkbox" name="photoselect"   style="display:none"   id=ck'+i+' value='+d[i]+'></span>');
+	                    		console.log(d[i]);
+	                    	}
+                    	
+						
+                        
+                    },
+                    error : function(d) {
+                    	alert("error");
+                        alert(d.responseText);
+                    }
+                	});
+				  console.log(htmlobj)
+		   });
+	});
+	  console.log("从相册导入！")
+	  htmlobj=$.ajax({url:"photo_getAllPhotos.action",async:false});
+	  console.log(htmlobj)
+	  
 	function photointo(src){
 		console.log(src)
 		$('.middle').append('<div class="draggable" id="">\n' +
@@ -394,21 +425,34 @@ function checkclick(imgid,ckid){
 	
 	$(function(){
 	    $("#ipfalbdia").on("hidden.bs.modal",function(){
-	    	console.log(this)
-	    	for(var i=1;i<50;i++){
-	    		document.getElementById(i).style="border:none";
+	    	$(".selectphoto").empty();
+	    	console.log(this);
+	    	//for(var i=1;i<50;i++){
+	    	//	document.getElementById(i).style="border:none";
 	    		//document.getElementById('ck'+i).checked="false";
-	    	}
+	    	//}
 	      //alert("隐藏模态窗口完毕");
 	    });
 	});
 	$(function(){
-		$("#tp1").click(function(){
-			console.log(document.getElementById('tp1').src);
-			console.log(this)
-			$(".middle").css("background","url("+this.src+")");
+		$(".tempimg").click(function(){
+			$(".middle").css("background","url("+this.src+") no-repeat");
+			$(".middle").css("background-size","cover");
 		})
 	});
+	$(document).ready(function(){
+		  $("#lastpage").click(function(){
+			  	$(".middle").css("background","");
+			  	$(".middle").empty();
+		  		//htmlobj=$.ajax({url:"/jquery/test1.txt",async:false});
+		  });
+		  $("#nextpage").click(function(){
+			  	$(".middle").css("background","");
+			  	$(".middle").empty();
+		  		//htmlobj=$.ajax({url:"/jquery/test1.txt",async:false});
+		  });
+	});
+	
 </script>
 
 <style>
@@ -416,7 +460,6 @@ function checkclick(imgid,ckid){
 		padding: 0px;
 		margin: 0px;
 	}
-	
 	.draggable {
 
 		width: 200px;
@@ -559,6 +602,7 @@ function checkclick(imgid,ckid){
 <style type="text/css">
 body {  
     font-size: 12px;  
+    background-color:#eee;
 }  
   
 .wraps {  
@@ -582,14 +626,20 @@ ul li{list-style: none}
 </style>  
 </head>
 <body>
-<h4>相册编辑</h4>
+<div class="panel panel-default">
+  <div class="panel-heading">相册编辑</div>
+  <div class="panel-body">
+
+  </div>
+</div>
+
 <div id="content" class="content">
 <div class="left">
-	<div>选择图片</div>
-	<div class="impphoto">
-		<button type="button" action="photo_findPhotos.action" class="btn btn-primary" data-toggle="modal" data-target="#ipfalbdia">
+	<h4>选择图片</h4>
+	<div class="impbtngroup" align="center">
+		<button type="button" id="fralb" class="btn btn-primary" data-toggle="modal" data-target="#ipfalbdia">
 		从相册导入</button>
-		<div id="upload"></div> 
+		<span id="upload"></span> 
 	</div>
 	<div style="padding-top: 8px;"></div>
 	<div id="photo" class="addedph">
@@ -605,7 +655,7 @@ ul li{list-style: none}
 <div class="right">
 	<h4>模板</h4>
 	<div align="center">
-	<table  border="1"   cellpadding="10" class="TableStyle" >
+	<table  border="1" class="TableStyle" >
 		<thead>
 			<tr align="center" valign="middle" id=TableTitle>
 				<td><h5>模板名</h5></td>
@@ -617,7 +667,8 @@ ul li{list-style: none}
 		<s:iterator value="#albumList" status="st">
 			<tr class="TableDatail template">
 				<td><s:a >${albumName}</s:a>
-				<s:a accesskey="user_makeAlbum"><img src="${bgps.iterator().next().addr}" id="tp${st.count}" height="80px" width="80px"></s:a>
+				
+				<img src="${bgps.iterator().next().addr}" class="tempimg" id="tp${st.count}" height="80px" width="80px">
 				&nbsp;</td>
 				<td>${description}&nbsp;</td>
 				<td>			
@@ -629,21 +680,23 @@ ul li{list-style: none}
 	</div>
 </div>
 </div>
+<div class="switchpage" align="center">
+	<span id="lastpage" class="btn btn-default">上一页</span>
+	&nbsp;&nbsp;&nbsp;
+	<span id="nextpage" class="btn btn-default">下一页</span>
+</div>
+
 <div class="modal fade" id="ipfalbdia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog">
         <div class="modal-content">
 			<div id="" class="">
-					<div>
+					<div >
 					<h4>选择要导入的照片</h4>
+					</div >
+					<div class="selectphoto">
+					
+
 					</div>
-					<br>
-					<s:iterator value="#photoList" status="status">
-						<span>
-						<img src="/ElectronicAlbum/imgs/${PName}" class="photols" name="allphoto" id=${status.count}  width="100px" height="100px" onclick="checkclick(id,'ck'+id)"/>
-						<input type="checkbox" name="photoselect"   style="display:none"   id=ck${status.count} value="${PName}">
-						</span>									
-						<!--<s:property value="PName"/>-->		
-					</s:iterator>
 			</div>
           <div class="modal-footer">
             <button data-dismiss="modal" class="btn btn-default" type="button">关闭</button>
@@ -652,8 +705,5 @@ ul li{list-style: none}
         </div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div>
-
-
-
 </body>
 </html>

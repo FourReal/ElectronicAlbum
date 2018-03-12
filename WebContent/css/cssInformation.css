@@ -1,0 +1,56 @@
+﻿@charset "utf-8";
+
+
+#pageAll .page {
+	width: 96%;
+	height:600px;
+	margin-top:30px;
+	margin-left:30px;
+}
+.bor {
+	border: 1px solid #ccc;
+}
+
+.baTopNo {
+	width: 100%;
+	border: none;
+}
+
+.baTopNo span {
+	height: 50px;
+	line-height: 50px;
+	margin-left: 40px;
+	font-size: 18px;
+	color: #438eb9;
+}
+
+
+.baBody {
+	margin-top: 20px;
+	margin-left: 90px;
+}
+
+.bbD {
+	margin-top: 20px;
+}
+
+
+.bbD .input3 {
+	width: 240px;
+	height: 40px;
+	border: 1px solid #ccc;
+	text-indent: 15px;
+	margin-left: 10px;
+}
+.tijiao{
+	height: 40px;
+	line-height: 40px;
+	width:100px;
+	text-align:center;
+	margin-top:20px;
+	margin-left: 200px;
+	font-size: 16px;
+	color: #438eb9;
+	
+	
+}

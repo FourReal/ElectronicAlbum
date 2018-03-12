@@ -5,10 +5,17 @@
 <html>
 <head>
 	<%@ include file="/WEB-INF/jsp/public/commons.jspf" %>
+		<link rel="stylesheet" href="https://terryz.github.io/lib/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
+
+	<link rel="stylesheet" href="css/b.page.bootstrap3.css" type="text/css">
 </head>
 <body>
-	<table cellspacing="0" cellpadding="0" class="TableStyle">
-		
+<div class="content">
+	<div class="container" style="margin-top: 30px;">
+	<table cellspacing="0" cellpadding="0" class="table table-striped table-bordered table-hover table-condensed">
+	<s:a action="user_addUI"><h4 class="page-header">添加</h4></s:a>
+		<div class="row-fluid">
 		<thead>
 			<tr  valign="middle" id=TableTitle>
 				<td width="100px">登录名</td>
@@ -36,7 +43,9 @@
 		</s:iterator>
 		</tbody>
 	</table>
-	<s:a action="user_addUI">添加</s:a>
+</div>
+</div>
+</div>
 	
 </body>
 </html>

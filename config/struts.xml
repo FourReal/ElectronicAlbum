@@ -13,7 +13,7 @@
     <!-- 上传图片最大为5M -->
     <constant name="struts.multipart.maxSize" value="5242880"/>
     
-    <package name="demo1" extends="struts-default" >
+    <package name="demo1" extends="struts-default,json-default" >
         <!-- 全局的Result结果配置 -->
         <global-results>
             <result name="loginUI">/WEB-INF/jsp/userAction/loginUI.jsp</result>
@@ -65,6 +65,10 @@
             <result name="list" >/WEB-INF/jsp/photoAction/list.jsp</result>
             <result name="addPhoto" >/WEB-INF/jsp/photoAction/addUI.jsp</result>
             <result name="toList" type="redirectAction">photo_list</result>
+        	<result type="json">  
+                <!-- 这里指定将被Struts2序列化的属性，该属性在action中必须有对应的getter方法 -->  
+                <param name="root">phPath</param>  
+            </result> 
         </action>
         
         

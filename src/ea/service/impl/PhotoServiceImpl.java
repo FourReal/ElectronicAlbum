@@ -40,10 +40,7 @@ public class PhotoServiceImpl extends DaoSupportImpl<Photo> implements PhotoServ
 		query.setFirstResult((pageNow-1)*pageSize);
 		query.setMaxResults(pageSize);
 		List<Photo> tList=query.list();
-		if(tList.size()>0)
-			return tList;
-		return null;
-	
+		return tList;
 	}
 	
 	

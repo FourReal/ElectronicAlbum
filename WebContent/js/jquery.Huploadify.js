@@ -59,7 +59,7 @@ $.fn.Huploadify = function(opts){
 		var _this = $(this);
 		//先添加上file按钮和上传列表
 		var instanceNumber = $('.uploadify').length+1;
-		var inputStr = '<input id="select_btn_'+instanceNumber+'" class="selectbtn" style="display:none;" type="file" name="fileselect[]"';
+		var inputStr = '<input id="select_btn_'+instanceNumber+'" class="selectbtn" style="display:none;" type="file" accept="image/*" name="fileselect[]"';
 		inputStr += option.multi ? ' multiple' : '';
 		inputStr += ' accept="';
 		inputStr += getFileTypes(option.fileTypeExts).join(",");

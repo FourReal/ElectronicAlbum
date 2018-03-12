@@ -3,45 +3,52 @@
 
 <head>
 	<%@	include file="/WEB-INF/jsp/public/commons.jspf" %>
+		<link rel="stylesheet" type="text/css" href="css/cssInformation.css" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
 </head>
 <body>
-	<s:form action="user_edit">
-		<s:hidden name="id"></s:hidden>
-		
-		<div class=""><!-- 信息说明 --><div class="">用户信息:</div>
-		</div>
-		<div>
+	
+	<div id="pageAll">
+		<div class="page ">
+			<!-- 会员注册页面样式 -->
+			<div class="banneradd bor">
+			<s:form action="user_edit">
+			<s:hidden name="id"></s:hidden>
+				<div class="baTopNo">
+					<span>用户信息</span>
+				</div>
+				<div>
 		<font color="red">
 			<s:fielderror/>
 		</font>
 		</div>
-		<!-- 表单内容显示 -->
-		<div class="ItemBlockBoder">
-			<table cellspacing="0" cellpadding="0" class="mainForm">	
-				<s:hidden name="id"></s:hidden>						
-				<tr><td>姓名</td>
-					<td><s:textfield name="name" cssClass="InputStyle" /></td>
-				</tr>
-				<tr><td>性别</td>
-					<td>
-						<s:radio name="gender" list="%{#{'男':'男','女':'女'} }"></s:radio>
-					</td>
-				</tr>
-				<tr><td>联系电话</td>
-					<td><s:textfield name="phoneNumber" cssClass="InputStyle" /></td>
-				</tr>
-				<tr><td>E-mail</td>
-					<td><s:textfield name="email" cssClass="InputStyle" /></td>
-				</tr>
-				<tr><td>备注</td>
-					<td><s:textarea name="description" cssClass="TextareaStyle" ></s:textarea></td>
-				</tr>
-					
-			</table>
-		</div>
+				<div class="baBody">
+				<s:hidden name="id"></s:hidden>	
+				<div class="bbD">账号：<s:textfield name="loginName" class="input3"/>	
+					</div>
+					<div class="bbD">
+					姓名：<s:textfield name="name" class="input3" />
+					</div>
+					<div class="bbD">
+					电话：<s:textfield name="phoneNumber" class="input3" />
+					</div>
+					<div class="bbD">
+						邮箱：<s:textfield name="email" class="input3" />
+					</div>
+					<!-- <div class="bbD">
+						<p class="bbDP">
+							<button class="btn_ok btn_yes" href="#">提交</button>
+							<a class="btn_ok btn_no" href="#">取消</a>
+						</p>
+					</div> -->
+				</div>
+			<s:submit value="提交" class="tijiao"></s:submit>
+			</s:form>
+	</div>
+	</div>
+
 			
-		<s:submit value="提交"></s:submit>
-	</s:form>
+		</div>
 	
 	
 	<div>相册展示：----------
