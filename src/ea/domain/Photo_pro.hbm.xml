@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="ea.domain">
+    <!-- 1 配置类和表对应
+    	class标签
+    	name属性，实体类全路径
+    	table属性，数据库表名称
+     -->
+     <class name="Photo_pro" table="ea_photopro">
+         <id name="id">
+             <generator class="native"></generator>
+         </id>
+         <property name="page" />
+         <property name="horizon" />
+         <property name="ordinate" />
+         <property name="size_x" />
+         <property name="size_y" />
+
+     
+         <!-- photo属性，本类与Photo的多对一的关系 -->
+         <many-to-one name="photo" class="Photo" column="photoId"></many-to-one>
+     </class> 
+     
+     
+</hibernate-mapping>

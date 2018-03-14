@@ -54,7 +54,7 @@
 			<dl class="system_log">
 				<dt>
 					<img class="icon1" src="img/coin03.png" /><img class="icon2"
-						src="img/coin04.png" /> 你的一切<img class="icon3"
+						src="img/coin04.png" /><a href="${pageContext.request.contextPath}/user_personal.action" target="right"> 你的一切</a><img class="icon3"
 						src="img/coin19.png" /><img class="icon4"
 						src="img/coin20.png" />
 				</dt>

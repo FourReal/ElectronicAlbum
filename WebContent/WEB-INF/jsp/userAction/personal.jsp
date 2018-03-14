@@ -4,215 +4,362 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<%@ include file="/WEB-INF/jsp/public/commons.jspf" %>
-    <meta charset="gb2312">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人信息</title>
- 
+    <%@	taglib prefix="s" uri="/struts-tags" %>
+    <title>个人中心页</title>
+    <!--个人中心页CSS-->
     <link type="text/css" href="css/personal.css" rel="stylesheet">
     <!--bootstrap-->
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
-<body>
+<body >
 
-<div id="e_background" style="overflow:scroll">
-    <div class="container" >
-   
+<div id="e_background"  style="overflow:scroll"><!--整体背景-->
+    <div class="container">
+        <!--头部：头像，时钟-->
         <div class="your-brief-intro" style="position: relative">
             <h3>个人中心</h3>
             <p class="your-title">
                 <span >
                     <img src="img/menu-top.jpg"/>
                     <br>
-                    <button>修改</button>
-                    <button>保存</button>
+                    <button><s:a action="user_editUI">修改个人信息</s:a></button>
                 </span>
                 <span class="your-name">
-                    yourname
+                    ${user.name}
                 </span>
-
             </p>
 
-        <div class="clock-container" >
+        <!--时钟-->
+            <div class="clock-container" >
 
-            <!-- Hours -->
+                <!-- Hours -->
 
-            <div class="spinner" id="spinner_h1">
-                <div class="num num_0" id="num_0_h1">
-                    <div>0</div>
+                <div class="spinner" id="spinner_h1">
+                    <div class="num num_0" id="num_0_h1">
+                        <div>0</div>
+                    </div>
+                    <div class="num num_1" id="num_1_h1">
+                        <div>1</div>
+                    </div>
+                    <div class="num num_2" id="num_2_h1">
+                        <div>2</div>
+                    </div>
                 </div>
-                <div class="num num_1" id="num_1_h1">
-                    <div>1</div>
+
+                <div class="spinner" id="spinner_h2">
+                    <div class="num num_0" id="num_0_h2">
+                        <div>0</div>
+                    </div>
+                    <div class="num num_1" id="num_1_h2">
+                        <div>1</div>
+                    </div>
+                    <div class="num num_2" id="num_2_h2">
+                        <div>2</div>
+                    </div>
+                    <div class="num num_3" id="num_3_h2">
+                        <div>3</div>
+                    </div>
+                    <div class="num num_4" id="num_4_h2">
+                        <div>4</div>
+                    </div>
+                    <div class="num num_5" id="num_5_h2">
+                        <div>5</div>
+                    </div>
+                    <div class="num num_6" id="num_6_h2">
+                        <div>6</div>
+                    </div>
+                    <div class="num num_7" id="num_7_h2">
+                        <div>7</div>
+                    </div>
+                    <div class="num num_8" id="num_8_h2">
+                        <div>8</div>
+                    </div>
+                    <div class="num num_9" id="num_9_h2">
+                        <div>9</div>
+                    </div>
                 </div>
-                <div class="num num_2" id="num_2_h1">
-                    <div>2</div>
+
+                <!-- Minutes -->
+
+                <div class="spinner" id="spinner_m1">
+                    <div class="num num_0" id="num_0_m1">
+                        <div>0</div>
+                    </div>
+                    <div class="num num_1" id="num_1_m1">
+                        <div>1</div>
+                    </div>
+                    <div class="num num_2" id="num_2_m1">
+                        <div>2</div>
+                    </div>
+                    <div class="num num_3" id="num_3_m1">
+                        <div>3</div>
+                    </div>
+                    <div class="num num_4" id="num_4_m1">
+                        <div>4</div>
+                    </div>
+                    <div class="num num_5" id="num_5_m1">
+                        <div>5</div>
+                    </div>
                 </div>
+
+                <div class="spinner" id="spinner_m2">
+                    <div class="num num_0" id="num_0_m2">
+                        <div>0</div>
+                    </div>
+                    <div class="num num_1" id="num_1_m2">
+                        <div>1</div>
+                    </div>
+                    <div class="num num_2" id="num_2_m2">
+                        <div>2</div>
+                    </div>
+                    <div class="num num_3" id="num_3_m2">
+                        <div>3</div>
+                    </div>
+                    <div class="num num_4" id="num_4_m2">
+                        <div>4</div>
+                    </div>
+                    <div class="num num_5" id="num_5_m2">
+                        <div>5</div>
+                    </div>
+                    <div class="num num_6" id="num_6_m2">
+                        <div>6</div>
+                    </div>
+                    <div class="num num_7" id="num_7_m2">
+                        <div>7</div>
+                    </div>
+                    <div class="num num_8" id="num_8_m2">
+                        <div>8</div>
+                    </div>
+                    <div class="num num_9" id="num_9_m2">
+                        <div>9</div>
+                    </div>
+                </div>
+
+                <!-- Seconds -->
+
+                <div class="spinner" id="spinner_s1">
+                    <div class="num num_0" id="num_0_s1">
+                        <div>0</div>
+                    </div>
+                    <div class="num num_1" id="num_1_s1">
+                        <div>1</div>
+                    </div>
+                    <div class="num num_2" id="num_2_s1">
+                        <div>2</div>
+                    </div>
+                    <div class="num num_3" id="num_3_s1">
+                        <div>3</div>
+                    </div>
+                    <div class="num num_4" id="num_4_s1">
+                        <div>4</div>
+                    </div>
+                    <div class="num num_5" id="num_5_s1">
+                        <div>5</div>
+                    </div>
+                </div>
+                <div class="spinner" id="spinner_s2">
+                    <div class="num num_0" id="num_0_s2">
+                        <div>0</div>
+                    </div>
+                    <div class="num num_1" id="num_1_s2">
+                        <div>1</div>
+                    </div>
+                    <div class="num num_2" id="num_2_s2">
+                        <div>2</div>
+                    </div>
+                    <div class="num num_3" id="num_3_s2">
+                        <div>3</div>
+                    </div>
+                    <div class="num num_4" id="num_4_s2">
+                        <div>4</div>
+                    </div>
+                    <div class="num num_5" id="num_5_s2">
+                        <div>5</div>
+                    </div>
+                    <div class="num num_6" id="num_6_s2">
+                        <div>6</div>
+                    </div>
+                    <div class="num num_7" id="num_7_s2">
+                        <div>7</div>
+                    </div>
+                    <div class="num num_8" id="num_8_s2">
+                        <div>8</div>
+                    </div>
+                    <div class="num num_9" id="num_9_s2">
+                        <div>9</div>
+                    </div>
+                </div>
+
+                <div class="top">></div>
+
             </div>
-
-            <div class="spinner" id="spinner_h2">
-                <div class="num num_0" id="num_0_h2">
-                    <div>0</div>
-                </div>
-                <div class="num num_1" id="num_1_h2">
-                    <div>1</div>
-                </div>
-                <div class="num num_2" id="num_2_h2">
-                    <div>2</div>
-                </div>
-                <div class="num num_3" id="num_3_h2">
-                    <div>3</div>
-                </div>
-                <div class="num num_4" id="num_4_h2">
-                    <div>4</div>
-                </div>
-                <div class="num num_5" id="num_5_h2">
-                    <div>5</div>
-                </div>
-                <div class="num num_6" id="num_6_h2">
-                    <div>6</div>
-                </div>
-                <div class="num num_7" id="num_7_h2">
-                    <div>7</div>
-                </div>
-                <div class="num num_8" id="num_8_h2">
-                    <div>8</div>
-                </div>
-                <div class="num num_9" id="num_9_h2">
-                    <div>9</div>
-                </div>
-            </div>
-
-            <!-- Minutes -->
-
-            <div class="spinner" id="spinner_m1">
-                <div class="num num_0" id="num_0_m1">
-                    <div>0</div>
-                </div>
-                <div class="num num_1" id="num_1_m1">
-                    <div>1</div>
-                </div>
-                <div class="num num_2" id="num_2_m1">
-                    <div>2</div>
-                </div>
-                <div class="num num_3" id="num_3_m1">
-                    <div>3</div>
-                </div>
-                <div class="num num_4" id="num_4_m1">
-                    <div>4</div>
-                </div>
-                <div class="num num_5" id="num_5_m1">
-                    <div>5</div>
-                </div>
-            </div>
-
-            <div class="spinner" id="spinner_m2">
-                <div class="num num_0" id="num_0_m2">
-                    <div>0</div>
-                </div>
-                <div class="num num_1" id="num_1_m2">
-                    <div>1</div>
-                </div>
-                <div class="num num_2" id="num_2_m2">
-                    <div>2</div>
-                </div>
-                <div class="num num_3" id="num_3_m2">
-                    <div>3</div>
-                </div>
-                <div class="num num_4" id="num_4_m2">
-                    <div>4</div>
-                </div>
-                <div class="num num_5" id="num_5_m2">
-                    <div>5</div>
-                </div>
-                <div class="num num_6" id="num_6_m2">
-                    <div>6</div>
-                </div>
-                <div class="num num_7" id="num_7_m2">
-                    <div>7</div>
-                </div>
-                <div class="num num_8" id="num_8_m2">
-                    <div>8</div>
-                </div>
-                <div class="num num_9" id="num_9_m2">
-                    <div>9</div>
-                </div>
-            </div>
-
-            <!-- Seconds -->
-
-            <div class="spinner" id="spinner_s1">
-                <div class="num num_0" id="num_0_s1">
-                    <div>0</div>
-                </div>
-                <div class="num num_1" id="num_1_s1">
-                    <div>1</div>
-                </div>
-                <div class="num num_2" id="num_2_s1">
-                    <div>2</div>
-                </div>
-                <div class="num num_3" id="num_3_s1">
-                    <div>3</div>
-                </div>
-                <div class="num num_4" id="num_4_s1">
-                    <div>4</div>
-                </div>
-                <div class="num num_5" id="num_5_s1">
-                    <div>5</div>
-                </div>
-            </div>
-            <div class="spinner" id="spinner_s2">
-                <div class="num num_0" id="num_0_s2">
-                    <div>0</div>
-                </div>
-                <div class="num num_1" id="num_1_s2">
-                    <div>1</div>
-                </div>
-                <div class="num num_2" id="num_2_s2">
-                    <div>2</div>
-                </div>
-                <div class="num num_3" id="num_3_s2">
-                    <div>3</div>
-                </div>
-                <div class="num num_4" id="num_4_s2">
-                    <div>4</div>
-                </div>
-                <div class="num num_5" id="num_5_s2">
-                    <div>5</div>
-                </div>
-                <div class="num num_6" id="num_6_s2">
-                    <div>6</div>
-                </div>
-                <div class="num num_7" id="num_7_s2">
-                    <div>7</div>
-                </div>
-                <div class="num num_8" id="num_8_s2">
-                    <div>8</div>
-                </div>
-                <div class="num num_9" id="num_9_s2">
-                    <div>9</div>
-                </div>
-            </div>
-
-            <div class="top">></div>
-
         </div>
-        </div>
-        <div class="content">
-            <div class="content-main">
-                <h4>我的照片</h4>
-                <img src="img/menu-top.jpg" height="180" width="180"/>
-                <img src="img/menu-top.jpg" height="180" width="180"/>
-                <img src="img/menu-top.jpg" height="180" width="180"/>
-                <img src="img/menu-top.jpg" height="180" width="180"/>
-                <button style="color: #000;">添加照片</button>
-                <br><br><br>
-                <h4>我的相册</h4>
-                <img src="img/menu-top.jpg" height="180" width="180"/>
-                <img src="img/menu-top.jpg" height="180" width="180"/>
-                <img src="img/menu-top.jpg" height="180" width="180"/>
-                <img src="img/menu-top.jpg" height="180" width="180"/>
-                <button style="color: #000">添加相册</button>
 
+        <!--内容区-->
+        <div class="content1">
+            <div class="content-photo">
+                <h4 style="text-align: center"><s:a action="photo_getAllPhotos">我的照片</s:a></h4>
+                <p style="font-size: 14px;text-align: right">（鼠标悬浮可预览照片描述）</p>
+                <a href="#" class="add-photo">
+                    <button>添加照片</button>
+                </a>
+                <div class="zzsc-container">
+                    <div class="container mt50">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="box">
+                                    <img src="img/tour03.jpg" alt="">
+                                    <div class="over-layer">
+                                        <h4 class="title">我的照片</h4>
+                                        <p class="description">
+                                            照片描述balabalabala
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="box">
+                                    <img src="img/tour03.jpg" alt="">
+                                    <div class="over-layer">
+                                        <h3 class="title">我的照片</h3>
+                                        <p class="description">
+                                            照片描述balabala
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="box">
+                                    <img src="img/tour03.jpg" alt="">
+                                    <div class="over-layer">
+                                        <h3 class="title">我的照片</h3>
+                                        <p class="description">
+                                            照片描述balabala
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="box">
+                                    <img src="img/tour03.jpg" alt="">
+                                    <div class="over-layer">
+                                        <h3 class="title">我的照片</h3>
+                                        <p class="description">
+                                            照片描述balabala
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="box">
+                                    <img src="img/tour03.jpg" alt="">
+                                    <div class="over-layer">
+                                        <h3 class="title">我的照片</h3>
+                                        <p class="description">
+                                            照片描述balabala
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="box">
+                                    <img src="img/tour03.jpg" alt="">
+                                    <div class="over-layer">
+                                        <h3 class="title">我的照片</h3>
+                                        <p class="description">
+                                            照片描述balabala
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--添加框-->
+
+
+                            <!--//.add-->
+                        </div><!--//row-->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content2">
+            <div class="content-album">
+                <h4 style="text-align: center">
+                    我的相册
+                </h4>
+                <p style="font-size: 14px;text-align: right">（点击可预览翻页相册）</p>
+                <a href="#" class="add-album">
+                    <button><s:a>添加相册</s:a></button>
+                </a>
+
+                <div>
+                    <section class="content">
+                        <div class="grid grid--effect-castor col-md-4 col-sm-2">
+                            <a href="#" class="grid__item grid__item--c1  ">
+                                <div class="stack">
+                                    <div class="stack__deco"></div>
+                                    <div class="stack__deco"></div>
+                                    <div class="stack__deco"></div>
+                                    <div class="stack__deco"></div>
+                                    <div class="stack__figure">
+                                        <img class="stack__img" src="img/tour03.jpg" alt="Image">
+                                    </div>
+                                </div>
+                                <div class="grid__item-caption">
+                                    <h3 class="grid__item-title">相册类别</h3>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="grid grid--effect-castor col-md-4 col-sm-2">
+                            <a href="#" class="grid__item grid__item--c2">
+                                <div class="stack">
+                                    <div class="stack__deco"></div>
+                                    <div class="stack__deco"></div>
+                                    <div class="stack__deco"></div>
+                                    <div class="stack__deco"></div>
+                                    <div class="stack__figure">
+                                        <img class="stack__img" src="img/tour03.jpg" alt="Image">
+                                    </div>
+                                </div>
+                                <div class="grid__item-caption">
+                                    <h3 class="grid__item-title">相册类别</h3>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="grid grid--effect-castor col-md-4 col-sm-2" >
+                            <a href="#" class="grid__item grid__item--c3">
+                                <div class="stack">
+                                    <div class="stack__deco"></div>
+                                    <div class="stack__deco"></div>
+                                    <div class="stack__deco"></div>
+                                    <div class="stack__deco"></div>
+                                    <div class="stack__figure">
+                                        <img class="stack__img" src="img/tour03.jpg" alt="Image">
+                                    </div>
+                                </div>
+                                <div class="grid__item-caption">
+                                    <h3 class="grid__item-title">相册类别</h3>
+                                </div>
+                            </a>
+                        </div>
+                    </section>
+                </div>
+            </div><!--//.content-album-->
+        </div><!--//.content2-->
+    </div><!--//container-->
+</div>
+
+
+<!--时钟特效JS-->
 <script>
     //These functions help add, remove or toggle css classes
 
@@ -338,6 +485,17 @@
     window.onload = function() {
         startTime();
     };
+</script>
+
+<!--相册特效-->
+<script src="js/anime.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+    (function() {
+        [].slice.call(document.querySelectorAll('.grid--effect-castor > .grid__item')).forEach(function(stackEl) {
+            new CastorFx(stackEl);
+        });
+    })();
 </script>
 </body>
 </html>

@@ -23,4 +23,6 @@ public interface AlbumService extends DaoSupport<Album>{
 	List<AlbumBgp> findAlbumBgpsByAlbumid(int pageNow, int pageSize,Long albumid);
 	
 	int findAlbumBgpSizeByAlbumid(Long albumid);
+
+	List<Album> findAlbumByUserid(Long id);
 }

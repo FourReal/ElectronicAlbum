@@ -108,4 +108,16 @@ public class AlbumServiceImpl extends DaoSupportImpl<Album> implements AlbumServ
 			    "FROM AlbumBgp a ")
 				.list();
 	}
+
+
+	/**
+	 * 通过用户的id获取到该用户的相册
+	 */
+	public List<Album> findAlbumByUserid(Long id) {
+//		return (List<Album>) getSession().createQuery(				
+//			    "FROM Album a WHERE a.users.id=?")
+//				.setParameter(0, id)
+//				.list();
+		return null;
+	}
 }

@@ -9,6 +9,8 @@ public class Album implements java.io.Serializable{
 	private String albumName;	//相册名字
 	private String description;	//相册描述
 	
+	private String sign;		//相册的类型：（0：相册模板；1：相册成品）
+	
 	private Set<Photo> photos=new HashSet<Photo>();   //相册中的照片
 	private Set<User> users=new HashSet<User>();		//收藏该相册的用户
 	
@@ -49,6 +51,12 @@ public class Album implements java.io.Serializable{
 	}
 	public void setBgps(Set<AlbumBgp> bgps) {
 		this.bgps = bgps;
+	}
+	public String getSign() {
+		return sign;
+	}
+	public void setSign(String sign) {
+		this.sign = sign;
 	}
 	
 	

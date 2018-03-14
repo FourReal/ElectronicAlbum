@@ -16,13 +16,20 @@
          <property name="Paddr" />
          <property name="OwnerId" />
          <property name="updatetime" />
-       
+        
          
          <!-- albumIds属性，本类与Album的多对多的关系 -->
          <set name="albumIds" table="ea_album_photo">
              <key column="photoId"></key>
              <many-to-many class="Album" column="albumId"></many-to-many>
          </set>
+         
+         <!-- photo_pros属性，本类与Photo_pro的一对多的关系 -->
+         <set name="photo_pros">
+             <key column="photoId"></key>
+             <one-to-many class="Photo_pro"/>
+         </set>
+         
      </class> 
      
      

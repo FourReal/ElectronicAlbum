@@ -6,7 +6,7 @@ body{
 }
 /*背景*/
 #e_background{
-    background:	rgb(255,228,225) url(../img/e_stars.png) repeat 20% 20%;
+    background: linear-gradient(rgba(255, 228, 225, 0.8),rgba(255, 250, 240, 0.8)), url("../img/tour03.jpg") repeat center center/cover;
     position:fixed;
     top:0;
     left:0;
@@ -36,73 +36,16 @@ body{
 /*//背景*/
 
 
-/*保存区域*/
-#save:hover{
-    background-color: rgba(0,0,0,0.3);
-}
-#save{
-    float: right;
-    text-decoration: none;
-    color: #fff;
-    font-size: 16px;
-    text-align: center;
-}
 
-/*//保存按钮*/
-
-/*开花效果*/
-#box{
-    width:100px;
-    height:50px;
-    margin:0 auto;
-
-    position:relative;
-}
-.box01,.box02,.box03,.box04,.box05,.box06,.box07,.box08,.box09{
-    width:30px;
-    height:30px;
-    border-radius:100px 0;
-    background:pink;
-    opacity:0.3;
-    position:absolute;
-    bottom: 0px;
-    left:50px;
-    transform-origin:0 30px;
-    transform:rotate(-45deg);
-    transition:all 1s;
-}
-
-#box:hover :nth-child(3){
-    transform:rotate(-23deg);
-}
-#box:hover :nth-child(4){
-    transform:rotate(0deg);
-}
-#box:hover :nth-child(5){
-    transform:rotate(23deg);
-}
-#box:hover :nth-child(7){
-    transform:rotate(-68deg);
-}
-#box:hover :nth-child(8){
-    transform:rotate(-90deg);
-}
-#box:hover :nth-child(9){
-    transform:rotate(-113deg);
-}
-#box:hover :nth-child(10) {
-    transform: rotate(-135deg);
-}
-/*//开化效果*/
 
 /*头部个人简单介绍*/
 .your-brief-intro{
     height: 320px;
     padding: 0 50px;
-    border-top: 50px solid rgba(255,218,225,0.3);
-    border-bottom: 120px solid rgba(0,0,0,0);
-    background-color: rgba(0,0,0,0.3);
-    color: ivory;
+    /*border-top: 50px solid rgba(255, 250, 240, 0.3);*/
+    border-bottom: 10px dashed rgba(139,125,123,0.3);
+    background-color: rgba(255,255,255,0.8);
+    color: #8B7D7B;
 
 }
 
@@ -111,7 +54,7 @@ body{
     height: 110px;
     margin: 0px;
     padding: 30px 0;
-    color: ivory;
+    color: #8B7D7B;
     position: relative;
 }
 .your-title img{
@@ -127,9 +70,9 @@ body{
 
 .your-title button{
     margin-top: 5px;
-    width: 58px;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(255,114,86,0.5);
     border: none;
+    color: #000;
 }
 /*时钟*/
 
@@ -284,8 +227,8 @@ body{
     width:calc(var(--base) * 14);
     height:calc(var(--base) * 14);
     /*top:-280px;*/
-    right: 0px;
-    top: -3px;
+    right: 50px;
+    top: -80px;
 }
 #spinner_s2 {
     top:calc(var(--base) * 0);
@@ -353,7 +296,7 @@ body{
     padding:0;
     width:calc(var(--base)/1.1);
     text-align:center;
-    color:rgba(255,228,225,0.3);
+    color:rgba(255,228,225,0.5);
 }
 .top {
     position:absolute;
@@ -367,17 +310,17 @@ body{
     text-align:center;
     line-height:165%;
     font-size:var(--base);
-    border:calc(var(--base)/10) solid pink;
+    border:calc(var(--base)/10) solid rgba(139,125,123,0.8);
     border-radius:100%;
     overflow:hidden;
-    color:ivory;
+    color:rgba(139,125,123,0.8);
 }
 .spinner {
-    border:calc(var(--base)/10) solid pink;
+    border:calc(var(--base)/10) solid rgba(139,125,123,0.1);
     box-sizing:border-box;
 }
 #spinner_s1,#spinner_m1,#spinner_h1 {
-    border:calc(var(--base)/15) solid rgba(255,228,225,0.5);
+    border:calc(var(--base)/15) solid rgba(255,228,225,0);
 }
 /*Transitions !*/
 
@@ -548,7 +491,7 @@ body{
 ,font-size 500ms ease-out;
 }
 .lit div {
-    color:ivory;
+    color:rgba(139,125,123,1);
     font-size:calc(var(--base)*1.3);
     transition:transform 500ms ease-out,color 500ms ease-out,font-size 500ms ease-out;
 }
@@ -559,24 +502,291 @@ body{
 /*//时钟*/
 
 /*内容区*/
-.content{
+.content1,.content2{
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.3);
-    padding: 10px 50px 30px 50px;
+    background-color: rgba(255,255,255,0.8);
+    padding: 30px 50px 30px 50px;
     position: relative;
 }
-.content-main{
+.content1{
+    border-bottom: 10px dashed rgba(139,125,123,0.3);
+}
+.content-photo{
     width: 100%;
     height: 100%;
-    border: 2px solid rgba(255,228,225,0.6);
+    border: 2px solid rgba(139,125,123,1);
 
     padding: 20px;
-    color: ivory;
+    color: #8B7D7B;
 
 }
-.save{
-    position: absolute;
-    right: 50px;
-    bottom: 30px;
+.content-album{
+    width: 100%;
+    height: 100%;
+    border: 2px solid rgba(139,125,123,1);
+
+    padding: 20px;
+    color: #8B7D7B;
+
 }
+
+/*我的照片*/
+.box{
+    position: relative;
+    perspective: 1000px;
+}
+.box img{
+    width: 100%;
+    height: auto;
+    opacity:1;
+    transform: translateY(0) rotateX(0);
+    transition: all 0.6s ease-in-out 0s;
+}
+.box:hover img{
+    transform: translateY(-100%) rotateX(90deg);
+    transform-origin: center bottom 0;
+    opacity:0;
+}
+.box .over-layer{
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    opacity:0;
+    background:#8B7D7B;
+    text-align:center;
+    padding: 0 20px;
+    transition: all 0.60s ease-in-out 0s;
+}
+.box:hover .over-layer{
+    opacity:1;
+}
+.box .title,
+.box .description,
+.box .social-links{
+    position: relative;
+    top: 11%;
+    color: #d3d3d3;
+}
+.box .title{
+    text-transform: capitalize;
+}
+.box .title:after,
+.box .description:after{
+    content:"";
+    width: 50%;
+    display: block;
+    margin: 10px auto 0;
+    border-bottom: 1px solid #fff;
+}
+.box .social-links{
+    padding:0;
+    margin:0;
+    list-style: none;
+}
+.box .social-links li{
+    margin: 10px;
+    display: inline-block;
+}
+.box .social-links li a{
+    color: #fff;
+    font-size: 20px;
+}
+.box .social-links li a:hover{
+    color: #d3d3d3;
+    text-decoration: none;
+}
+a{color: #2fa0ec;text-decoration: none;outline: none;}
+a:hover,a:focus{color:#74777b;}
+@media only screen and (max-width: 990px){
+    .box{  margin-bottom:20px; }
+}
+/*照片添加框*/
+.add-photo{
+    position: absolute;
+    right: 80px;
+    top: 50px;
+}
+
+
+/*我的相册*/
+*,
+*::after,
+*::before {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Overpass Mono', monospace;
+    color: #37373e;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+
+/* Content */
+.content {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0 0 1em;
+}
+
+.content:not(:first-child) {
+    padding: 4em 0;
+}
+
+.content.content--padded {
+    padding: 4em 0 8em;
+}
+
+.content__title {
+    font-size: 0.85em;
+    position: absolute;
+    top: 18%;
+    left: 2em;
+    width: 5em;
+    margin: 0.75em 0;
+    color: #b0adad;
+}
+
+/* Grid */
+.grid {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0 7em;
+    perspective: 800px;
+    perspective-origin: 50% 100%;
+}
+
+.grid__item {
+    position: relative;
+    display: block;
+    flex: none;
+    width: 250px;
+    margin: 1.5em 2vw;
+    cursor: default;
+    transform-style: preserve-3d;
+}
+
+.grid__item:hover,
+.grid__item:focus {
+    outline: none;
+}
+
+.grid__item--c1,
+.grid__item--c1:hover,
+.grid__item--c1:focus {
+    color: #8B7D7B;
+}
+
+.grid__item--c2,
+.grid__item--c2:hover,
+.grid__item--c2:focus {
+    color: #8B7D7B;
+}
+
+.grid__item--c3,
+.grid__item--c3:hover,
+.grid__item--c3:focus {
+    color: #8B7D7B;
+}
+
+.stack {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    transform-style: preserve-3d;
+}
+
+.stack__deco {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: currentColor;
+    transform-origin: 50% 100%;
+}
+
+.stack__deco:first-child {
+    opacity: 0.2;
+}
+
+.stack__deco:nth-child(2) {
+    opacity: 0.4;
+}
+
+.stack__deco:nth-child(3) {
+    opacity: 0.6;
+}
+
+.stack__deco:nth-child(4) {
+    opacity: 0.8;
+}
+
+.stack__figure {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    transform-origin: 50% 100%;
+}
+
+.stack__img {
+    position: relative;
+    display: block;
+    flex: none;
+    width: 100%;
+    height: auto;
+    opacity:1;
+}
+
+.grid__item-caption {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    transform-style: preserve-3d;
+}
+
+.grid__item-title {
+    font-size: 1.15em;
+    width: 100%;
+    margin: 1em 0;
+    text-align: left;
+    color: #cd9b9b;
+}
+
+.grid--effect-castor .stack__figure,
+.grid--effect-castor .stack__deco {
+    transform-origin: 50% 50%;
+}
+
+.grid--effect-castor .column {
+    opacity: 1;
+}
+/*添加相册*/
+.add-album{
+    position: absolute;
+    right: 80px;
+    top: 50px;
+}
+
+
+

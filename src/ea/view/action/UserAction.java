@@ -26,8 +26,10 @@ import ea.base.BaseAction;
 import ea.domain.Album;
 import ea.domain.AlbumBgp;
 import ea.domain.Photo;
+import ea.domain.Photo_pro;
 import ea.domain.User;
 import ea.util.PageShow;
+import net.sf.json.JSONObject;
 
 
 @Controller
@@ -52,6 +54,9 @@ public class UserAction extends BaseAction<User>{
     private int BgppageSize=1;    //固定不变
 	
 	
+    private JSONObject json;			//获取页面传过来的json数据
+    
+    
 	/**
 	 * ajax 上传图片并返回文件路径
 	 * 
@@ -240,6 +245,14 @@ public class UserAction extends BaseAction<User>{
 	}
 	
 	
+	/**
+	 * 用户进入个人中心
+	 */
+	public String personal() throws Exception{
+		
+		return "personal";
+	}
+	
 	
 	/**
 	 * 收藏某个相册
@@ -277,12 +290,13 @@ public class UserAction extends BaseAction<User>{
 	 */
 	public String showalbum()throws Exception{
 		User user=(User) ActionContext.getContext().getSession().get("user");
-
+//		System.out.println("Showalbum:user++++++++++"+user);		
+//		List<Album> userAlbums= albumService.findAlbumByUserid(user.getId());	
 		
-//		System.out.println("Showalbum:user++++++++++"+user);
+		
 		Set<Album> albums=user.getAlbums();
 		List<Album> userAlbums=new ArrayList<Album>(albums);
-//		System.out.println("Showalbum:userAlbums++++++++++"+userAlbums);
+		System.out.println("Showalbum:userAlbums++++++++++"+userAlbums);
 		ActionContext.getContext().put("userAlbums", userAlbums);
 		return "showalbumok";
 	}
@@ -331,6 +345,7 @@ public class UserAction extends BaseAction<User>{
 		
 		}
 		
+//		System.out.println("getAllbgps:+++++++++++++++over");
 		return "list";
 	}
 	
@@ -358,8 +373,20 @@ public class UserAction extends BaseAction<User>{
 				ActionContext.getContext().put("modelBgps", modelBgps);
 		}
 		getAllPhotos();
-		Templist();
+		Templist();	
 		return "makeAlbum";
+	}
+	
+	
+	/**
+	 * 形成相册
+	 */
+	public String BeAlbum() throws Exception{
+		//获取页面传送过来的json数据
+		Photo_pro photo_pro=(Photo_pro)JSONObject.toBean(json, Photo_pro.class);
+		
+		System.out.println("BeAlbum:photo_pro++++++++++++++"+photo_pro);
+		return "BeAlbum";
 	}
 	
 	
@@ -372,6 +399,7 @@ public class UserAction extends BaseAction<User>{
 	public String Templist() throws Exception{
 		List<Album> albumList=albumService.findAll();
 		ActionContext.getContext().put("albumList", albumList);
+//		System.out.println("Templist:+++++++++++++++over");
 		return "list";
 	}
 	
@@ -460,6 +488,15 @@ public class UserAction extends BaseAction<User>{
 		BgppageSize = bgppageSize;
 	}
 
+	public JSONObject getJson() {
+		return json;
+	}
+
+	public void setJson(JSONObject json) {
+		this.json = json;
+	}
+
+	
 	
 	
 	

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="ea.domain">
+    <!-- 1 配置类和表对应
+    	class标签
+    	name属性，实体类全路径
+    	table属性，数据库表名称
+     -->
+     <class name="Privilege" table="ea_Privilege">
+         <id name="id">
+             <generator class="native"></generator>
+         </id>
+         <property name="url" />
+         <property name="name" />
+         
+         <!-- roles属性，本类与Role的多对多的关系 -->
+         <set name="roles" table="ea_role_privilege">
+             <key column="privilegeId"></key>
+             <many-to-many class="Role" column="roleId"></many-to-many>
+         </set>
+         
+         
+         <!-- parent属性 ，本类与上级Privilege的多对一的关系-->
+         <many-to-one name="parent" class="Privilege" column="parentId"></many-to-one>
+         
+         
+         <!-- children属性，本类与下级Privilege的一对多的关系 -->
+         <set name="children" lazy="false">
+             <key column="parentId"></key>
+             <one-to-many class="Privilege"/>
+         </set>
+         
+         
+     </class> 
+     
+     
+</hibernate-mapping>

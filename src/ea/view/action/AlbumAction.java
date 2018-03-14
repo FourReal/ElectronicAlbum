@@ -70,6 +70,7 @@ public class AlbumAction extends BaseAction<Album>{
 	
 	/**添加相册*/
 	public String add() throws Exception{
+		model.setSign("0");
 		albumService.save(model);
 		return "toList";
 	}

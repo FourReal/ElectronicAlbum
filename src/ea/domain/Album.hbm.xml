@@ -14,6 +14,7 @@
          </id>
          <property name="albumName" />
          <property name="description" />
+         <property name="sign" />
        
          <!-- 与其他表的关系 -->
          <!-- photos属性，本类与Photo的多对多的关系 -->
