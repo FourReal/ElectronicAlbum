@@ -20,6 +20,11 @@
          <property name="email" />
          <property name="description" />
          
+         <!-- roles属性，本类与Role的多对多的关系 -->
+         <set name="roles" table="ea_user_role" lazy="false">
+             <key column="userId"></key>
+             <many-to-many class="Role" column="roleId"></many-to-many>
+         </set>
          
          <!--albums属性，本类与Album的多对多的关系 -->
          <set name="albums" table="ea_user_album" lazy="false">

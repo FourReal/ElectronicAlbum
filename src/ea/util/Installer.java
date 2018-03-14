@@ -43,18 +43,18 @@ public class Installer {
 		
 		//-------------------
 		menu=new Privilege("系统管理",null,null);
-//		menu1=new Privilege("角色管理","/role_list",menu);
+		menu1=new Privilege("角色管理","/role_list",menu);
 		menu2=new Privilege("相册模板管理","/album_list",menu);
 		menu3=new Privilege("用户管理","/user_list",menu);
 		session.save(menu);
-//		session.save(menu1);
+		session.save(menu1);
 		session.save(menu2);
 		session.save(menu3);
 		
-//		session.save(new Privilege("岗位列表","/role_list",menu1));
-//		session.save(new Privilege("岗位删除","/role_delete",menu1));
-//		session.save(new Privilege("岗位添加","/role_add",menu1));
-//		session.save(new Privilege("岗位修改","/role_edit",menu1));
+		session.save(new Privilege("角色列表","/role_list",menu1));
+		session.save(new Privilege("角色删除","/role_delete",menu1));
+		session.save(new Privilege("角色添加","/role_add",menu1));
+		session.save(new Privilege("角色修改","/role_edit",menu1));
 	
 		session.save(new Privilege("相册列表","/album_list",menu2));
 		session.save(new Privilege("相册删除","/album_delete",menu2));

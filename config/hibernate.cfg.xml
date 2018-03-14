@@ -8,7 +8,7 @@
         <!-- 第二部分 配置hibernate信息 -->
 
         <!-- 输出底层sql语句 -->
-        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.show_sql">false</property>
         
         <property name="hibernate.format_sql">true</property>
         <!-- Drop and re-create the database schema on startup -->

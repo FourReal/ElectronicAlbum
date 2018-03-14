@@ -10,9 +10,9 @@ import java.util.Set;
  */
 
 public class Role implements java.io.Serializable{
-	private Long id;
-	private String name;
-	private String description;
+	private Long id;				
+	private String name;				//角色名称
+	private String description;			//角色说明
 	private Set<User> users=new HashSet<User>();
 	private Set<Privilege> privileges=new HashSet<Privilege>();
 	

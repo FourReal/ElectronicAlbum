@@ -34,7 +34,14 @@
 		background-color: #fff;
 	 }
 	</style>	 --%>
+	<script type="text/javascript">
 	
+		function menuClick(menu){
+			//$("#atext").hide();
+			//$("#atext").show();
+			$(menu).next().toggle();
+		}
+	</script>
 </head>
 
 
@@ -83,12 +90,16 @@
 						src="img/coin19.png" /><img class="icon4"
 						src="img/coin20.png" />
 				</dt>
-				<!-- <dd>
-					<img class="coin11" src="img/coin111.png" /><img class="coin22"
-						src="img/coin222.png" /><a href="p1.html" target="main"
-						class="cks">会员管理</a><img class="icon5" src="img/coin21.png" />
-				</dd> -->
 			</dl>
+			<dl class="system_log">
+				<dt>
+					<img class="icon1" src="img/coin07.png" /><img class="icon2"
+						src="img/coin08.png" /> <a target="right" href="role_list.action" style="color:#333;">用户角色管理</a><img class="icon3"
+						src="img/coin19.png" /><img class="icon4"
+						src="img/coin20.png" />
+				</dt>
+			</dl>
+			
 			<dl class="system_log">
 				<dt>
 					<img class="icon1" src="img/coin10.png" /><img class="icon2"
@@ -98,9 +109,37 @@
 				</dt>
 			</dl>
 			
-
+			<div id="Menu">
+				<ul id="MenuUl">
+				<%--显示一级菜单 --%>
+				<s:iterator value="#application.topPrivilegeList">
+				<s:if test="#session.user.hasPrivilegeByName(name)">
+				<li class="level1">
+					<div onClick="menuClick(this);" class="level1Style">
+						${name}
+					</div>
+					<ul style="" class="MenuLevel2" id="atext">
+						<%--显示二级菜单 --%>
+						<s:iterator value="children">
+						<s:if test="#session.user.hasPrivilegeByName(name)">
+						<li class="level2">
+							<div class="level2Style">
+								<a target="right" href="${pageContext.request.contextPath}${url}.action">${name} </a>
+							</div>
+						</li>
+						</s:if>
+						</s:iterator>
+					</ul>
+				</li>
+				</s:if>
+				</s:iterator>
+				</ul>
+			</div>
 		</div>
 
+		
+		
+		
 	</div>
 	<%-- <aside class="main-sidebar">
 	<section  class="sidebar">

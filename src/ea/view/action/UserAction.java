@@ -27,6 +27,7 @@ import ea.domain.Album;
 import ea.domain.AlbumBgp;
 import ea.domain.Photo;
 import ea.domain.Photo_pro;
+import ea.domain.Role;
 import ea.domain.User;
 import ea.util.PageShow;
 import net.sf.json.JSONObject;
@@ -46,6 +47,8 @@ public class UserAction extends BaseAction<User>{
 	private static final String savePath = "imgs";// 文件上传后保存的路径
 	private String mvUrl;
 	private Long userid;//标记哪个用户上传
+	private Long[] roleIds;
+	
 	
 	private int pageNow=1;   //动态改变 页面获取
     private int pageSize=5;    //固定不变
@@ -196,6 +199,50 @@ public class UserAction extends BaseAction<User>{
 		return "toList";
 	}
 	
+	/**管理员修改用户信息页面*/
+	public String AeditUI() throws Exception{
+		
+		//准备回显数据
+		User user=userService.getById(model.getId());
+		ActionContext.getContext().getValueStack().push(user);
+		//准备数据roleList
+		List<Role> roleList=roleService.findAll();
+		ActionContext.getContext().put("roleList", roleList);
+		
+		if(user.getRoles()!=null)
+		{
+			roleIds=new Long[user.getRoles().size()];
+			int index=0;
+			for(Role role:user.getRoles()) {
+				roleIds[index++]=role.getId();
+			}
+		}
+		
+		return "Aedit";
+	}
+	
+	/** 修改*/
+	public String Aedit() throws Exception{
+		
+		//从数据库获取原对象
+		User user=userService.getById(model.getId());
+		
+//		System.out.println("怎么还不成功啊！！！！________________________"+user);
+		//设置修改的属性
+		user.setName(model.getName());
+		user.setGender(model.getGender());
+		user.setPhoneNumber(model.getPhoneNumber());
+		user.setEmail(model.getEmail());
+		user.setDescription(model.getDescription());
+		//保存到数据库
+		
+		List<Role> roleList=roleService.getByIds(roleIds);
+		user.setRoles(new HashSet<Role>(roleList));
+		
+//		System.out.println("怎么还不成功啊！！！！________________________"+model.getName());
+		userService.update(user);
+		return "toList";
+	}
 	
 	
 	/**初始化密码功能*/
@@ -496,9 +543,14 @@ public class UserAction extends BaseAction<User>{
 		this.json = json;
 	}
 
-	
-	
-	
+	public Long[] getRoleIds() {
+		return roleIds;
+	}
+
+	public void setRoleIds(Long[] roleIds) {
+		this.roleIds = roleIds;
+	}
+
 	
 
 	

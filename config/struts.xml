@@ -34,6 +34,7 @@
         <action name="user_*" class="userAction" method="{1}">
             <result name="list">/WEB-INF/jsp/userAction/list.jsp</result>
             <result name="add">/WEB-INF/jsp/userAction/addUI.jsp</result>
+            <result name="Aedit">/WEB-INF/jsp/userAction/AeditUI.jsp</result>
             <result name="edit">/WEB-INF/jsp/userAction/editUI.jsp</result>
             <result name="index">/WEB-INF/jsp/userAction/userindex.jsp</result>
             <result name="personal">/WEB-INF/jsp/userAction/personal.jsp</result>
@@ -52,6 +53,17 @@
             <result name="logout">/WEB-INF/jsp/userAction/logout.jsp</result>
             <result name="toIndex" type="redirect">/index.jsp</result>
         </action>
+        
+        
+        <!-- 角色管理 -->
+        <action name="role_*" class="roleAction" method="{1}">
+            <result name="list">/WEB-INF/jsp/roleAction/list.jsp</result>
+        	<result name="saveUI">/WEB-INF/jsp/roleAction/saveUI.jsp</result>
+            <result name="setPrivilegeUI">/WEB-INF/jsp/roleAction/setPrivilegeUI.jsp</result>
+        	<result name="toList" type="redirectAction">role_list</result>    
+        </action>
+        
+        
         
         <!-- 首页 -->
         <action name="home_*" class="homeAction" method="{1}">
