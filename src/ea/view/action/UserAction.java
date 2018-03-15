@@ -5,9 +5,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.ServletContext;
@@ -185,18 +187,26 @@ public class UserAction extends BaseAction<User>{
 		//从数据库获取原对象
 		User user=(User)ActionContext.getContext().getSession().get("user");
 		
-//		System.out.println("怎么还不成功啊！！！！________________________"+user);
+		System.out.println("怎么还不成功啊！！！！________________________"+user);
+		System.out.println("怎么还不成功啊！！！！________________________"+model);
 		//设置修改的属性
+		//设置修改的属性
+		ActionContext context=ActionContext.getContext();
+		Map<String, Object>map=context.getParameters();
+		Set<String> keys=map.keySet();
+		for(String key:keys) {
+			Object[] obj=(Object[]) map.get(key);
+			System.out.println(Arrays.toString(obj));
+		}
+		
 		user.setName(model.getName());
-		user.setGender(model.getGender());
 		user.setPhoneNumber(model.getPhoneNumber());
 		user.setEmail(model.getEmail());
-		user.setDescription(model.getDescription());
 		//保存到数据库
 		
-//		System.out.println("怎么还不成功啊！！！！________________________"+model.getName());
-//		userService.update(model);
-		return "toList";
+		System.out.println("怎么还不成功啊！！！！________________________"+model.getName());
+		userService.update(user);
+		return "personal";
 	}
 	
 	/**管理员修改用户信息页面*/

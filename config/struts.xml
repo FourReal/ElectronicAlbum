@@ -40,14 +40,8 @@
             <result name="personal">/WEB-INF/jsp/userAction/personal.jsp</result>
             <result name="makeAlbum">/WEB-INF/jsp/userAction/makealb.jsp</result>
             <result name="toPhotoList">/WEB-INF/jsp/photoAction/list.jsp</result>
-            <result name="toList" type="redirectAction">user_list</result>
-            
+            <result name="toList" type="redirectAction">user_list</result> 
             <result name="addalbumok">user_list</result>
-            
-            <!--测试json
-            <result name="BeAlbum" type="json">
-                <param name="root">ok</param>
-            </result> -->
             
             <!-- 登录注销 -->
             <result name="logout">/WEB-INF/jsp/userAction/logout.jsp</result>
