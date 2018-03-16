@@ -1,0 +1,175 @@
+@import url(http://fonts.googleapis.com/css?family=Open%20Sans:300,400,500,600,700); 
+p {
+	font-size: 14px;
+	line-height: 22.4px;
+	color: #6c7279;
+}
+h1 {
+	font-size: 65px;
+	color: #2d3033;
+}
+h2 {
+	font-size: 40px;
+	color: #CD9B9B;
+}
+h3 {
+	font-size: 28px;
+	color: #2d3033;
+	font-weight: 300;
+}
+h4 {
+	font-size: 22px;
+	color: #2d3033;
+	font-weight: 400;
+}
+h5 {
+	font-size: 14px;
+	color: #2d3033;
+	text-transform: uppercase;
+	font-weight: 700;
+}
+
+/* ------------------------------------------------------------------------------
+	Global Styles
+-------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Open Sans", Arial, sans-serif;
+	font-weight: 400;
+	color: #6c7279;
+}
+
+/* -----------------------------------------------------------------------------
+Common Styles
+------------------------------------------------------------------------------- */
+.section-header{	text-align: center;	padding-bottom: 30px;
+}
+.section-header h2{
+	
+}
+.section-header p{
+	
+}
+
+
+/* ------------------------------------------------------------------------------
+	 Serives
+-------------------------------------------------------------------------------*/
+.service-section {
+	padding-top: 40px;
+	
+}
+.services {
+	margin-bottom: 40px;
+}
+.services-content {
+	padding: 15px 10px 10px;
+	margin-top: 0px;
+	background: #eaeaea;
+	border-top: 4px solid #CD9B9B;
+	text-align: center;
+
+}
+.section-display{
+	
+	text-align:center;
+	width:1100px;
+}
+.row{
+	
+text-align: center;	
+
+}
+
+.service-img{
+	text-align: center;	
+	
+}
+
+.service-img img{
+	width:100%;
+	text-align:center;
+	margin-bottom:20px;
+}
+
+
+/* ------------------------------------------------------------------------------
+	 Footer
+-------------------------------------------------------------------------------*/
+#footerimg{
+	
+	height:50px;
+	
+}
+#footer
+ {
+	background:#cd9b9b;
+	
+}
+
+#footer h3 {
+	color:#b9e7ee;
+}
+#footer p,
+#signup-form p {
+	color:#FFFFFF;
+    margin: 0;
+}
+#footer #top-arrow {
+	
+	
+}
+
+#footer #copyright {
+	width:1100px;
+	border-top:1px solid #b9e7ee;
+	height:60px;
+	border-bottom:1px solid #b9e7ee;
+
+	
+}
+#footer-wrap{
+	width:1100px;
+	
+	
+}
+#footer-wrap #sponsors{
+	
+	margin-bottom:40px;
+	text-align:center;
+}
+#footer-wrap #sponsors p{
+	
+	margin:0 auto;
+	font-size:16px;
+}
+#footer-wrap #sponsors a{
+	
+	text-decoration none;
+	color:#fff;
+}
+#footer-wrap #sponsors li{
+	float:left;
+	list-style:none;
+	margin-right:20px;
+	margin-left:150px;
+	
+}
+#footer #copyright p{
+	
+	
+	color:#ccc;
+	margin-top:10px;
+}
+ #footer #copyright img
+{
+	color:#b9e7ee;
+	margin-top:4px;
+	margin-left:40px;
+	
+}
+.end{
+	height:50px;
+	background:#cd9b9b;
+	
+}

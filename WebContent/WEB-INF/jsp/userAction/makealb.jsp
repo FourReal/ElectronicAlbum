@@ -3,501 +3,267 @@
 <!doctype html>
 <html>
 <head>
-<%@ include file="/WEB-INF/jsp/public/commons.jspf" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@	taglib prefix="s" uri="/struts-tags" %>
-<%pageContext.setAttribute("baseURL", request.getContextPath()); %>
-<meta charset="utf-8">
-<title>makealb</title>
-<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
-
-<link rel="stylesheet" type="text/css" href="${baseURL }/css/Huploadify.css"/>
-<script type="text/javascript" src="${baseURL }/js/jquery.Huploadify.js"></script>
-
-
-<script src="${baseURL }/js/interact.js"></script>
-<link href="http://how2j.cn/study/css/bootstrap/3.3.5/bootstrap.min.css" rel="stylesheet">
-<script src="http://how2j.cn/study/js/bootstrap/3.3.5/bootstrap.min.js"></script>
-<script type="text/javascript">  
-$(function(){
-	$('#upload').Huploadify({
-		auto:true,
-		fileTypeExts:'*.jpg;*.jpeg;*.gif;*.png;*.bmp',  
-		multi:true,
-		formData:{},
-		fileSizeLimit:9999,
-		showUploadedPercent:false,//是否实时显示上传的百分比，如20%
-		showUploadedSize:true,
-		removeTimeout:0,
-		fileObjName:'uploadify',  
-		buttonText:'从本地上传',
-		
-		uploader:'user_upload.action',
-		onUploadStart:function(){
-			//alert('开始上传');
-			},
-		onInit:function(){
-			//alert('初始化');
-			},
-		onUploadComplete:function(){
-			//alert('上传完成');
-			},
-		onDelete:function(file){
-			console.log('删除的文件：'+file);
-			console.log(file);
-		},
-			onUploadSuccess : function(file, data, response) { 
-                //$.parseJSON(json)  
-                // alert('The file ' + file.name + ' was successfully uploaded with a response of ' + response + ':' + data);  
-				$('.addedph').append('<img src="${baseURL}/'+data+'" name="photosled" width="100px" height="100px" class="drag_l" onclick="photointo(src)"/>');
-               },  
-		});
-	});
-
-function checkclick(imgid,ckid){
-	console.log(imgid,ckid);
-	if(document.getElementById(ckid).checked ==true){
-		document.getElementById(ckid).checked = false;
-		document.getElementById(imgid).style="border:none";
-	}else{
-		document.getElementById(ckid).checked = true;
-		document.getElementById(imgid).style="border: 5px solid #ccc";
-	}
-
-	console.log(ckid)
-	console.log(document.getElementById(ckid).checked)
-}
-</script> 
-<script>
-	(function () {
-
-		$(function () {
-			$('.addedph').click(function (event) {
-
-			});
-
-			mydrag();
-
-		});
-		var every_x = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
-		var every_y = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
-
-
-		function removeByValue(arr, val) {
-			for (var i = 0; i < arr.length; i++) {
-				if (arr[i] == val) {
-					arr.splice(i, 1);
-					break;
-				}
-			}
-		}
-
-		Array.prototype.insert = function (index, item) {
-			this.splice(index, 1, item);
-		};
-
-		var mydrag = function () {
-			// target elements with the "draggable" class
-			interact('.draggable')
-
-				.draggable({
-
-					// enable inertial throwing
-					inertia: false,
-
-					// keep the element within the area of it's parent
-					restrict: {
-						restriction: "parent",
-						endOnly: true,
-						elementRect: {top: 0, left: 0, bottom: 1, right: 1}
+	<%@ include file="/WEB-INF/jsp/public/commons.jspf" %>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	<%@	taglib prefix="s" uri="/struts-tags" %>
+	<%pageContext.setAttribute("baseURL", request.getContextPath()); %>
+	<meta charset="utf-8">
+	
+	<title>makealb</title>
+	
+	<link rel="stylesheet" type="text/css" href="${baseURL }/css/Huploadify.css"/>
+	<link rel="stylesheet" type="text/css" href="css/default.css" />
+	<link rel="stylesheet" type="text/css" href="css/bookblock.css" />
+	<link rel="stylesheet" type="text/css" href="css/demo5.css" />
+	<link href="http://how2j.cn/study/css/bootstrap/3.3.5/bootstrap.min.css" rel="stylesheet">
+	
+	<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="${baseURL }/js/jquery.Huploadify.js"></script>
+	<script src="${baseURL }/js/jquery-ui.min.js"></script>
+	<script src="${baseURL }/js/modernizr.custom.js"></script>
+	<script src="${baseURL }/js/interact.js"></script>
+	<script src="http://how2j.cn/study/js/bootstrap/3.3.5/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/drag.js"></script>
+	
+	
+	
+	<script type="text/javascript">  
+	
+		//点击从本地上传，弹出照片选择，同时将选中的相片放进用户的照片库，并在左侧显示
+		$(function(){
+			$('#upload').Huploadify({
+				auto:true,
+				fileTypeExts:'*.jpg;*.jpeg;*.gif;*.png;*.bmp',  
+				multi:true,
+				formData:{},
+				fileSizeLimit:9999,
+				showUploadedPercent:false,//是否实时显示上传的百分比，如20%
+				showUploadedSize:true,
+				removeTimeout:0,
+				fileObjName:'uploadify',  
+				buttonText:'从本地上传',
+				
+				uploader:'user_upload.action',
+				onUploadStart:function(){
+					//alert('开始上传');
 					},
-
-
-					maxPerElement: 100,
-					onmove: dragMoveListener,
-
-
-					onend: function (event) {
-						console.log('onend');
-						var textEl = event.target.querySelector('p.lt');
-
-						textEl && (textEl.textContent =
-							position(event));
-
-						var closeEl = event.target.querySelector('p.close');
-						closeEl.style.display = 'block';
-
-						drag_s(event);
-
-						//myclose(event);
-
-					}
-
-
-				})
-
-				.resizable({
-					// resize from all edges and corners
-					edges: {left: true, right: true, bottom: true, top: true},
-
-					// keep the edges inside the parent
-					restrictEdges: {
-						outer: 'parent',
-						endOnly: true
+				onInit:function(){
+					//alert('初始化');
 					},
-
-					// minimum size
-					restrictSize: {
-						min: {width: 50, height: 50}
+				onUploadComplete:function(){
+					//alert('上传完成');
 					},
-
-
-					inertia: false
-				})
-				.on('resizemove', function (event) {
-					var s = $(event.target);
-					var target = event.target,
-						x = (parseFloat(target.getAttribute('data-x')) || 0),
-						y = (parseFloat(target.getAttribute('data-y')) || 0),
-						xr=(parseFloat(target.getAttribute('data-x')) || 0)+s.width(),
-						yb=(parseFloat(target.getAttribute('data-y')) || 0)+s.height();
-
-					 // update the element's style
-
-
-
-					// translate when resizing from top or left edges
-					x += event.deltaRect.left;
-					y += event.deltaRect.top;
-					xr += event.deltaRect.right;
-					yb += event.deltaRect.bottom;
-
-
-
-
-					var s = $(event.target);
-					var sid = s.attr('id');
-					var ns = parseInt(sid);
-
-					var i = ns * 2
-					every_y[i] = null;
-					every_x[i] = null;
-					every_y[i + 1] = null;
-					every_x[i + 1] = null;
-
-
-
-					 for (ax in every_x) {
-						if ((parseInt(every_x[ax]) - 3) <= x && x <= (parseInt(every_x[ax]) + 3)) {
-
-							x = parseInt(every_x[ax]);
-						}else {
-						}
-
-					}
-					for (ay in every_y) {
-						if ((parseInt(every_y[ay]) - 3) <= y && y <= (parseInt(every_y[ay]) + 3)) {
-							  y = parseInt(every_y[ay]);
-
-						}else {
-
-
-						}
-					}
-
-					for (a_x in every_x) {
-
-						if ((parseInt(every_x[a_x]) - 3) <= xr && xr <= (parseInt(every_x[a_x]) + 3)) {
-							   xr = parseInt(every_x[a_x]);
-
-						}else {
-
-						}
-					}
-					for (a_y in every_y) {
-						if ((parseInt(every_y[a_y]) - 3) <= yb&& yb <= (parseInt(every_y[a_y]) + 3)) {
-							 yb = parseInt(every_y[a_y]);
-						 }else {
-
-						}
-					}
-
-
-
-					target.style.width = (xr-x) + 'px';
-					target.style.height =(yb-y) + 'px';
-
-					target.style.webkitTransform = target.style.transform =
-						'translate(' + x + 'px,' + y + 'px)';
-
-					target.setAttribute('data-x', x);
-					target.setAttribute('data-y', y);
-					target.querySelector('p.wh').textContent =(xr-x) + '\u00D7' +(yb-y) + 'px';
-					var textEl = event.target.querySelector('p.lt');
-
-					textEl && (textEl.textContent =
-						position(event));
-
-
-
-				})
-				.on('resizeend', function (event) {
-
-					drag_s(event)
-
+				onDelete:function(file){
+					console.log('删除的文件：'+file);
+					console.log(file);
+				},
+				onUploadSuccess : function(file, data, response) { 
+		               //$.parseJSON(json)  
+		               // alert('The file ' + file.name + ' was successfully uploaded with a response of ' + response + ':' + data);  
+					$('.addedph').append('<img src="${baseURL}/'+data+'" name="photosled" width="100px" height="100px" class="drag_l" onclick="photointo(src)"/>');
+		              },  
 				});
-
-
-
-			function dragMoveListener(event) {
-				console.log("dragMoveListener")
-				var target = event.target,
-					// keep the dragged position in the data-x/data-y attributes
-					x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-					y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
-
-
-				var s = $(event.target)
-				var sid = s.attr('id');
-				var ns = parseInt(sid);
-
-				var i = ns * 2
-				every_y[i] = null;
-				every_x[i] = null;
-				every_y[i + 1] = null;
-				every_x[i + 1] = null;
-
-
-				for (ax in every_x) {
-
-					if ((parseInt(every_x[ax]) - 3) <= x && x <= (parseInt(every_x[ax]) + 3)) {
-
-						x = parseInt(every_x[ax]);
-
-					}
-				}
-				for (ay in every_y) {
-					if ((parseInt(every_y[ay]) - 3) <= y && y <= (parseInt(every_y[ay]) + 3)) {
-						y = parseInt(every_y[ay]);
-
-
-					}
-				}
-
-				for (a_x in every_x) {
-
-					if ((parseInt(every_x[a_x]) - 3) <= (x+s.width()) && (x+s.width()) <= (parseInt(every_x[a_x]) + 3)) {
-
-						x = parseInt(every_x[a_x])-s.width();
-
-					}
-				}
-				for (a_y in every_y) {
-					if ((parseInt(every_y[a_y]) - 3) <= (y+s.height()) && (y+s.height()) <= (parseInt(every_y[a_y]) + 3)) {
-						y = parseInt(every_y[a_y])-s.height();
-
-
-					}
-				}
-
-
-				// translate the element
-				target.style.webkitTransform =
-					target.style.transform =
-						'translate(' + x + 'px, ' + y + 'px)';
-
-				// update the posiion attributes
-				target.setAttribute('data-x', x);
-				target.setAttribute('data-y', y);
-
-
-			}
-
-
-			function position(e) {
-				return '左' + e.target.getAttribute('data-x') + "上" + e.target.getAttribute('data-y') + 'px'
-			}
-
-
-
-			function drag_s(event) {
-				var s = $(event.target)
-				var sid = s.attr('id');
-				var ns = parseInt(sid);
-				 var i = ns * 2
-				// top  right  bottom left   //data-y  data-x+width  data-y+height  data-x
-
-				every_y.insert(i, parseFloat(s.attr('data-y')));
-				every_x.insert(i, parseFloat(s.attr('data-x')) + parseFloat(s.width()));
-				every_y.insert(i + 1, parseFloat(s.attr('data-y')) + parseFloat(s.height()));
-				every_x.insert(i + 1, parseFloat(s.attr('data-x')));
-
-				console.log("drag s")
-			}
-
-			function drag_c(event) {
-				var s = $(event.target)
-				var sid = s.attr('id');
-				var ns = parseInt(sid);
-
-
-				var i = ns * 2
-
-				every_y.insert(i, 0);
-				every_x.insert(i, 0);
-				every_y.insert(i + 1, 0);
-				every_x.insert(i + 1, 0);
-				console.log("drag c")
-			 };
-
-
-
-			window.dragMoveListener = dragMoveListener;
-
-		};
+			});
 		
-
-
-	})()
-
-	function closep(ele){
-		ele.parentElement.remove();
-
-	}
-
 		
-	$(function(){
-	   $("#ipfalbbtn").click(function(){
-
-		  var groupCheckbox=$("input[name='photoselect']");
-		  for(i=0;i<groupCheckbox.length;i++){
-			if(groupCheckbox[i].checked){
-					$('.addedph').append('<img src="/ElectronicAlbum/imgs/'+groupCheckbox[i].value+'" name="photosled" width="100px" height="100px" class="drag_l" onclick="photointo(src)"/> ')
-					console.log(i);
+		//在用户相册照片选择模块点击图片触发事件；
+		//输入：图片的id；点击的check（input）id；
+		function checkclick(imgid,ckid){
+			console.log(imgid,ckid);
+			if(document.getElementById(ckid).checked ==true){
+				document.getElementById(ckid).checked = false;
+				document.getElementById(imgid).style="border:none";
+			}else{
+				document.getElementById(ckid).checked = true;
+				document.getElementById(imgid).style="border: 5px solid #ccc";
 			}
-					
-		  }
-		  $("#ipfalbdia").modal('hide');
-		  $("input[name='photoselect']").prop("checked",false);
-	   });
-	});
-	$(function(){
-		   $("#fralb").click(function(){
-				  console.log("从相册导入！")
-				    $.ajax({
-                    type : "post",
-                    url : 'photo_scanPhotos.action',
-                    dataType : "json",//设置需要返回的数据类型
-                    success : function(d) {
-                    	console.log(d);
-                    	//$('.selectphoto').append("<p>返回的图片</p>");
+		
+			console.log(ckid)
+			console.log(document.getElementById(ckid).checked)
+		}
+	</script> 
+	<script>
+	
+		(function () {
+			
+		
+	
+			var every_x = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
+			var every_y = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
+	
+			function removeByValue(arr, val) {
+				for (var i = 0; i < arr.length; i++) {
+					if (arr[i] == val) {
+						arr.splice(i, 1);
+						break;
+					}
+				}
+			}
+	
+			Array.prototype.insert = function (index, item) {
+				this.splice(index, 1, item);
+			};
+	
+		})()
+	
+		function closep(ele){
+			ele.parentElement.remove();
+	
+		}
+	
+		//在用户相册界面选择照片后点击“导入”按钮触发的函数	
+		$(function(){
+		   $("#ipfalbbtn").click(function(){
+	
+			  var groupCheckbox=$("input[name='photoselect']");
+			  for(i=0;i<groupCheckbox.length;i++){
+				if(groupCheckbox[i].checked){
+						$('.addedph').append('<img src="/ElectronicAlbum/imgs/'+groupCheckbox[i].value+'" name="photosled" width="100px" height="100px" class="drag_l" onclick="photointo(src)"/> ')
+						console.log(i);
+				}
+						
+			  }
+			  $("#ipfalbdia").modal('hide');
+			  $("input[name='photoselect']").prop("checked",false);
+		   });
+		});
+		
+		
+		//选择从相册导入按钮，准备弹出的照片选择界面的数据
+		$(function(){
+			   $("#fralb").click(function(){
+					  console.log("从相册导入！")
+					    $.ajax({
+	                    type : "post",
+	                    url : 'photo_scanPhotos.action',
+	                    dataType : "json",//设置需要返回的数据类型
+	                    success : function(d) {
+	                    	console.log(d);
+	                    	//$('.selectphoto').append("<p>返回的图片</p>");
 	                    	for(var i in d){
 	                    		$('.selectphoto').append('<span><img src="/ElectronicAlbum/imgs/'+d[i]+'" class="photols" name="allphoto" id="'+i+'"  width="100px" height="100px" onclick="checkclick(id,\'ck\'+id)"/><input type="checkbox" name="photoselect"   style="display:none"   id=ck'+i+' value='+d[i]+'></span>');
 	                    		console.log(d[i]);
 	                    	}
-                    	
-						
-                        
-                    },
-                    error : function(d) {
-                    	alert("error");
-                        alert(d.responseText);
-                    }
-                	});
-				  console.log(htmlobj)
-		   });
-	});
-	  console.log("从相册导入！")
-	  htmlobj=$.ajax({url:"photo_getAllPhotos.action",async:false});
-	  console.log(htmlobj)
-	  
-	function photointo(src){
-		console.log(src)
-		$('.middle').append('<div class="draggable" id="">\n' +
-					//'            <h4>' + $(this).text() + '</h4>\n' +
-					'            <p class="lt"></p>\n' +
-					'			 <img src="'+src+'" name="opphoto" width="100%" height="100%" class="opphotoc">'+
-					'            <p class="wh"></p>\n' +
-					'            <p class="close" style="display: block;" onclick="closep(this)">x</p>\n' +
-
-					'        </div>')
-	}
+	                    	
+							
+	                        
+	                    },
+	                    error : function(d) {
+	                    	alert("error");
+	                        alert(d.responseText);
+	                    }
+	                	});
+					  console.log(htmlobj)
+			   });
+		});
 	
-	$(function(){
-	    $("#ipfalbdia").on("hidden.bs.modal",function(){
-	    	$(".selectphoto").empty();
-	    	console.log(this);
-	    	//for(var i=1;i<50;i++){
-	    	//	document.getElementById(i).style="border:none";
-	    		//document.getElementById('ck'+i).checked="false";
-	    	//}
-	      //alert("隐藏模态窗口完毕");
-	    });
-	});
-	$(function(){
-		$(".tempimg").click(function(){
-			$(".middle").css("background","url("+this.src+") no-repeat");
-			$(".middle").css("background-size","cover");
-		})
-	});
-	$(document).ready(function(){
-		  $("#lastpage").click(function(){
-			  	$(".middle").css("background","");
-			  	$(".middle").empty();
-		  		//htmlobj=$.ajax({url:"/jquery/test1.txt",async:false});
-		  });
-		  $("#nextpage").click(function(){
-			  	$(".middle").css("background","");
-			  	$(".middle").empty();
-		  		//htmlobj=$.ajax({url:"/jquery/test1.txt",async:false});
-		  });
-	});
+		
+		//在左侧点击导入后的照片触发；
+		
+		function photointo(src){
+			  
+			$("#bgp"+$curr_page).prepend('<div class="draggable" id="dg">\n' +
+						//'            <h4>' + $(this).text() + '</h4>\n' +
+						'            <p class="lt"></p>\n' +
+						'			 <img src="'+src+'" name="opphoto" width="100%" height="100%" class="opphotoc">'+
+						'            <p class="wh" id="dgc"></p>\n' +
+						'            <p class="close" style="display: block;" onclick="closep(this)">x</p>\n' +
 	
-</script>
-
+						'        </div>')
+			mydrag("#bgp"+$curr_page,$curr_page+src);
+		  }
+		  
+		   function mydrag(a,b) {
+			   console.log(a,b);
+				// target elements with the "draggable" class
+				$(a+' .draggable').each(function(index){
+					$(this).myDrag({
+						randomPosition:false,
+						direction:'all',
+						handler:false,
+						coor:'.wh'
+					});
+				});
+				
+				
+	
+		   }
+		$(function(){
+		    $("#ipfalbdia").on("hidden.bs.modal",function(){
+		    	$(".selectphoto").empty();
+		    	console.log(this);
+		    	//for(var i=1;i<50;i++){
+		    	//	document.getElementById(i).style="border:none";
+		    		//document.getElementById('ck'+i).checked="false";
+		    	//}
+		      //alert("隐藏模态窗口完毕");
+		    });
+		});
+		$(function(){
+			$(".tempimg").click(function(){
+				$(".middle").css("background","url("+this.src+") no-repeat");
+				$(".middle").css("background-size","cover");
+			})
+		});
+		$(document).ready(function(){
+			  $("#lastpage").click(function(){
+				  	$(".middle").css("background","");
+				  	$(".middle").empty();
+			  		//htmlobj=$.ajax({url:"/jquery/test1.txt",async:false});
+			  });
+			  $("#nextpage").click(function(){
+				  	$(".middle").css("background","");
+				  	$(".middle").empty();
+			  		//htmlobj=$.ajax({url:"/jquery/test1.txt",async:false});
+			  });
+		});
+		
+	</script>
+  <script src="js/jPages.js"></script>
+  <script>
+  var $curr_page;
+  $(function() {
+    $("div.holder").jPages({
+      containerID: "itemContainer",
+	  previous: "上一页",
+      next: "下一页",
+      perPage: 1,
+      scrollBrowse: false,
+      callback:function( page, items ) {
+    	  $curr_page = page.current;
+    		console.log("当前模板页数："+$curr_page)
+    	  }
+    });
+  });
+  </script>
 <style>
 	* {
 		padding: 0px;
 		margin: 0px;
 	}
 	.draggable {
-
+		position:relative;
 		width: 200px;
 		height: 200px;
-		line-height: 50px;
-		min-height: 10px;
-		min-width: 10px;
-		margin: 0px;
-		position: absolute;
-		padding: 1px;
-		left: 0px;
-		right: 0px;
-		background-color: #fff;
 
-		color: white;
-
-		border-radius: 0px;
-		padding: 0px;
-		float: left;
-		margin: 0px;
-
-		overflow: hidden;
-		
 
 	}
 
-	h4 {
+	h4 h3{
 		text-align: center;
 		vertical-align: middle;
 	}
 
-	p.wh {
-		font-size: 8px;
+	p.wh {	
 		position: absolute;
 		bottom: 0px;
-		right: 0px;
-		line-height: 8px;
+		right: 0px;	
 		padding: 2px;
+	    width: 10px;
+	    height: 10px;
+	    cursor: se-resize;
+	    background-color: #09C;
+		margin:0;
 	}
 
 	p.lt {
@@ -541,12 +307,14 @@ function checkclick(imgid,ckid){
 	}
 
 	.middle {
-		background: #ffffcc;
-		width: 1000px;
+		border:  1px solid #ccc;
+		border-radius:6px;
+		background: #ffffff;
+		width: 100%;
 		height: 100%;
 		float: left;
 		position: relative;
-		left: 2.5%;
+
 	}
 	.right {
 		background: #ccffff;
@@ -560,9 +328,8 @@ function checkclick(imgid,ckid){
 		border-radius: 6px;
 		color: #f7ebca;
 		cursor: pointer;
-		margin-bottom: 10px;
-		margin-left: 5%;
-		padding: 5px;
+		margin: 5px;
+		padding: 3px;
 		width: 100px;
 		height:100px;
 
@@ -597,6 +364,50 @@ function checkclick(imgid,ckid){
 	span {
 		
 	}
+	   div#container {
+		width: 730px;
+		margin: 100px auto;
+	  }
+
+	  .holder {
+		margin-top: 10px;
+		text-align:center;
+		
+	  }
+	  .holder a {
+		font-size: 12px;
+		cursor: pointer;
+		margin: 0 5px;
+		color: #000000;
+		padding:2px 5px;
+	  }
+	  .holder a:hover {
+		background-color: #eee;
+		color: #FF4242;
+	  }
+	  .holder a.jp-previous { margin-right: 15px; }
+	  .holder a.jp-next { margin-left: 15px; }
+	  .holder a.jp-current, a.jp-current:hover {
+		color: #FF4242;
+		font-weight: bold;
+	  }
+	  .holder a.jp-disabled, a.jp-disabled:hover {
+		color: #a1a1a1;
+	  }
+	  .holder a.jp-current, a.jp-current:hover,
+	  .holder a.jp-disabled, a.jp-disabled:hover {
+		cursor: default;
+		background: none;
+	  }
+	  .holder span { margin: 0 5px; }
+	  div#content {
+		width: 700px;
+	  }
+	  .bgps{
+	  	height:675px;
+
+	  	
+	  }
 </style>
 
 <style type="text/css">
@@ -604,7 +415,15 @@ body {
     font-size: 12px;  
     background-color:#eee;
 }  
-  
+ div.container div.row div {
+   
+     
+}
+ 
+div.container div.row div {
+    
+    text-align:center;
+}
 .wraps {  
     clear: both;   
 }  
@@ -619,91 +438,128 @@ body {
     float: left;  
     margin-left: 20px  
 }  
+.panel-body{
+	height:800px;
+}
+.panel-heading{
+	padding:5px;
+	height:45px;
+}
+.thumbnail{
+	height:80px;
+	margin-bottom:10px;
+}
 .del{position: absolute;top: 0;right: 0;background-color: white;}  
 ul li{list-style: none}  
 #pics{padding: 10px;border: 1px solid #ccc;height: 200px}  
 #pics li{float: left;display: block;width: 100px;height: 80px;padding: 2px;border: 1px solid #ccc; margin: 10px;}  
 </style>  
+
+
 </head>
 <body>
-<div class="panel panel-default">
-  <div class="panel-heading">相册编辑</div>
-  <div class="panel-body">
-
-  </div>
-</div>
-
-<div id="content" class="content">
-<div class="left">
-	<h4>选择图片</h4>
-	<div class="impbtngroup" align="center">
-		<button type="button" id="fralb" class="btn btn-primary" data-toggle="modal" data-target="#ipfalbdia">
-		从相册导入</button>
-		<span id="upload"></span> 
+<div class="panel panel-default" >
+	<div class="panel-heading" >
+		<div class="finishbtn" style="float:right;margin-right:10px">
+			<span id="previewbtn" class="btn btn-default">预览</span>
+			<span id="submitbtn" class="btn btn-default">完成</span>
+		</div>
 	</div>
-	<div style="padding-top: 8px;"></div>
-	<div id="photo" class="addedph">
-		
-	</div>
+  	<div class="panel-body" >
 	
-</div>
-
-<div class="middle">
-
-</div>
-
-<div class="right">
-	<h4>模板</h4>
-	<div align="center">
-	<table  border="1" class="TableStyle" >
-		<thead>
-			<tr align="center" valign="middle" id=TableTitle>
-				<td><h5>模板名</h5></td>
-				<td><h5>描述</h5></td>
+    <div class="row">
+        
+        
+        <!-- 左侧照片操作区域 -->
+        <div class="col-xs-2 ">
+        	<div class="panel panel-danger">
+			  <div class="panel-heading">
+			  	<h5 style="display:none">选择图片</h5>
+			  		<div class="impbtngroup" align="center">
+						<button type="button"  id="fralb" class="btn btn-primary" data-toggle="modal" data-target="#ipfalbdia">
+						从相册导入</button>
+						<span id="upload"></span> 
+					</div>
+			  </div>
+			  <div class="panel-body" style="height:700px">
+			    <div id="photo" class="addedph">
+		
+				</div>
+			  </div>
+			</div>
+		</div>
+        
+        
+        
+        <!-- 中间相册编辑区域 -->
+        <div class="col-xs-9 " >
+        	<div class="panel panel-danger">
+			  <div class="panel-heading">
+			   <div class="holder">
+					      </div>
+		
+			 </div>
 				
-			</tr>
-		</thead>
-		<tbody id="TableData" class="dataContainer">
-		<s:iterator value="#albumList" status="st">
-			<tr class="TableDatail template">
-				<td><s:a >${albumName}</s:a>
-				
-				<img src="${bgps.iterator().next().addr}" class="tempimg" id="tp${st.count}" height="80px" width="80px">
-				&nbsp;</td>
-				<td>${description}&nbsp;</td>
-				<td>			
-				</td>
-			</tr>
-		</s:iterator>
-		</tbody>
-	</table>
-	</div>
-</div>
-</div>
-<div class="switchpage" align="center">
-	<span id="lastpage" class="btn btn-default">上一页</span>
-	&nbsp;&nbsp;&nbsp;
-	<span id="nextpage" class="btn btn-default">下一页</span>
+			  <!-- 相册背景图片展示界面 -->
+			  <div class="panel-body" style="height:700px">
+			      <ul id="itemContainer">
+				      <s:iterator value="#modelBgps" status="st" var="bgpalb">
+				      		<li id="bgp${st.count}"  class="bgps" style="background-size:100% 100%;background-image: url('${addr}')"></li>
+				      </s:iterator>
+			      </ul>		
+			  </div>
+			  
+			</div>
+		</div>
+        
+        
+        
+        <!-- 右侧模板选择区域 -->
+        <div class="col-xs-1 ">
+        	<div class="panel panel-danger">
+			  <div class="panel-heading"><h5 align="center">选择模板</h5></div>
+			  <div class="panel-body" style="height:700px">
+			  		<s:iterator value="#albumList" >
+			  		${description}
+			        <a href="user_makeAlbum.action?albumId=${id}" class="thumbnail">
+				      <img src="${coverAddr}">
+				    </a>
+				    </s:iterator> 			    
+			  </div>
+			</div>
+        </div>
+        
+        
+        
+    </div>
+
+  	</div>
 </div>
 
+
+<!-- 照片选择模块弹出区域 -->
 <div class="modal fade" id="ipfalbdia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog">
         <div class="modal-content">
-			<div id="" class="">
-					<div >
-					<h4>选择要导入的照片</h4>
-					</div >
-					<div class="selectphoto">
+        
+			
+			        <div class="modal-header">
+			            <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+			            <h4 class="modal-title">选择要导入的照片</h4>
+			        </div>
+					<div class="selectphoto" style="margin-top:10px">
 					
 
 					</div>
-			</div>
+			
           <div class="modal-footer">
-            <button data-dismiss="modal" class="btn btn-default" type="button">关闭</button>
+            <button data-dismiss="modal" class="btn btn-default" type="button">取消</button>
             <button class="btn btn-primary" id="ipfalbbtn" type="button" >导入</button>
           </div>
         </div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div>
+
+
 </body>
 </html>

@@ -1,0 +1,192 @@
+/* ====== general ====== */
+.clearfix {
+  zoom: 1;
+}
+.clearfix:after {
+  content: "020";
+  height: 0;
+  display: block;
+  clear: both;
+  visibility: hidden;
+}
+
+.body-width {
+  width: 1200px;
+  margin: 0 auto;
+}
+/* ====== public ====== */
+body {
+  margin: 0;
+  
+  line-height: 1;
+  font-size: 13px;
+  font-family: "Microsoft Yahei";
+  color: #444;
+  background-color: #fff;
+}
+html, div, h3, p, ul, li {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+}
+
+h3{
+  font-weight: normal;
+}
+
+ul {
+  list-style: none;
+}
+a {
+  display: block;
+  color: #333;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+  color: #444;
+}
+
+img {
+  vertical-align: top;
+}
+
+/* ====== main ====== */
+.main {
+  position: relative;
+  padding-bottom: 80px;
+  background-color: #f1f2f3;
+}
+.main-inner  {
+  padding-top: 40px;
+}
+
+/* ====== 内容列表 ====== */
+.main-cont__title {
+  position: relative;
+  height: 88px;
+  margin-top: 10px;
+  border-top: 1px solid #d4d5d5;
+}
+.main-cont__title h3 {
+  font-size: 18px;
+  line-height: 88px;
+}
+.main-cont__title .more {
+  position: absolute;
+  right: 0;
+  top: 28px;
+  width: 80px;
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
+  color: #fff;
+  background-color: #22b4f6;
+  text-decoration: none;
+  font-size: 12px;
+}
+.main-cont__title .more:hover {
+  background-color: #1e9ed8;
+}
+.main-cont__list {
+  margin-right: -20px;
+}
+.main-cont__list .item {
+  position: relative;
+  top: 0;
+  float: left;
+  width: 150px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #dedfe0;
+  background-color: #fff;
+  box-sizing: border-box;
+
+  transition: top 0.2s;
+}
+.main-cont__list .item:hover {
+  top: -3px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .3);
+}
+/* main-album */
+.main-album .main-cont__list .item {
+  height: 200px;
+}
+.main-album .pic,
+.main-album .pic img {
+  width: 100%;
+  height: 100px;
+}
+.main-album .info {
+  padding-left: 12px;
+  padding-right:12px;
+}
+.main-album .info .title {
+  margin: 15px 0 28px;
+  font-weight: 700;
+}
+.main-album .info p {
+  line-height: 18px;
+  color: #888;
+}
+.main-album .info .author {
+  display: inline;
+  color: #888;
+}
+/*悬浮放大图片1*//* 效果有问题，暂时去除 */
+/* .hoverbox
+{
+  cursor: default;
+  list-style: none;
+}
+
+.hoverbox a
+{
+  cursor: default;
+}
+
+.hoverbox a .preview
+{
+  display: none;
+}
+
+.hoverbox a:hover .preview
+{
+  display: block;
+  position: absolute;
+  top: 45px;
+  left: 45px;
+  z-index: 1;
+  width: 300px;
+  height: 200px;
+  padding: 2px;
+  border: 1px solid gray;
+  background-color: ivory;
+}
+
+
+.hoverbox li
+{
+  position: relative;
+} */
+
+/* 图片点击放大特效2 */
+.content-photo {
+	max-width: 300px;
+	margin: 0 auto;
+}
+
+.content-photo img {
+	max-width: 100%;
+}
+
+@media (max-width: 800px) {
+	.content-photo {
+		max-width: 100%;
+		margin: 20px;
+	}
+}
+
+
+

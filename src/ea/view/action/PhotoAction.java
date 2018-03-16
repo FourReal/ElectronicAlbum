@@ -29,7 +29,7 @@ public class PhotoAction extends BaseAction<Photo>{
 	
 	private static final long serialVersionUID = 1L;
 	private int pageNow=1;   //动态改变 页面获取
-    private int pageSize=5;    //固定不变
+    private int pageSize=14;    //固定不变
 	
     private Map<String,String> phPath = new HashMap<String,String>();		//返回给makealb页面的相册导入事件的照片路径
 	
@@ -51,8 +51,9 @@ public class PhotoAction extends BaseAction<Photo>{
 	
 	public String list() throws Exception{
 		User user=(User)ActionContext.getContext().getSession().get("user");
-		List<Photo> photolist=photoService.findPhotoByUserid(user.getId());
-		ActionContext.getContext().put("photoList", photolist);
+//		List<Photo> photolist=photoService.findPhotoByUserid(user.getId());
+		List<Photo> photoList=photoService.findAllPhotosByUserid(pageNow,pageSize,user.getId());
+		ActionContext.getContext().put("photoList", photoList);
 		return "list";
 	}
 	
@@ -87,20 +88,21 @@ public class PhotoAction extends BaseAction<Photo>{
 	 */
 	public String getAllPhotos() {
 		User user=(User) ActionContext.getContext().getSession().get("user");
-		System.out.println("getAllBgps:user++++++++++++"+user.getId());
-		System.out.println("getAllBgps:page++++++++++++"+getPageNow());
-//		Long userid=(long)1;
-		List<Photo> photoList=photoService.findAllPhotosByUserid(pageNow,pageSize,user.getId());
-		if(photoList.size()>0) {   //bgp列表
-			ActionContext.getContext().put("photoList", photoList);
-			PageShow page=new PageShow(pageNow,photoService.findPhotoSizeByUserid(user.getId()),pageSize);
-//			Map request=(Map) ActionContext.getContext().get("request");
-//			request.put("page", page);
-			ActionContext.getContext().getSession().put("pagePhoto", page);
-//			System.out.println("getAllBgps+++++++++"+page.getPageSize()+page.getPageNow());
-			
+		if(user!=null) {
+			System.out.println("getAllBgps:user++++++++++++"+user.getId());
+			System.out.println("getAllBgps:page++++++++++++"+getPageNow());
+	//		Long userid=(long)1;
+			List<Photo> photoList=photoService.findAllPhotosByUserid(pageNow,pageSize,user.getId());
+			if(photoList.size()>0) {   //bgp列表
+				ActionContext.getContext().put("photoList", photoList);
+				PageShow page=new PageShow(pageNow,photoService.findPhotoSizeByUserid(user.getId()),pageSize);
+	//			Map request=(Map) ActionContext.getContext().get("request");
+	//			request.put("page", page);
+				ActionContext.getContext().getSession().put("pagePhoto", page);
+	//			System.out.println("getAllBgps+++++++++"+page.getPageSize()+page.getPageNow());
+				
+			}
 		}
-		
 		return "list";
 	}
 	
@@ -110,7 +112,7 @@ public class PhotoAction extends BaseAction<Photo>{
 	  * 实现相册导入照片
 	  */
 	public String scanPhotos() throws Exception {
-		System.out.println("浏览图片");
+//		System.out.println("浏览图片");
 		phPath = new HashMap<String,String>();
 		User user=(User) ActionContext.getContext().getSession().get("user");
 		List<Photo> photoList=photoService.findAllPhotosByUserid(pageNow,pageSize,user.getId());
@@ -118,7 +120,7 @@ public class PhotoAction extends BaseAction<Photo>{
 		int cnt = 0;			//照片下标
 		while(it.hasNext()) {
 			cnt++;
-			System.out.println(cnt);
+//			System.out.println(cnt);
 			//it.next().getPName();
 			phPath.put(Integer.toString(cnt), it.next().getPName());
 		}

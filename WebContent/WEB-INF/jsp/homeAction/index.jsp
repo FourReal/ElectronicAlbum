@@ -11,7 +11,6 @@
 
 		<%-- <frame noresize name="menu" scrolling="yes" src="${pageContext.request.contextPath}/home_left.action"> --%>
 		<frame noresize name="right" scrolling="yes" src="${pageContext.request.contextPath}/home_right.action">
-	<frame noresize name="status_bar" scrolling="no" src="${pageContext.request.contextPath}/home_bottom.action">
 </frameset>
 <noframes>
 <body>

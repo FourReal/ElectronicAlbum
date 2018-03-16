@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="css/main_show.css">
 <!--展示部分轮播图CSS-->
 <link rel="stylesheet" href="css/main_show_banner.css" />
+<link rel="stylesheet" href="css/foot.css" />
 </head>
 <body>
 	<!--顶端-->
@@ -220,6 +221,24 @@
 	<script type="text/javascript" src='js/jquery.min.js'></script>
 	<script type="text/javascript" src="js/index.js"></script>
 
+
+<div id="footer">
+    	<div id="footer-wrap">
+    	<div style="height:20px;"></div>
+	        <h3>服务指南</h3>
+	       <!--  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p> -->
+	         <ul id="sponsors">
+	            <li><a href="#"><p>定制指南</p></a></li>
+	            <li><a href="#"><p>关于我们</p></a></li>
+	            <li><a href="#"><p>信誉保证</p></a></li>
+	            <li><a href="#"><p>联系我们</p></a></li>
+	        </ul>
+	        <div id="copyright">
+	        	<p>Copyright &copy; 2018.FourReal All rights reserved.<a href="#"><img src="images/logo6.png"></a></p>
+	        </div><!-- END copyright--> 
+	        <div class="end"></div>
+        </div><!-- END footer-wrap -->
+	</div><!-- END footer-->
 
 
 </body>

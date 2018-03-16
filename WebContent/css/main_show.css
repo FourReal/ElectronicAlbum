@@ -141,6 +141,7 @@ h1 {
 }
 
 .container-master {
+	height:800px;
     position: relative;
 }
 

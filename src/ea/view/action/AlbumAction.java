@@ -86,13 +86,40 @@ public class AlbumAction extends BaseAction<Album>{
 	/** 修改*/
 	public String edit() throws Exception{
 		
+		String updatadate=new SimpleDateFormat("yyyyMMddHHmmss")
+				.format(new Date());
+		String filename=updatadate+"_"+imageFileName;
+		String realpath = ServletActionContext.getServletContext().getRealPath("/images");  
+//        System.out.println("realpath: "+realpath); 
+        String saveaddr="/ElectronicAlbum/images/"+filename;
+//        System.out.println("--------"+saveaddr+"------------");
+        if(image != null){  
+//        	System.out.println("EditAlbum================"+image);
+            File savefile = new File(new File(realpath), filename);  
+//            System.out.println(savefile);  
+//            System.out.println(savefile.getParentFile());  
+            if(savefile.getParentFile().exists()){  
+                try {  
+                    savefile.getParentFile().mkdirs();  
+                    FileUtils.copyFile(image, savefile);  
+                } catch (IOException e) {  
+                    e.printStackTrace();  
+                }  
+               
+                ActionContext.getContext().put("message", "文件上传成功");  
+            }  
+        }  
+		
+		
+		
 		//从数据库获取原对象
 		Album album=albumService.getById(model.getId());
 		
 		//设置修改的属性
 		album.setAlbumName(model.getAlbumName());
 		album.setDescription(model.getDescription());
-		
+//		System.out.println("saveaddr++++++++++++++++"+saveaddr);
+		album.setCoverAddr(saveaddr);
 		
 		//保存到数据库
 		albumService.update(album);

@@ -34,6 +34,7 @@
         <action name="user_*" class="userAction" method="{1}">
             <result name="list">/WEB-INF/jsp/userAction/list.jsp</result>
             <result name="add">/WEB-INF/jsp/userAction/addUI.jsp</result>
+            <result name="Aadd">/WEB-INF/jsp/userAction/AaddUI.jsp</result>
             <result name="Aedit">/WEB-INF/jsp/userAction/AeditUI.jsp</result>
             <result name="edit">/WEB-INF/jsp/userAction/editUI.jsp</result>
             <result name="index">/WEB-INF/jsp/userAction/userindex.jsp</result>

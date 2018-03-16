@@ -16,6 +16,8 @@ public class Album implements java.io.Serializable{
 	
 	private Set<AlbumBgp> bgps=new HashSet<AlbumBgp>();    //相册的组成成分
 	
+	private String coverAddr;		//相册的封面路径
+	
 	public Long getId() {
 		return id;
 	}
@@ -57,6 +59,12 @@ public class Album implements java.io.Serializable{
 	}
 	public void setSign(String sign) {
 		this.sign = sign;
+	}
+	public String getCoverAddr() {
+		return coverAddr;
+	}
+	public void setCoverAddr(String coverAddr) {
+		this.coverAddr = coverAddr;
 	}
 	
 	

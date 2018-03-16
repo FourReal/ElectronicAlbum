@@ -3,16 +3,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<%@	taglib prefix="s" uri="/struts-tags" %>
-<%pageContext.setAttribute("baseURL", request.getContextPath()); %>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>struts2 +jquey uploadify3.2 实现多文件上传，可预览、删除、排序</title>
-<script src="${baseURL }/js/jquery-1.9.1.js" type="text/javascript"></script>
-<script src="${baseURL }/js/jquery.uploadify.min.js" type="text/javascript"></script>
-<script src="${baseURL }/js/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
-<script src="${baseURL }/js/ajaxsubmit.js" type="text/javascript" ></script>
-<link rel="stylesheet" type="text/css" href="${baseURL }/css/uploadify.css">
-<link rel="stylesheet" href="${baseURL }/themes/base/jquery.ui.all.css">
+	<%@	taglib prefix="s" uri="/struts-tags" %>
+	<%pageContext.setAttribute("baseURL", request.getContextPath()); %>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>struts2 +jquey uploadify3.2 实现多文件上传，可预览、删除、排序</title>
+	<script src="${baseURL }/js/jquery-1.9.1.js" type="text/javascript"></script>
+	<script src="${baseURL }/js/jquery.uploadify.min.js" type="text/javascript"></script>
+	<script src="${baseURL }/js/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
+	<script src="${baseURL }/js/ajaxsubmit.js" type="text/javascript" ></script>
+	<link rel="stylesheet" type="text/css" href="${baseURL }/css/uploadify.css">
+	<link rel="stylesheet" href="${baseURL }/themes/base/jquery.ui.all.css">
 <style type="text/css">
 body {  
     font-size: 12px;  
@@ -45,7 +45,7 @@ ul li{list-style: none}
             $("#uploadFile").uploadify({  
                 height        : 30,  
                 swf           : '${baseURL}/themes/uploadify.swf',  
-                uploader      : '${baseURL}/upload.action?savePath=imgs',  //保存到imgs路径下
+                uploader      : '${baseURL}/user_upload.action',  //保存到imgs路径下
                 width         : 100,  
                 fileObjName:'uploadify',  
                 auto : false,  
@@ -174,10 +174,10 @@ ul li{list-style: none}
         <button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" onclick="javascript:$('#uploadFile').uploadify('cancel','*')">  
             <span class="ui-button-icon-primary ui-icon ui-icon-cancel"></span> <span class="ui-button-text">取消上传</span>  
         </button>  
-  
-        <button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" onclick="dosubmint()">  
-            <span class="ui-button-icon-primary ui-icon ui-icon-locked"></span> <span class="ui-button-text">完成</span>  
-        </button>  
+  		<s:a	action="photo_getAllPhotos">
+            <button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary">
+            <span class="ui-button-text">完成</span></button>
+        </s:a> 
     </div> 
     <s:a action="photo_findPhotos?userid=1"><input type="button"  value="查找"/></s:a>
 </body>

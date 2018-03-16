@@ -71,8 +71,14 @@ public class Installer {
 		//-------------------------
 		menu=new Privilege("你的一切",null,null);
 		menu1=new Privilege("个人信息","/user_personal",menu);
+		menu2=new Privilege("我的照片","/photo_getAllPhotos",menu);
+		menu3=new Privilege("我的相册","/user_personal",menu);
+		menu4=new Privilege("相册制作","/user_makeAlbum",menu);
 		session.save(menu);
 		session.save(menu1);
+		session.save(menu2);
+		session.save(menu3);
+		session.save(menu4);
 		
 	
 		

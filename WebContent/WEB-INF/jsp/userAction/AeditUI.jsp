@@ -18,10 +18,10 @@
 			<table cellspacing="0" cellpadding="0" class="mainForm">
 
 				<tr><td>登录名</td>
-					<td><s:textfield name="loginName" cssClass="InputStyle" /></td>
+					<td><s:textfield name="loginName" cssClass="InputStyle" /> *</td>
 				</tr>
 				<tr><td>姓名</td>
-					<td><s:textfield name="name" cssClass="InputStyle" /> *</td>
+					<td><s:textfield name="name" cssClass="InputStyle" /></td>
 				</tr>
 				<tr><td>性别</td>
 					<td>

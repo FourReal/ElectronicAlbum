@@ -31,6 +31,7 @@ import ea.domain.Photo;
 import ea.domain.Photo_pro;
 import ea.domain.Role;
 import ea.domain.User;
+import ea.util.ImgCompress;
 import ea.util.PageShow;
 import net.sf.json.JSONObject;
 
@@ -48,6 +49,7 @@ public class UserAction extends BaseAction<User>{
 	private String uploadifyContentType;
 	private static final String savePath = "imgs";// 文件上传后保存的路径
 	private String mvUrl;
+	private int albumId = 0; //用户请求的相册模板ID
 	private Long userid;//标记哪个用户上传
 	private Long[] roleIds;
 	
@@ -68,7 +70,8 @@ public class UserAction extends BaseAction<User>{
 	 * @return
 	 * @throws Exception
 	 */
-	public String upload() throws Exception {
+    public String upload() throws Exception {
+		System.out.println("上传照片");
 		List<String> mfiles = new ArrayList<String>();
 	
 		User user=(User)ActionContext.getContext().getSession().get("user");
@@ -79,13 +82,18 @@ public class UserAction extends BaseAction<User>{
 		String updatadate=new SimpleDateFormat("yyyyMMddHHmmss")
 				.format(new Date());
 		String fileName =updatadate+ "_" + uploadifyFileName;
+		String sfileName = "s_"+fileName;
 		ActionContext ac = ActionContext.getContext();
 		ServletContext sc = (ServletContext) ac
 				.get(ServletActionContext.SERVLET_CONTEXT);
 		String realPath = sc.getRealPath("/");
 		String dest = realPath + savePath + "/" + fileName;
+		String sdest = realPath + savePath + "/" + sfileName;
 		System.out.println("目标路径:"+dest);
 		FileUtils.copyFile(uploadify, new File(dest));
+		ImgCompress imgCom_m = new ImgCompress(dest,sdest);  
+	    imgCom_m.resizeFix(650, 650);  
+
 		mfiles.add(savePath + "/" + fileName);
 
 		HttpServletResponse response = ServletActionContext.getResponse();
@@ -153,6 +161,13 @@ public class UserAction extends BaseAction<User>{
 		return "add";
 	}
 	
+	/** 管理员添加页面*/
+	public String AaddUI() throws Exception{
+		
+		
+		return "Aadd";
+	}
+	
 	/**添加*/
 	public String add() throws Exception{
 		User user=userService.findByLoginName(model.getLoginName());
@@ -171,6 +186,28 @@ public class UserAction extends BaseAction<User>{
 			userService.save(model);
 			return "loginUI";
 		}
+	}
+	
+	/**管理员添加用户*/
+	public String Aadd() throws Exception{
+//		System.out.println("Aadd+====="+model.getLoginName());
+		User user=userService.findByLoginName(model.getLoginName());
+		if(user!=null) {
+			addFieldError("regist", "用户名已被注册！");
+			return "Aadd";
+		}
+		String md5Digest=DigestUtils.md5Hex("1234");
+		
+		model.setPassword(md5Digest);
+//		User user=new User();
+//		user.setName(model.getName());
+//		user.setDescription(model.getDescription());
+//		//保存到数据库中
+//		userService.save(user);
+		
+		userService.save(model);
+		
+		return "toList";
 	}
 	
 	/** 修改页面*/
@@ -412,26 +449,32 @@ public class UserAction extends BaseAction<User>{
 	 * @return
 	 */
 	public String makeAlbum()throws Exception{
-		if(model.getId()!=null)
-		{
-			System.out.println("makeAlbum++++++++++"+model.getId());
-//			List<AlbumBgp> modelBgps=albumService.findAlbumBgpsByAlbumid(BgppageNow, BgppageSize, model.getId());
-//			System.out.println("MakeAlbum+++++++++++"+modelBgps);
+//		if(model.getId()!=null)
+//		{
+//			System.out.println("makeAlbum++++++++++"+model.getId());
+////			List<AlbumBgp> modelBgps=albumService.findAlbumBgpsByAlbumid(BgppageNow, BgppageSize, model.getId());
+////			System.out.println("MakeAlbum+++++++++++"+modelBgps);
+////			if(modelBgps.size()>0)
+////			{
+////				ActionContext.getContext().put("modelBgps", modelBgps);
+////				PageShow page=new PageShow(BgppageNow,albumService.findAlbumBgpSizeByAlbumid(model.getId()),BgppageSize);
+////
+////				ActionContext.getContext().put("pageAlbumBgp", page);
+////			}
+//			
+//			List<AlbumBgp> modelBgps=albumService.findAllbgByAlbumId(model.getId());
 //			if(modelBgps.size()>0)
-//			{
 //				ActionContext.getContext().put("modelBgps", modelBgps);
-//				PageShow page=new PageShow(BgppageNow,albumService.findAlbumBgpSizeByAlbumid(model.getId()),BgppageSize);
-//
-//				ActionContext.getContext().put("pageAlbumBgp", page);
-//			}
-			
-			List<AlbumBgp> modelBgps=albumService.findAllbgByAlbumId(model.getId());
-			if(modelBgps.size()>0)
-				ActionContext.getContext().put("modelBgps", modelBgps);
-		}
-		getAllPhotos();
-		Templist();	
+//		}
+//		getAllPhotos();
+//		Templist();	
+//		System.out.println("MakeAlbum:model:================="+getAlbumId());
+		List<AlbumBgp> modelBgps=albumService.findAllbgByAlbumId((long)this.getAlbumId());
+		ActionContext.getContext().put("modelBgps", modelBgps);
+		Templist();
+//		System.out.println("MakeAlbum:albumbgps++++++++++++++++++"+modelBgps);
 		return "makeAlbum";
+		
 	}
 	
 	
@@ -559,6 +602,14 @@ public class UserAction extends BaseAction<User>{
 
 	public void setRoleIds(Long[] roleIds) {
 		this.roleIds = roleIds;
+	}
+
+	public int getAlbumId() {
+		return albumId;
+	}
+
+	public void setAlbumId(int albumId) {
+		this.albumId = albumId;
 	}
 
 	

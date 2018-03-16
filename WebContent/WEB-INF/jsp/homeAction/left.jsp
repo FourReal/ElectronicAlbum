@@ -54,10 +54,12 @@
 </div> --%>
 <body id="bg">
 <div class="container">
-		<div class="leftsidebar_box">
-			<a href="#"><div class="line">
+		<%-- <div class="leftsidebar_box">
+			<a href="#">
+				<div class="line">
 					<img src="img/coin01.png" />&nbsp;&nbsp;首页
-				</div></a>
+				</div>
+			</a>
 			<dl class="system_log">
 				<dt>
 					<img class="icon1" src="img/coin03.png" /><img class="icon2"
@@ -108,32 +110,38 @@
 						src="img/coin20.png" />
 				</dt>
 			</dl>
-			
-			<div id="Menu">
-				<ul id="MenuUl">
-				<%--显示一级菜单 --%>
-				<s:iterator value="#application.topPrivilegeList">
-				<s:if test="#session.user.hasPrivilegeByName(name)">
-				<li class="level1">
-					<div onClick="menuClick(this);" class="level1Style">
-						${name}
-					</div>
-					<ul style="" class="MenuLevel2" id="atext">
-						<%--显示二级菜单 --%>
-						<s:iterator value="children">
-						<s:if test="#session.user.hasPrivilegeByName(name)">
-						<li class="level2">
-							<div class="level2Style">
-								<a target="right" href="${pageContext.request.contextPath}${url}.action">${name} </a>
-							</div>
-						</li>
-						</s:if>
-						</s:iterator>
-					</ul>
-				</li>
-				</s:if>
-				</s:iterator>
-				</ul>
+			 --%>
+			<div class="leftsidebar_box">
+				<dl class="system_log">
+					<%--显示一级菜单 --%>
+					<s:iterator value="#application.topPrivilegeList">
+					<s:if test="#session.user.hasPrivilegeByName(name)">
+					<dt class="level1">
+						<img class="icon1" src="img/coin03.png" />
+						<img class="icon2" src="img/coin04.png" />
+						<a href="${pageContext.request.contextPath}/user_personal.action" target="right"> ${name}</a>
+						<img class="icon3" src="img/coin19.png" />
+						<img class="icon4"src="img/coin20.png" />
+					</dt>	
+						
+						<dd>
+							<%--显示二级菜单 --%>
+							<s:iterator value="children">
+							<s:if test="#session.user.hasPrivilegeByName(name)">
+							<li class="level2">
+								<div class="level2Style">
+									<img class="coin11" src="img/coin111.png" /><img class="coin22" src="img/coin222.png" />
+									<a target="right" href="${pageContext.request.contextPath}${url}.action">${name} </a>
+									<img class="icon5" src="img/coin21.png" />
+								</div>
+							</li>
+							</s:if>
+							</s:iterator>
+						</dd>
+					
+					</s:if>
+					</s:iterator>
+				</dl>
 			</div>
 		</div>
 
