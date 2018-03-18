@@ -102,5 +102,14 @@
             <result name="toList" type="redirectAction">album_list</result>
             <result name="toShow" type="redirectAction">album_show</result>
         </action>
+        
+        <!-- 相册书管理 -->
+        <action name="albumbook_*" class="ea.view.action.AlbumBookAction" method="{1}">
+            <result name="list" >/WEB-INF/jsp/albumBookAction/list.jsp</result>
+            <result name="edit" >/WEB-INF/jsp/albumBookAction/editUI.jsp</result>
+            <result name="show" >/WEB-INF/jsp/albumBookAction/show.jsp</result>
+            
+            <result name="toList" type="redirectAction">albumbook_list</result>   
+        </action>
     </package>
 </struts>

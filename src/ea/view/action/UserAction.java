@@ -479,9 +479,10 @@ public class UserAction extends BaseAction<User>{
 //		Templist();	
 		System.out.println("MakeAlbum:model:================="+getAlbumId());
 		List<AlbumBgp> modelBgps=albumService.findAllbgByAlbumId((long)this.getAlbumId());
+		ActionContext.getContext().getSession().put("editAlbumBookid", null);
 		ActionContext.getContext().put("modelBgps", modelBgps);
 		ActionContext.getContext().getSession().put("editAlbumId", getAlbumId());
-		System.out.println("ActionContext.getContext().getSession().get(\"editAlbumId\");"+ActionContext.getContext().getSession().get("editAlbumId"));
+//		System.out.println("ActionContext.getContext().getSession().get(\"editAlbumId\");"+ActionContext.getContext().getSession().get("editAlbumId"));
 		Templist();
 //		System.out.println("MakeAlbum:albumbgps++++++++++++++++++"+modelBgps);
 		return "makeAlbum";
@@ -506,7 +507,7 @@ public class UserAction extends BaseAction<User>{
 		}catch (IOException e) {  
 		        e.printStackTrace();  
 		}  
-		String date = URLDecoder.decode(sb.toString(),"UTF-8");
+		String date = URLDecoder.decode(sb.toString(),"UTF-8");					//获取前台ajax传送过来的数据
 		/*
 		 * 解码前：mydata=%7B%22name%22%3A%22ji%22%2C%22age%22%3A20%7D 
 		 * 解码后：mydata={"name":"ji","age":20}
@@ -514,21 +515,27 @@ public class UserAction extends BaseAction<User>{
 		//       out(sb2); 
 		Long editalbumid=(Long) ActionContext.getContext().getSession().get("editAlbumId");		//获取用户编辑的相册模板id
 		System.out.println("bealbum:albumId++++"+editalbumid);
-//		System.out.println("bealbum++++++"+date);
-		//       JSONObject json=JSONObject.fromObject(date);
-		//	     String jsonStr =request.getParameter("mydata");
-		//	     System.out.println("bealbum++++++"+jsonStr);
-		//       System.out.println("bealbum++++++"+json.toString());
-		Album albumModel=albumService.getById(editalbumid);						//获取相册模板
-		AlbumBook editAlbum=new AlbumBook();
-		editAlbum.setAlbum(albumModel);
-		editAlbum.setMadeuser(user);
-		albumBookService.save(editAlbum);
-		System.out.println("Bealbum:editAlbum======"+editAlbum.getAlbum());
 		
+		Album albumModel=albumService.getById(editalbumid);										//获取相册模板
+		
+		Object object=ActionContext.getContext().getSession().get("editAlbumBookid");
+		AlbumBook editAlbumBook;
+		if(object==null) {
+			editAlbumBook=new AlbumBook();													//形成用户制定的照片书AlbumBook
+			editAlbumBook.setAlbum(albumModel);															
+			editAlbumBook.setMadeuser(user);
+			albumBookService.save(editAlbumBook);
+			System.out.println("Bealbum:editAlbumBook======"+editAlbumBook.getId());						//打印照片书id；
+			ActionContext.getContext().getSession().put("editAlbumBookid", editAlbumBook.getId());
+		}
+		else {
+			editAlbumBook=albumBookService.getById(Long.valueOf(String.valueOf(object)));
+			System.out.println("Bealbum:editAlbumBook======"+editAlbumBook.getId());
+		}
 		date=date.substring(1, date.length()-1);
+		System.out.println(date);
 		JSONArray result=JSONArray.fromObject(date);
-//		System.out.println("size++++"+result.size());
+		System.out.println("size++++"+result.size());
 		Set<Photo_pro> photo_pros=new HashSet<Photo_pro>();
 		if(result.size()>0) {
 			for(int i=0;i<result.size();i++) {
@@ -553,9 +560,11 @@ public class UserAction extends BaseAction<User>{
 				photo_pro.setOrdinate(y);
 				photo_pro.setSize_x(w);
 				photo_pro.setSize_y(h);
-				photo_pro.setAlbumBook(editAlbum);
 				
-				System.out.println("beAlbum:photo_pro======="+photo_pro);
+				System.out.println("beAlbum:photo_pro======"+editAlbumBook.getId());
+				photo_pro.setAlbumBook(editAlbumBook);							//设置编辑的照片是属于哪个相册书
+				
+				System.out.println("beAlbum:photo_pro======="+photo_pro);		//存储制作中的照片信息
 				photo_proService.save(photo_pro);
 				
 				
@@ -569,8 +578,9 @@ public class UserAction extends BaseAction<User>{
 		}
 		
 		System.out.println("beAlbum:photo_pros===="+photo_pros);
-		editAlbum.setPhoto_pros(photo_pros);
-		albumBookService.update(editAlbum);
+		editAlbumBook.setPhoto_pros(photo_pros);
+		System.out.println("beAlbum:photo_pros===="+editAlbumBook.getPhoto_pros());
+//		albumBookService.update(editAlbumBook);
 		
 //		System.out.println(result);
 		return "success";

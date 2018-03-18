@@ -239,7 +239,7 @@
 				   for(var i =0;i<bgps.length;i++){//遍历所有模板页
 					   var draggable = bgps[i].getElementsByClassName("draggable");		//获取每个li中的div标签：（存放照片的元素）
 					   console.log("div:"+i+draggable.length);
-					   
+					   console.log("当前模板页数："+$curr_page);
 					  /*  var photos=[];
 					   console.log("photodiv:"+draggable[0]+draggable[0].offsetLeft);
 					   for(var j =0;j<draggable.length;j++){//遍历照片
@@ -249,6 +249,7 @@
 					   
 					   
 					   var photos=[];
+					   var index=0;
 					   for(var j =0;j<draggable.length;j++){//遍历照片
 						   var photo={};
 					   		photo.src=draggable[j].getElementsByClassName("opphotoc")[0].src;
@@ -258,11 +259,16 @@
 					   		photo.h=draggable[j].clientHeight;
 					   		photo.page=i;
 					   		
-					   		photos.push(photo);
+					   		if(photo.w!=0){
+					   			photos.push(photo);
+					   		}
+					   			
 					   		
 					   }
-					   data.push(photos); 
-					   
+
+					   if(photos.length!=0){
+						   data.push(photos); 
+					   }	   
 					   
 				   }
 				   console.log("data："+data);
