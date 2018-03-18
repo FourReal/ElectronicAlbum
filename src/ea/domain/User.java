@@ -21,6 +21,10 @@ public class User implements java.io.Serializable{
 	private Set<Photo> photos=new HashSet<Photo>(); //用户拥有的照片
 	private Set<Album> albums=new HashSet<Album>(); //用户收藏的相册		
 	
+	
+	private Set<AlbumBook> albumbooks=new HashSet<AlbumBook>();		//用户制作的相册
+	
+	
 	/**
 	 * 判断是否有权限
 	 * @param name
@@ -170,7 +174,15 @@ public class User implements java.io.Serializable{
 		this.roles = roles;
 	}
 
+	public Set<AlbumBook> getAlbumbooks() {
+		return albumbooks;
+	}
 
+	public void setAlbumbooks(Set<AlbumBook> albumbooks) {
+		this.albumbooks = albumbooks;
+	}
+
+	
 	
 	
 	

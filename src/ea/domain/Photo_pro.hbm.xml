@@ -18,9 +18,12 @@
          <property name="size_x" />
          <property name="size_y" />
 
-     
+         
          <!-- photo属性，本类与Photo的多对一的关系 -->
          <many-to-one name="photo" class="Photo" column="photoId"></many-to-one>
+         
+         <!-- albumBook属性，本类与AlbumBook的多对一的关系 -->
+         <many-to-one name="albumBook" class="AlbumBook" column="albumBookId"></many-to-one>
      </class> 
      
      

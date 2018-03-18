@@ -1,5 +1,8 @@
 package ea.service.impl;
 
+import java.util.List;
+import java.util.Set;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,5 +43,11 @@ public class RoleServiceImpl extends DaoSupportImpl<Role> implements RoleService
 //		roleDao.update(role);
 //		
 //	}
-
+	
+	@SuppressWarnings("unchecked")
+	public Set<Role> setRoleinit() {
+		return (Set<Role>) getSession().createQuery(
+				"From Role r WHERE r.id=1").list();	
+	}
+	
 }

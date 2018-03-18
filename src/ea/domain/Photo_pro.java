@@ -1,5 +1,8 @@
 package ea.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Photo_pro implements java.io.Serializable{
 	
 	private Long id;
@@ -8,10 +11,11 @@ public class Photo_pro implements java.io.Serializable{
 	
 	private int page;				//标识该照片在相册中的哪一页；
 	private int horizon;			//标识该照片在相册背景图上的横纵坐标；
-	private int ordinate;
+	private int ordinate;			//竖直坐标
 	private int size_x;				//标识照片的大小；
 	private int size_y; 			
-	
+
+	private AlbumBook albumBook;		//标记该照片属性的相册；
 	
 	public int getPage() {
 		return page;
@@ -58,8 +62,12 @@ public class Photo_pro implements java.io.Serializable{
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	
+	public AlbumBook getAlbumBook() {
+		return albumBook;
+	}
+	public void setAlbumBook(AlbumBook albumBook) {
+		this.albumBook = albumBook;
+	}
 	
 	
 	

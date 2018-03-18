@@ -19,7 +19,7 @@
 		.form {
 		  position: relative;
 		  z-index: 1;
-		  background: #FFFFFF;
+		  background: rgba(255,255,255,0.7);
 		  max-width: 360px;
 		  margin: 0 auto 100px;
 		  padding: 45px;
@@ -29,7 +29,7 @@
 		.form input {
 		  font-family: "Roboto", sans-serif;
 		  outline: 0;
-		  background: #f2f2f2;
+		  background:#DCDCDC;
 		  width: 100%;
 		  border: 0;
 		  margin: 0 0 15px;
@@ -41,7 +41,7 @@
 		  font-family: "Microsoft YaHei","Roboto", sans-serif;
 		  text-transform: uppercase;
 		  outline: 0;
-		  background: #4CAF50;
+		  background: #cd9b9b;
 		  width: 100%;
 		  border: 0;
 		  padding: 15px;
@@ -52,17 +52,40 @@
 		  cursor: pointer;
 		}
 		.form button:hover,.form button:active,.form button:focus {
-		  background: #43A047;
+		  background: #cd9b9b;
 		}
 		.form .message {
-		  margin: 15px 0 0;
+			float:left;
+		  margin-left:70px;
 		  color: #b3b3b3;
 		  font-size: 12px;
 		}
 		.form .message a {
-		  color: #4CAF50;
+		  color: #bb0000;
 		  text-decoration: none;
 		}
+		.form .forget {
+		  float:left;
+		  color: #b3b3b3;
+		  font-size: 12px;
+		
+		
+		}
+		.form .forget a {
+		  color: #bb0000;
+		  text-decoration: none;
+		}
+		.login-form span{
+		float:left;
+			margin:8px 8px 8px;
+		}
+		.register-form span{
+  			font-size:14px;
+  			float:left;
+  			margin-bottom:12px;
+		margin-left:5px;
+	}
+		
 		.form .register-form {
 		  display: none;
 		}
@@ -100,7 +123,8 @@
 		  color: #EF3B3A;
 		}
 		body {
-		  background: #9BCD9B; /* fallback for old browsers */
+			background: linear-gradient(rgba(255, 228, 225, 0.9), rgba(255, 228, 225, 0.9)), url("myimg/tour03.jpg") no-repeat center center/cover;
+		  /* background: #9BCD9B; */ /* fallback for old browsers */
 		  /**
 		  background: -webkit-linear-gradient(right, #76b852, #8DC26F);
 		  background: -moz-linear-gradient(right, #76b852, #8DC26F);
@@ -152,6 +176,7 @@
 		p.center{
 			color: #fff;font-family: "Microsoft YaHei";
 		}
+			
 	</style>
 	<!--[if IE]>
 		<script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
@@ -169,30 +194,32 @@
 			</font>
 			</div>	
 	        <s:textfield name="loginName" size="20" tabindex="1" id="loginNameInput" placeholder="请输入用户名"></s:textfield>
-	        <input name="password" type="password" placeholder="请输入密码">
+	        <input name="password" type="password" placeholder="请输入密码" >
 	        <br>
+	     
+	        
 	        <s:submit value="登录" class="button" id="login"></s:submit>
-		      <p class="message">还没有账户? <a href="#">立刻创建</a></p>
+		    <p class="message"><a href="#">免费注册</a></p>
+		    <span>|</span>
+		    <p class="forget"><a href="#">忘记密码？</a></p>
+		    
 		    </s:form>
 		  
 		    <s:form action="user_add" class="register-form">
-		      	<tr>
-					<td><s:textfield name="loginName" cssClass="InputStyle" placeholder="请输入账号"/> </td>
-				</tr>
-				<tr>
-					<td><s:textfield name="password" cssClass="InputStyle" placeholder="请输入密码"/></td>
-				</tr>
-				
-				<tr>
-					<td><s:textfield name="name" cssClass="InputStyle" placeholder="请输入姓名"/> </td>
-				</tr>
-
-				<tr>
-					<td><s:textfield name="phoneNumber" cssClass="InputStyle" placeholder="请输入电话"/></td>
-				</tr>
-				<tr>
-					<td><s:textfield name="email" cssClass="InputStyle" placeholder="请输入邮箱"/></td>
-				</tr>
+		      	  <input type="text" name="loginName" value="" placeholder="4-8位数字或字母组成的用户名" class="reg_user">
+          			<span class="tip user_hint" style="display:none;"></span>
+		         <input type="password" name="password" value="" placeholder="6-16位数字或字母组成的密码" class="reg_password">
+          			<span class="tip password_hint" style="display:none;"></span>
+				 <input type="password" name="" value="" placeholder="确认密码" class="reg_confirm">
+          			<span class="tip confirm_hint" style="display:none;"></span>
+          
+				<input name="name" class="InputStyle" placeholder="请输入姓名"/>
+			<span class="tip" style="display:none;"></span>
+          			<input type="text" name="phoneNumber" value="" placeholder="手机号" class="reg_mobile">
+          			<span class="tip mobile_hint" style="display:none;"></span>
+      
+			  <input type="text" name="email" value="" placeholder="邮箱" class="reg_email">
+          		<span class="tip email_hint" style="display:none;"></span>
 		      <s:submit value="立即注册" class="button"></s:submit>
 		      <p class="message">已经有了一个账户? <a href="#">立刻登录</a></p>
 		    </s:form>
@@ -202,7 +229,9 @@
 		  </div>
 		</div>
 
-	
+<script type="text/javascript" src="js/jquery.minzhuce.js"></script>
+<!------------------ 注册验证scriptzhuce.js -------------------->
+  <script type="text/javascript" src="js/scriptzhuce.js"></script>
 	<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="js/jquery-2.1.1.min.js"><\/script>')</script>
 	<script type="text/javascript">

@@ -26,6 +26,7 @@
         <mapping resource="ea/domain/User.hbm.xml" />
         <mapping resource="ea/domain/Photo.hbm.xml" />
         <mapping resource="ea/domain/Album.hbm.xml" />
+        <mapping resource="ea/domain/AlbumBook.hbm.xml" />
         <mapping resource="ea/domain/AlbumBgp.hbm.xml" />
         <mapping resource="ea/domain/Photo_pro.hbm.xml" />
         <mapping resource="ea/domain/Role.hbm.xml" />

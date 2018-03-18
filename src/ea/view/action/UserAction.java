@@ -1,18 +1,22 @@
 package ea.view.action;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.codec.cli.Digest;
@@ -27,12 +31,15 @@ import com.opensymphony.xwork2.ActionContext;
 import ea.base.BaseAction;
 import ea.domain.Album;
 import ea.domain.AlbumBgp;
+import ea.domain.AlbumBook;
 import ea.domain.Photo;
 import ea.domain.Photo_pro;
 import ea.domain.Role;
 import ea.domain.User;
 import ea.util.ImgCompress;
 import ea.util.PageShow;
+import net.sf.json.JSON;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 
@@ -49,7 +56,7 @@ public class UserAction extends BaseAction<User>{
 	private String uploadifyContentType;
 	private static final String savePath = "imgs";// 文件上传后保存的路径
 	private String mvUrl;
-	private int albumId = 0; //用户请求的相册模板ID
+	private Long albumId = (long) 0; //用户请求的相册模板ID
 	private Long userid;//标记哪个用户上传
 	private Long[] roleIds;
 	
@@ -61,7 +68,7 @@ public class UserAction extends BaseAction<User>{
     private int BgppageSize=1;    //固定不变
 	
 	
-    private JSONObject json;			//获取页面传过来的json数据
+    private JSONObject jsonString;			//获取页面传过来的json数据
     
     
 	/**
@@ -183,6 +190,9 @@ public class UserAction extends BaseAction<User>{
 		else{
 			String md5Digest=DigestUtils.md5Hex(model.getPassword());
 			model.setPassword(md5Digest);
+			Long[] ids= {(long) 1};
+			List<Role> roleList=roleService.getByIds(ids);
+			model.setRoles(new HashSet<Role>(roleList));
 			userService.save(model);
 			return "loginUI";
 		}
@@ -268,7 +278,7 @@ public class UserAction extends BaseAction<User>{
 		return "Aedit";
 	}
 	
-	/** 修改*/
+	/** 管理员修改*/
 	public String Aedit() throws Exception{
 		
 		//从数据库获取原对象
@@ -285,7 +295,6 @@ public class UserAction extends BaseAction<User>{
 		
 		List<Role> roleList=roleService.getByIds(roleIds);
 		user.setRoles(new HashSet<Role>(roleList));
-		
 //		System.out.println("怎么还不成功啊！！！！________________________"+model.getName());
 		userService.update(user);
 		return "toList";
@@ -468,9 +477,11 @@ public class UserAction extends BaseAction<User>{
 //		}
 //		getAllPhotos();
 //		Templist();	
-//		System.out.println("MakeAlbum:model:================="+getAlbumId());
+		System.out.println("MakeAlbum:model:================="+getAlbumId());
 		List<AlbumBgp> modelBgps=albumService.findAllbgByAlbumId((long)this.getAlbumId());
 		ActionContext.getContext().put("modelBgps", modelBgps);
+		ActionContext.getContext().getSession().put("editAlbumId", getAlbumId());
+		System.out.println("ActionContext.getContext().getSession().get(\"editAlbumId\");"+ActionContext.getContext().getSession().get("editAlbumId"));
 		Templist();
 //		System.out.println("MakeAlbum:albumbgps++++++++++++++++++"+modelBgps);
 		return "makeAlbum";
@@ -481,12 +492,88 @@ public class UserAction extends BaseAction<User>{
 	/**
 	 * 形成相册
 	 */
-	public String BeAlbum() throws Exception{
+	public String beAlbum() throws Exception{
 		//获取页面传送过来的json数据
-		Photo_pro photo_pro=(Photo_pro)JSONObject.toBean(json, Photo_pro.class);
+		User user=(User) ActionContext.getContext().getSession().get("user");		//获取用户
+		HttpServletRequest request = ServletActionContext.getRequest();
+		StringBuilder sb=new StringBuilder();
+		try(BufferedReader reader = request.getReader();) {  
+			char[]buff = new char[1024];  
+			int len;  
+		    while((len = reader.read(buff)) != -1) {  
+		             sb.append(buff,0, len);  
+		    }  
+		}catch (IOException e) {  
+		        e.printStackTrace();  
+		}  
+		String date = URLDecoder.decode(sb.toString(),"UTF-8");
+		/*
+		 * 解码前：mydata=%7B%22name%22%3A%22ji%22%2C%22age%22%3A20%7D 
+		 * 解码后：mydata={"name":"ji","age":20}
+		 */
+		//       out(sb2); 
+		Long editalbumid=(Long) ActionContext.getContext().getSession().get("editAlbumId");		//获取用户编辑的相册模板id
+		System.out.println("bealbum:albumId++++"+editalbumid);
+//		System.out.println("bealbum++++++"+date);
+		//       JSONObject json=JSONObject.fromObject(date);
+		//	     String jsonStr =request.getParameter("mydata");
+		//	     System.out.println("bealbum++++++"+jsonStr);
+		//       System.out.println("bealbum++++++"+json.toString());
+		Album albumModel=albumService.getById(editalbumid);						//获取相册模板
+		AlbumBook editAlbum=new AlbumBook();
+		editAlbum.setAlbum(albumModel);
+		editAlbum.setMadeuser(user);
+		albumBookService.save(editAlbum);
+		System.out.println("Bealbum:editAlbum======"+editAlbum.getAlbum());
 		
-		System.out.println("BeAlbum:photo_pro++++++++++++++"+photo_pro);
-		return "BeAlbum";
+		date=date.substring(1, date.length()-1);
+		JSONArray result=JSONArray.fromObject(date);
+//		System.out.println("size++++"+result.size());
+		Set<Photo_pro> photo_pros=new HashSet<Photo_pro>();
+		if(result.size()>0) {
+			for(int i=0;i<result.size();i++) {
+//				String src=result.getJSONObject(i).getString("src");
+				JSONObject obj=result.getJSONObject(i);
+//				System.out.println("i++++"+obj);
+				String src=obj.getString("src");
+				int page=Integer.parseInt(obj.getString("page"));
+				int x=Integer.parseInt(obj.getString("x"));
+				int y=Integer.parseInt(obj.getString("y"));
+				int w=Integer.parseInt(obj.getString("w"));
+				int h=Integer.parseInt(obj.getString("h"));
+				
+				String filename= src.substring(src.lastIndexOf("/")+1);		//文件路径中获取到文件名；
+//				System.out.println("filename==="+filename);
+				Photo photo=photoService.findPhotoByPname(filename);		//photo_pro的photo属性准备
+				
+				Photo_pro photo_pro=new Photo_pro();
+				photo_pro.setPhoto(photo);
+				photo_pro.setPage(page);
+				photo_pro.setHorizon(x);
+				photo_pro.setOrdinate(y);
+				photo_pro.setSize_x(w);
+				photo_pro.setSize_y(h);
+				photo_pro.setAlbumBook(editAlbum);
+				
+				System.out.println("beAlbum:photo_pro======="+photo_pro);
+				photo_proService.save(photo_pro);
+				
+				
+				
+//				System.out.println("photo===="+photo);
+//				System.out.println("filename==="+filename);
+//				System.out.println(obj.getString("x"));
+//				System.out.println(obj.getString("y"));
+				photo_pros.add(photo_pro);
+			}
+		}
+		
+		System.out.println("beAlbum:photo_pros===="+photo_pros);
+		editAlbum.setPhoto_pros(photo_pros);
+		albumBookService.update(editAlbum);
+		
+//		System.out.println(result);
+		return "success";
 	}
 	
 	
@@ -588,12 +675,14 @@ public class UserAction extends BaseAction<User>{
 		BgppageSize = bgppageSize;
 	}
 
-	public JSONObject getJson() {
-		return json;
+	
+
+	public JSONObject getJsonString() {
+		return jsonString;
 	}
 
-	public void setJson(JSONObject json) {
-		this.json = json;
+	public void setJsonString(JSONObject jsonString) {
+		this.jsonString = jsonString;
 	}
 
 	public Long[] getRoleIds() {
@@ -604,14 +693,15 @@ public class UserAction extends BaseAction<User>{
 		this.roleIds = roleIds;
 	}
 
-	public int getAlbumId() {
+	public Long getAlbumId() {
 		return albumId;
 	}
 
-	public void setAlbumId(int albumId) {
+	public void setAlbumId(Long albumId) {
 		this.albumId = albumId;
 	}
 
+	
 	
 
 	

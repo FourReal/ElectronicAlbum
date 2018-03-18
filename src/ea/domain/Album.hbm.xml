@@ -17,13 +17,7 @@
          <property name="sign" />
          <property name="coverAddr" />
        
-         <!-- 与其他表的关系 -->
-         <!-- photos属性，本类与Photo的多对多的关系 -->
-         <set name="photos" table="ea_album_photo">
-             <key column="albumId"></key>
-             <many-to-many class="Photo" column="photoId"></many-to-many>
-         </set>
-         
+         <!-- 与其他表的关系 -->        
          
          <!--  users属性，本类与User的多对多的关系 -->
          <set name="users" table="ea_user_album" >
@@ -37,6 +31,11 @@
              <one-to-many class="AlbumBgp"/>
          </set>
          
+         <!-- albumBooks属性，本类与AlbumBook的一对多的关系 -->
+         <set name="albumBooks">
+             <key column="albumId"></key>
+             <one-to-many class="AlbumBook"/>
+         </set>
          
      </class> 
      

@@ -18,11 +18,11 @@
          <property name="updatetime" />
         
          
-         <!-- albumIds属性，本类与Album的多对多的关系 -->
+    	 <!--      albumIds属性，本类与Album的多对多的关系
          <set name="albumIds" table="ea_album_photo">
              <key column="photoId"></key>
              <many-to-many class="Album" column="albumId"></many-to-many>
-         </set>
+         </set> -->
          
          <!-- photo_pros属性，本类与Photo_pro的一对多的关系 -->
          <set name="photo_pros">

@@ -9,7 +9,7 @@ public class Photo implements java.io.Serializable{
 	private String Paddr;			//照片地址
 	private Long OwnerId;			//照片用户id
 	private String updatetime;
-	private Set<Album> albumIds=new HashSet<Album>();
+//	private Set<Album> albumIds=new HashSet<Album>();
 	
 	private Set<Photo_pro> photo_pros=new HashSet<Photo_pro>();	//引用该照片的集合
 	
@@ -43,12 +43,12 @@ public class Photo implements java.io.Serializable{
 	public void setUpdatetime(String updatetime) {
 		this.updatetime = updatetime;
 	}
-	public Set<Album> getAlbumIds() {
-		return albumIds;
-	}
-	public void setAlbumIds(Set<Album> albumIds) {
-		this.albumIds = albumIds;
-	}
+//	public Set<Album> getAlbumIds() {
+//		return albumIds;
+//	}
+//	public void setAlbumIds(Set<Album> albumIds) {
+//		this.albumIds = albumIds;
+//	}
 	public Set<Photo_pro> getPhoto_pros() {
 		return photo_pros;
 	}

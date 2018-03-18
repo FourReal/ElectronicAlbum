@@ -8,8 +8,10 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
 import ea.service.AlbumBgpService;
+import ea.service.AlbumBookService;
 import ea.service.AlbumService;
 import ea.service.PhotoService;
+import ea.service.Photo_proService;
 import ea.service.PrivilegeService;
 import ea.service.RoleService;
 import ea.service.UserService;
@@ -46,11 +48,15 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 	@Resource
 	protected PhotoService photoService;
 	@Resource
+	protected Photo_proService photo_proService;
+	@Resource
 	protected RoleService roleService;
 	@Resource
 	protected PrivilegeService privilegeService;
 	@Resource
 	protected AlbumService albumService;
+	@Resource
+	protected AlbumBookService albumBookService;
 	@Resource
 	protected AlbumBgpService albumBgpService;
 	

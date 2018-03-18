@@ -32,6 +32,11 @@
              <many-to-many class="Album" column="albumId"></many-to-many>
          </set>
           
+         <!-- albumbooks属性，本类与AlbumBook的一对多的关系 -->
+         <set name="albumbooks">
+             <key column="userId"></key>
+             <one-to-many class="AlbumBook"/>
+         </set>
    
      </class> 
      

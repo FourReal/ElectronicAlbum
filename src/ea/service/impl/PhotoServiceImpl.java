@@ -55,4 +55,17 @@ public class PhotoServiceImpl extends DaoSupportImpl<Photo> implements PhotoServ
 		return size;
 	}
 
+	/**
+	 * 通过文件名字获取照片对象
+	 */
+	public Photo findPhotoByPname(String filename) {
+		System.out.println("findPhotoByPname+++++"+filename);
+		
+		Session session=getSession();
+		String hsql="FROM Photo p WHERE p.PName=?";
+		Query query=session.createQuery(hsql).setParameter(0, filename);  //执行查询操作
+		List<Photo> tList=query.list();
+		return tList.get(0);
+	}
+
 }

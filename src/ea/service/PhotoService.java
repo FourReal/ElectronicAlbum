@@ -12,4 +12,6 @@ public interface PhotoService extends DaoSupport<Photo>{
 	int findPhotoSizeByUserid(Long userid);
 
 	List<Photo> findAllPhotosByUserid(int pageNow, int pageSize, Long userid);
+
+	Photo findPhotoByPname(String filename);
 }

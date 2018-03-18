@@ -118,7 +118,7 @@
 			  var groupCheckbox=$("input[name='photoselect']");
 			  for(i=0;i<groupCheckbox.length;i++){
 				if(groupCheckbox[i].checked){
-						$('.addedph').append('<img src="/ElectronicAlbum/imgs/'+groupCheckbox[i].value+'" name="photosled" width="100px" height="100px" class="drag_l" onclick="photointo(src)"/> ')
+						$('.addedph').append('<img src="/ElectronicAlbum/imgs/'+groupCheckbox[i].value+'" name="photosled" width="100px" height="100px" class="drag_l" onclick="photointo(src)"/>')
 						console.log(i);
 				}
 						
@@ -127,6 +127,11 @@
 			  $("input[name='photoselect']").prop("checked",false);
 		   });
 		});
+		
+		
+		
+		
+		
 		
 		
 		//选择从相册导入按钮，准备弹出的照片选择界面的数据
@@ -155,6 +160,7 @@
 	                	});
 					  console.log(htmlobj)
 			   });
+			   
 		});
 	
 		
@@ -167,7 +173,7 @@
 						'            <p class="lt"></p>\n' +
 						'			 <img src="'+src+'" name="opphoto" width="100%" height="100%" class="opphotoc">'+
 						'            <p class="wh" id="dgc"></p>\n' +
-						'            <p class="close" style="display: block;" onclick="closep(this)">x</p>\n' +
+						'            <p class="close" style="display: block;font-size:30px;" onclick="closep(this)">x</p>\n' +
 	
 						'        </div>')
 			mydrag("#bgp"+$curr_page,$curr_page+src);
@@ -218,24 +224,86 @@
 			  });
 		});
 		
+		
+		
+		//相册完成制作；
+		$(function(){
+			 $("#submitbtn").click(function(){
+				   console.log("完成制作！");
+				   var data =[];
+				   var objDom0 = document.getElementById("itemContainer"); 	//展示照片编辑区域的ul区域
+				   var bgps = objDom0.getElementsByClassName("bgps");		//获取objDom0中的li标签
+				   
+				   console.log("bgps.length:"+bgps.length)
+				  
+				   for(var i =0;i<bgps.length;i++){//遍历所有模板页
+					   var draggable = bgps[i].getElementsByClassName("draggable");		//获取每个li中的div标签：（存放照片的元素）
+					   console.log("div:"+i+draggable.length);
+					   
+					  /*  var photos=[];
+					   console.log("photodiv:"+draggable[0]+draggable[0].offsetLeft);
+					   for(var j =0;j<draggable.length;j++){//遍历照片
+						    var photodiv=draggable[j].getElementsByClassName("opphotoc")[0].src;
+					   		console.log("photodiv:"+j+draggable[j]+photodiv+draggable[j].offsetLeft);
+					   } */
+					   
+					   
+					   var photos=[];
+					   for(var j =0;j<draggable.length;j++){//遍历照片
+						   var photo={};
+					   		photo.src=draggable[j].getElementsByClassName("opphotoc")[0].src;
+					   		photo.x=draggable[j].offsetLeft;
+					   		photo.y=draggable[j].offsetTop;
+					   		photo.w=draggable[j].clientWidth;
+					   		photo.h=draggable[j].clientHeight;
+					   		photo.page=i;
+					   		
+					   		photos.push(photo);
+					   		
+					   }
+					   data.push(photos); 
+					   
+					   
+				   }
+				   console.log("data："+data);
+			        var jsonString = JSON.stringify(data);
+			        console.log(jsonString);
+			        $.ajax({
+	                    type : "post",
+	                    url : 'user_beAlbum.action',//触发的action
+	                    async:false,//非异步传输
+	                    data : jsonString,//设置要传输的数据
+	                    contentType: "application/json; charset=utf-8",  
+	                    success : function(d) {
+							alert("success"); 
+	                    },
+	                    error : function(d) {
+	                    	alert("error");
+	                        alert(d.responseText);
+	                    }
+			        });
+				});
+
+		});
+		
 	</script>
-  <script src="js/jPages.js"></script>
-  <script>
-  var $curr_page;
-  $(function() {
-    $("div.holder").jPages({
-      containerID: "itemContainer",
-	  previous: "上一页",
-      next: "下一页",
-      perPage: 1,
-      scrollBrowse: false,
-      callback:function( page, items ) {
-    	  $curr_page = page.current;
-    		console.log("当前模板页数："+$curr_page)
-    	  }
-    });
-  });
-  </script>
+	  <script src="js/jPages.js"></script>
+	  <script>
+	  var $curr_page;
+	  $(function() {
+	    $("div.holder").jPages({
+	      containerID: "itemContainer",
+		  previous: "上一页",
+	      next: "下一页",
+	      perPage: 1,
+	      scrollBrowse: false,
+	      callback:function( page, items ) {
+	    	  $curr_page = page.current;
+	    		console.log("当前模板页数："+$curr_page)
+	    	  }
+	    });
+	  });
+	  </script>
 <style>
 	* {
 		padding: 0px;
