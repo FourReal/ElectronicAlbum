@@ -114,6 +114,7 @@ public class UserAction extends BaseAction<User>{
 		out.flush();
 		
 		Photo photo=new Photo();
+		System.out.println("filename:"+fileName);
 		photo.setPName(fileName);
 		photo.setOwnerId(userid);
 		photo.setPaddr(dest);

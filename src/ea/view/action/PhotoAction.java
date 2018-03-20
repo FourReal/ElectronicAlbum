@@ -30,7 +30,8 @@ public class PhotoAction extends BaseAction<Photo>{
 	private static final long serialVersionUID = 1L;
 	private int pageNow=1;   //动态改变 页面获取
     private int pageSize=14;    //固定不变
-	
+	private int dosign=1;		//标记页面操作的动作类型
+    
     private Map<String,String> phPath = new HashMap<String,String>();		//返回给makealb页面的相册导入事件的照片路径
 	
 	
@@ -52,7 +53,8 @@ public class PhotoAction extends BaseAction<Photo>{
 	public String list() throws Exception{
 		User user=(User)ActionContext.getContext().getSession().get("user");
 //		List<Photo> photolist=photoService.findPhotoByUserid(user.getId());
-		List<Photo> photoList=photoService.findAllPhotosByUserid(pageNow,pageSize,user.getId());
+		PageShow page=(PageShow) ActionContext.getContext().getSession().get("pagePhoto");
+		List<Photo> photoList=photoService.findAllPhotosByUserid(page.getPageNow(),pageSize,user.getId());
 		ActionContext.getContext().put("photoList", photoList);
 		return "list";
 	}
@@ -70,7 +72,7 @@ public class PhotoAction extends BaseAction<Photo>{
 	 * 照片查找
 	 * @return
 	 */
-	public String findPhotos(){
+	public String findPhotos() throws Exception{
 
 		User user=(User)ActionContext.getContext().getSession().get("user");
 		List<Photo> photolist=photoService.findPhotoByUserid(user.getId());
@@ -86,9 +88,10 @@ public class PhotoAction extends BaseAction<Photo>{
 	 * 分页展示照片
 	 * @return
 	 */
-	public String getAllPhotos() {
+	public String getAllPhotos() throws Exception{
 		User user=(User) ActionContext.getContext().getSession().get("user");
 		if(user!=null) {
+			System.out.println("getAllBgps:dosign++++++++++++"+getDosign());
 			System.out.println("getAllBgps:user++++++++++++"+user.getId());
 			System.out.println("getAllBgps:page++++++++++++"+getPageNow());
 	//		Long userid=(long)1;
@@ -106,6 +109,40 @@ public class PhotoAction extends BaseAction<Photo>{
 		return "list";
 	}
 	
+	/**
+	 * 操作页面中页数，展示照片
+	 */
+	public String getPhotos() throws Exception{
+		User user=(User) ActionContext.getContext().getSession().get("user");
+		if(user!=null)
+		{
+			PageShow page=(PageShow) ActionContext.getContext().getSession().get("pagePhoto");
+			int operate=getDosign();
+			switch (operate) {
+			case 1:				//返回首页操作
+				page.setPageNow(1);
+				break;
+			case 2:
+				page.setPageNow(page.getPageNow()-1);
+				break;
+			case 3:
+				page.setPageNow(page.getPageNow()+1);
+				break;
+			case 4:
+				page.setPageNow(page.getTotalPage());
+				break;
+			default:
+				break;
+			}
+			List<Photo> photoList=photoService.findAllPhotosByUserid(page.getPageNow(),pageSize,user.getId());
+			if(photoList.size()>0) {   //bgp列表
+				ActionContext.getContext().put("photoList", photoList);			
+			}
+		}
+		
+		return "list";
+		
+	}
 	
 	
 	 /**
@@ -158,6 +195,17 @@ public class PhotoAction extends BaseAction<Photo>{
 	public void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
 	}
+
+
+	public int getDosign() {
+		return dosign;
+	}
+
+
+	public void setDosign(int dosign) {
+		this.dosign = dosign;
+	}
+	
 	
 	
 	

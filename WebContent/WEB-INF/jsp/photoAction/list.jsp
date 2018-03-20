@@ -97,17 +97,16 @@
        				当前是第<span style="font-weight:bold;"><s:property value="#session.pagePhoto.pageNow" /></span>页，
        				共<span  style="font-weight:bold;"><s:property value="#session.pagePhoto.totalPage"/></span>页  
        				<s:if test="#session.pagePhoto.hasFirst">  
-           				<s:a action="photo_getAllPhotos?pageNow=1" class="page-info">首页</s:a>  
+           				<s:a action="photo_getPhotos?dosign=1" class="page-info">首页</s:a>  
        				</s:if>  
        				<s:if test="#session.pagePhoto.hasPre">  
-           				<s:a action="photo_getAllPhotos?pageNow=1" class="page-info">上一页</s:a>  
+           				<s:a action="photo_getPhotos?dosign=2" class="page-info">上一页</s:a>  
        				</s:if>  
        				<s:if test="#session.pagePhoto.hasNext">  
-       					${	session.pagePhoto.pageNow }
-           				<s:a action="photo_getAllPhotos?pageNow=2" class="page-info">下一页</s:a>  
+           				<s:a action="photo_getPhotos?dosign=3" class="page-info">下一页</s:a>  
        				</s:if>  
         				<s:if test="#session.pagePhoto.hasLast">  
-           				<s:a action="photo_getAllPhotos?pageNow=2" class="page-info">尾页</s:a>  
+           				<s:a action="photo_getPhotos?dosign=4" class="page-info">尾页</s:a>  
        				</s:if>  
 		</div><!-- 页码 -->
 		
@@ -124,6 +123,7 @@
 		
 <script src="js/jquery-1.11.0.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.min.js"></script>
+
 		
 	
 </body>
