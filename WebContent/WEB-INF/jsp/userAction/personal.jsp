@@ -293,8 +293,8 @@
         </div>
         <div class="content2">
             <div class="content-album">
-                <h4 style="text-align: center">
-                    我的相册
+                <h4 style="text-align: center"><s:a action="albumbook_list">
+                    我的相册</s:a>
                 </h4>
                 <p style="font-size: 14px;text-align: right">（点击可预览翻页相册）</p>
                 <a href="#" class="add-album">

@@ -179,7 +179,7 @@
 			mydrag("#bgp"+$curr_page,$curr_page+src);
 		  }
 		  
-		   function mydrag(a,b) {
+		   function mydrag(a,b) {//a=bgp?,b=
 			   console.log(a,b);
 				// target elements with the "draggable" class
 				$(a+' .draggable').each(function(index){
@@ -272,7 +272,7 @@
 			        console.log(jsonString);
 			        $.ajax({
 	                    type : "post",
-	                    url : 'user_beAlbum.action',//触发的action
+	                    url : 'user_beAlbum.action?albumId=${id }',//触发的action
 	                    async:false,//非异步传输
 	                    data : jsonString,//设置要传输的数据
 	                    contentType: "application/json; charset=utf-8",  
@@ -332,7 +332,7 @@
 	    height: 10px;
 	    cursor: se-resize;
 	    background-color: #09C;
-		margin:0;
+		margin:0px;
 	}
 
 	p.lt {
@@ -342,6 +342,7 @@
 		left: 0px;
 		line-height: 8px;
 		padding: 2px;
+		margin: 0px;
 	}
 
 	p.close {
@@ -605,6 +606,38 @@ ul li{list-style: none}
   	</div>
 </div>
 
+${albumid }
+	<div class="shangchuan">
+		<table cellspacing="0" cellpadding="0" class="TableStyle">
+			<tbody id="TableData" class="dataContainer">
+				<s:iterator value="#photo_proList">
+					<div class="TableDatail">
+						<script type="text/javascript">
+							console.log("${id}")
+ 							$("#bgp${page+1}").prepend('<div class="draggable" id="dg" style="top:${ordinate}px;left:${horizon}px;width:${size_x}px;height:${size_y}px" >\n' +
+									'            <p class="lt"></p>\n' +
+									'			 <img src="/ElectronicAlbum/imgs/${photo.getPName()}" name="opphoto" width="100%" height="100%" class="opphotoc">\n'+
+									'            <p class="wh" id="dgc"></p>\n' +
+									'            <p class="close" style="display: block;font-size:30px;" onclick="closep(this)">x</p>\n' +
+									'        </div>');
+							mydrag("#bgp${page+1}",null); 
+						</script>
+						
+					<%-- 	<div>
+						id===${id}<br>
+						horizon==${horizon}<br>
+						ordinate==${ ordinate}<br>
+						size_x==${ size_x }<br>
+						size_x==${ size_y }<br>
+						photoId==${ photo.id }<br>
+						page==${page }
+						</div> --%>
+
+					</div>
+				</s:iterator>
+			</tbody>
+		</table>
+	</div>
 
 <!-- 照片选择模块弹出区域 -->
 <div class="modal fade" id="ipfalbdia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

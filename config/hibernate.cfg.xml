@@ -31,5 +31,7 @@
         <mapping resource="ea/domain/Photo_pro.hbm.xml" />
         <mapping resource="ea/domain/Role.hbm.xml" />
         <mapping resource="ea/domain/Privilege.hbm.xml" />
+        <mapping resource="ea/domain/Order.hbm.xml" />
+        <mapping resource="ea/domain/Trolley.hbm.xml" />
     </session-factory>
 </hibernate-configuration>

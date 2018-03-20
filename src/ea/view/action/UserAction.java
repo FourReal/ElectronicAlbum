@@ -35,6 +35,7 @@ import ea.domain.AlbumBook;
 import ea.domain.Photo;
 import ea.domain.Photo_pro;
 import ea.domain.Role;
+import ea.domain.Trolley;
 import ea.domain.User;
 import ea.util.ImgCompress;
 import ea.util.PageShow;
@@ -249,6 +250,12 @@ public class UserAction extends BaseAction<User>{
 		user.setName(model.getName());
 		user.setPhoneNumber(model.getPhoneNumber());
 		user.setEmail(model.getEmail());
+		if(user.getTrolley()==null) {
+			Trolley trolley=new Trolley();
+			trolley.setUser(user);
+			trolleyService.save(trolley);
+			user.setTrolley(trolley);
+		}
 		//保存到数据库
 		
 		System.out.println("怎么还不成功啊！！！！________________________"+model.getName());
@@ -531,49 +538,59 @@ public class UserAction extends BaseAction<User>{
 		else {
 			editAlbumBook=albumBookService.getById(Long.valueOf(String.valueOf(object)));
 			System.out.println("Bealbum:editAlbumBook======"+editAlbumBook.getId());
+			//删除该相册书的所有照片信息
+			Set<Photo_pro> photo_pros=editAlbumBook.getPhoto_pros();
+			for(Photo_pro p:photo_pros)
+			{
+				photo_proService.delete(p.getId());
+			}
 		}
-		date=date.substring(1, date.length()-1);
+		//date=date.substring(1, date.length()-1);
 		System.out.println(date);
 		JSONArray result=JSONArray.fromObject(date);
 		System.out.println("size++++"+result.size());
 		Set<Photo_pro> photo_pros=new HashSet<Photo_pro>();
 		if(result.size()>0) {
-			for(int i=0;i<result.size();i++) {
+			for(int i=0;i<result.size();i++) {//遍历page
 //				String src=result.getJSONObject(i).getString("src");
-				JSONObject obj=result.getJSONObject(i);
-//				System.out.println("i++++"+obj);
-				String src=obj.getString("src");
-				int page=Integer.parseInt(obj.getString("page"));
-				int x=Integer.parseInt(obj.getString("x"));
-				int y=Integer.parseInt(obj.getString("y"));
-				int w=Integer.parseInt(obj.getString("w"));
-				int h=Integer.parseInt(obj.getString("h"));
-				
-				String filename= src.substring(src.lastIndexOf("/")+1);		//文件路径中获取到文件名；
-//				System.out.println("filename==="+filename);
-				Photo photo=photoService.findPhotoByPname(filename);		//photo_pro的photo属性准备
-				
-				Photo_pro photo_pro=new Photo_pro();
-				photo_pro.setPhoto(photo);
-				photo_pro.setPage(page);
-				photo_pro.setHorizon(x);
-				photo_pro.setOrdinate(y);
-				photo_pro.setSize_x(w);
-				photo_pro.setSize_y(h);
-				
-				System.out.println("beAlbum:photo_pro======"+editAlbumBook.getId());
-				photo_pro.setAlbumBook(editAlbumBook);							//设置编辑的照片是属于哪个相册书
-				
-				System.out.println("beAlbum:photo_pro======="+photo_pro);		//存储制作中的照片信息
-				photo_proService.save(photo_pro);
-				
-				
-				
-//				System.out.println("photo===="+photo);
-//				System.out.println("filename==="+filename);
-//				System.out.println(obj.getString("x"));
-//				System.out.println(obj.getString("y"));
-				photo_pros.add(photo_pro);
+				JSONArray pageobj=(JSONArray) result.get(i);
+					if(pageobj.size()>0) {
+						for(int j=0;j<pageobj.size();j++) {//遍历每个page中的照片
+							JSONObject photoprojson = (JSONObject) pageobj.get(j);
+							String src=photoprojson.getString("src");
+							int page=Integer.parseInt(photoprojson.getString("page"));
+							int x=Integer.parseInt(photoprojson.getString("x"));
+							int y=Integer.parseInt(photoprojson.getString("y"));
+							int w=Integer.parseInt(photoprojson.getString("w"));
+							int h=Integer.parseInt(photoprojson.getString("h"));
+							String filename= src.substring(src.lastIndexOf("/")+1);		//文件路径中获取到文件名；
+//							System.out.println("filename==="+filename);
+							Photo photo=photoService.findPhotoByPname(filename);		//photo_pro的photo属性准备
+							
+							Photo_pro photo_pro=new Photo_pro();
+							photo_pro.setPhoto(photo);
+							photo_pro.setPage(page);
+							photo_pro.setHorizon(x);
+							photo_pro.setOrdinate(y);
+							photo_pro.setSize_x(w);
+							photo_pro.setSize_y(h);
+							
+							System.out.println("beAlbum:photo_pro======"+editAlbumBook.getId());
+							photo_pro.setAlbumBook(editAlbumBook);							//设置编辑的照片是属于哪个相册书
+							
+							System.out.println("beAlbum:photo_pro======="+photo_pro);		//存储制作中的照片信息
+							photo_proService.save(photo_pro);
+							
+							
+							
+//							System.out.println("photo===="+photo);
+//							System.out.println("filename==="+filename);
+//							System.out.println(obj.getString("x"));
+//							System.out.println(obj.getString("y"));
+							photo_pros.add(photo_pro);
+						}
+					}
+					
 			}
 		}
 		
@@ -585,7 +602,6 @@ public class UserAction extends BaseAction<User>{
 //		System.out.println(result);
 		return "success";
 	}
-	
 	
 	
 	/**

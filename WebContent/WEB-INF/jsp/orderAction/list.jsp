@@ -86,22 +86,21 @@
 	<table cellpadding="0" cellspacing="0">
 		<thead>
 			<tr>
-				<th>相册id</th>
-				<th>相册书名</th>
+				<th>订单id</th>
+				<th>数量</th>
 				<th>描述</th>
 				<th>操作</th>
 				
 			</tr>
 		</thead>
 		<tbody>
-		<s:iterator value="#albumBookList">
+		<s:iterator value="#orderList">
 			<tr>
-				<td width="10%"><s:a action="albumbook_show?id=%{id}">${id}</s:a>&nbsp;</td>
-				<td width="10%">${name}&nbsp;</td>
-				<td>${description}&nbsp;</td>
-				<td width="30%"><span><s:a action="albumbook_delete?id=%{id}" onclick="return confirm('您确定要删除该相册书吗？')" class="delete">删除</s:a></span>
-				<span><s:a action="albumbook_editUI?id=%{id}" class="edit">修改相册信息</s:a></span>
-				<span><s:a action="albumbook_reedit?id=%{id}">再编辑</s:a></span>
+				<td width="10%"><s:a action="orderList?id=%{id}">${id}</s:a>&nbsp;</td>
+				<td width="10%">${count}&nbsp;</td>
+				<td>${remark}&nbsp;</td>
+				<td width="10%"><span><s:a action="order_delete?id=%{id}" onclick="return confirm('您确定要删除该订单吗？')" class="delete">删除</s:a></span>
+				<span><s:a action="order_editUI?id=%{id}" class="edit">编辑</s:a></span>
 				</td>
 			</tr>
 		</s:iterator>

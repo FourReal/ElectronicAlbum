@@ -9,6 +9,8 @@ public class Album implements java.io.Serializable{
 	private String albumName;	//相册名字
 	private String description;	//相册描述
 	
+	private Long price;			//相册模板的价格
+	
 	private String sign;		//相册的类型：（0：相册模板；1：相册成品）
 	
 	private Set<User> users=new HashSet<User>();		//收藏该相册的用户
@@ -67,6 +69,12 @@ public class Album implements java.io.Serializable{
 	}
 	public void setAlbumBooks(Set<AlbumBook> albumBooks) {
 		this.albumBooks = albumBooks;
+	}
+	public Long getPrice() {
+		return price;
+	}
+	public void setPrice(Long price) {
+		this.price = price;
 	}
 	
 	

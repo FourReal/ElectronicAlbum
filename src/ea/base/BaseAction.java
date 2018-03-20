@@ -10,10 +10,12 @@ import com.opensymphony.xwork2.ModelDriven;
 import ea.service.AlbumBgpService;
 import ea.service.AlbumBookService;
 import ea.service.AlbumService;
+import ea.service.OrderService;
 import ea.service.PhotoService;
 import ea.service.Photo_proService;
 import ea.service.PrivilegeService;
 import ea.service.RoleService;
+import ea.service.TrolleyService;
 import ea.service.UserService;
 
 public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
@@ -60,4 +62,9 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 	@Resource
 	protected AlbumBgpService albumBgpService;
 	
+	@Resource
+	protected OrderService	orderService;
+	
+	@Resource
+	protected TrolleyService trolleyService;
 }

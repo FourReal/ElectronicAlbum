@@ -57,30 +57,22 @@ input {
 </head>
 <body>
 <div id="infor">
-	<s:form action="album_edit" enctype="multipart/form-data" method="post">
+	<s:form action="order_edit" enctype="multipart/form-data" method="post">
 		<s:hidden name="id"></s:hidden>
-		<h2>相册信息</h2>
+		<h2>订单信息</h2>
 		<div>
 		</div>
 		<!-- 表单内容显示 -->
-	<ul>
-			<!-- <table cellspacing="0" cellpadding="0" class="mainForm"> -->
-				<li>相册名
-					<span><s:textfield name="albumName" cssClass="InputStyle" /> </span>
-				</li>
-				<li>价格
-					<span><s:textfield name="price" cssClass="InputStyle" /> </span>
+		<ul>
+				<li>订单数量
+					<span><s:textfield name="count" cssClass="InputStyle" /> </span>
 				</li>
 				<li>描述
-					<span><s:textfield name="description" cssClass="InputStyle" /></span>
-					<input type="file" name="image" value="点击选择图片" />
+					<span><s:textfield name="remark" cssClass="InputStyle" /></span>
 				</li>
-				<s:textfield name="description_1" cssClass="InputStyle" />
-				
-				<!-- <input type="submit" value="上传" /> -->
 				<s:submit value="提交" style="margin-left:20px;"></s:submit>
 				
-	</ul>
+		</ul>
 	</s:form>
 	</div>
 </body>

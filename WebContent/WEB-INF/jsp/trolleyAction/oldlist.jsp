@@ -83,25 +83,31 @@
 <body>
 <!-- 	添加样式的版本 -->
 	<div id="table">
+	<span style="font-size:30px"><s:a action="trolley_list">购物车</s:a></span>||
+	<span style="font-size:30px"><s:a action="trolley_oldlist">我的订单</s:a></span>
 	<table cellpadding="0" cellspacing="0">
 		<thead>
 			<tr>
-				<th>相册id</th>
-				<th>相册书名</th>
-				<th>描述</th>
+				<th>订单id</th>
+				<th>订单数量</th>
+				<th>实付价格</th>
+				<th>状态</th>
+				<th>下单时间</th>
 				<th>操作</th>
 				
 			</tr>
 		</thead>
 		<tbody>
-		<s:iterator value="#albumBookList">
+		<s:iterator value="#oldOrderList">
 			<tr>
-				<td width="10%"><s:a action="albumbook_show?id=%{id}">${id}</s:a>&nbsp;</td>
-				<td width="10%">${name}&nbsp;</td>
-				<td>${description}&nbsp;</td>
-				<td width="30%"><span><s:a action="albumbook_delete?id=%{id}" onclick="return confirm('您确定要删除该相册书吗？')" class="delete">删除</s:a></span>
-				<span><s:a action="albumbook_editUI?id=%{id}" class="edit">修改相册信息</s:a></span>
-				<span><s:a action="albumbook_reedit?id=%{id}">再编辑</s:a></span>
+				<td width="10%">${id}&nbsp;</td>
+				<td width="10%">${count}&nbsp;</td>
+				<td>${ totalprice }</td>
+				<td>${ sign }</td>
+				<td>${remark}&nbsp;</td>
+				
+				<td width="10%"><span><s:a action="trolley_olddelete?id=%{id}" onclick="return confirm('您确定要删除该订单吗？')" class="delete">删除</s:a></span>
+				<span><s:a action="trolley_editUI?id=%{id}" class="edit">编辑</s:a></span>
 				</td>
 			</tr>
 		</s:iterator>

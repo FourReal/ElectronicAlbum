@@ -108,8 +108,31 @@
             <result name="list" >/WEB-INF/jsp/albumBookAction/list.jsp</result>
             <result name="edit" >/WEB-INF/jsp/albumBookAction/editUI.jsp</result>
             <result name="show" >/WEB-INF/jsp/albumBookAction/show.jsp</result>
-            
+            <result name="make" >/WEB-INF/jsp/albumBookAction/remake.jsp</result><!-- 再编辑 -->
             <result name="toList" type="redirectAction">albumbook_list</result>   
+        </action>
+        
+        <!-- 购物车管理 -->
+        <action name="trolley_*" class="ea.view.action.TrolleyAction" method="{1}">
+            <result name="list" >/WEB-INF/jsp/trolleyAction/list.jsp</result>
+            <result name="oldlist" >/WEB-INF/jsp/trolleyAction/oldlist.jsp</result>
+            <result name="edit" >/WEB-INF/jsp/orderAction/editUI.jsp</result>
+            <result name="show" >/WEB-INF/jsp/trolleyAction/show.jsp</result>
+            <result name="toOldList" type="redirectAction">trolley_oldlist</result>  
+            <result name="toList" type="redirectAction">trolley_list</result> 
+             
+        </action>
+        
+        <!-- 订单管理 -->
+        <action name="order_*" class="ea.view.action.OrderAction" method="{1}">
+            <result name="list" >/WEB-INF/jsp/trolleyAction/list.jsp</result> 
+            <result name="add" >/WEB-INF/jsp/trolleyAction/list.jsp</result>
+            <result name="edit" >/WEB-INF/jsp/orderAction/editUI.jsp</result>         
+            <result name="toList" type="redirectAction">order_list</result>   
+            <result type="json">  
+                <!-- 这里指定将被Struts2序列化的属性，该属性在action中必须有对应的getter方法 -->  
+                <param name="root"></param>  
+            </result> 
         </action>
     </package>
 </struts>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="ea.domain">
+    <!-- 1 配置类和表对应
+    	class标签
+    	name属性，实体类全路径
+    	table属性，数据库表名称
+     -->
+     <class name="Order" table="ea_order">
+         <id name="id">
+             <generator class="native"></generator>
+         </id>
+         <property name="count" />
+         <property name="sign" />
+         <property name="remark" />
+         <property name="totalprice" />
+         
+         <!-- albumBook属性，本类与AlbumBook的多对一的关系 -->
+         <many-to-one name="albumBook" class="AlbumBook" column="albumBookId"></many-to-one>
+         
+         <!-- trolley属性，本类与 Trolley的多对一的关系-->
+         <many-to-one name="trolley" class="Trolley" column="trolleyId"></many-to-one>	
+         
+     </class> 
+     
+     
+</hibernate-mapping>

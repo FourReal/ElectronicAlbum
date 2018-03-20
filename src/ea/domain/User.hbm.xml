@@ -37,6 +37,9 @@
              <key column="userId"></key>
              <one-to-many class="AlbumBook"/>
          </set>
+         
+         <!-- trolley属性，本类与Trolley的一对一关系 -->
+         <many-to-one name="trolley" class="Trolley" column="trolleyId" unique="true"></many-to-one>
    
      </class> 
      

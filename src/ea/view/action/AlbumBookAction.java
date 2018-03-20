@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
@@ -34,6 +35,12 @@ public class AlbumBookAction extends BaseAction<AlbumBook>{
 	
 	/** 删除相册书*/
 	public String delete() throws Exception{
+		AlbumBook albumBook=albumBookService.getById(model.getId());
+		Set<Photo_pro> photo_pros=albumBook.getPhoto_pros();
+		for(Photo_pro p:photo_pros)
+		{
+			photo_proService.delete(p.getId());
+		}
 		albumBookService.delete(model.getId());
 		return "toList";
 	}
@@ -74,11 +81,40 @@ public class AlbumBookAction extends BaseAction<AlbumBook>{
 		List<Photo_pro> photo_proList=albumBookService.getPhoto_prosByAbumBookId(albumBook.getId());
 		
 		//传递参数
-		ActionContext.getContext().put("photo_proList", photo_proList);
+		ActionContext.getContext().put("photo_proList", photo_proList);		//传递相册书中的照片信息
+		ActionContext.getContext().getSession().put("albumBook", albumBook);
 //		ActionContext.getContext().getSession().put("bgpid", null);
 		
 		return "show";
 	}
 	
+	/**
+	 * 重新编辑相册
+	 * @return
+	 * @throws Exception
+	 */
+	public String reedit() throws Exception{
+		
+		System.out.println("show:albumbookid-------------------"+model.getId());
+		//准备相册数据
+		
+		AlbumBook albumBook=albumBookService.getById(model.getId());
+		
+		//List<Photo_pro> photo_proList=albumBookService.getPhoto_prosByAbumBookId(albumBook.getId());
+		
+		//传递参数
+		ActionContext.getContext().put("photo_proList", albumBook.getPhoto_pros());
+//		ActionContext.getContext().getSession().put("bgpid", null);
+		ActionContext.getContext().put("albumid", albumBook.getAlbum().getId());
+		List<AlbumBgp> modelBgps=albumService.findAllbgByAlbumId(albumBook.getAlbum().getId());
+		ActionContext.getContext().getSession().put("editAlbumBookid", albumBook.getId());
+		ActionContext.getContext().put("modelBgps", modelBgps);
+		ActionContext.getContext().getSession().put("editAlbumId", albumBook.getAlbum().getId());
+		List<Album> albumList=albumService.findAll();
+		
+		ActionContext.getContext().put("albumList", albumList);
+		return "make";
+		//return "show";
+	}
 	
 }

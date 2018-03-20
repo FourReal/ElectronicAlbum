@@ -17,7 +17,7 @@
         
        
          <!-- album属性，本类与Album模板的多对一的关系 -->
-         <many-to-one name="album" class="Album" column="albumId"></many-to-one>
+         <many-to-one name="album" class="Album" column="albumId" lazy="false"></many-to-one>
          
          
          <!-- madeuser属性，本类与User的多对一的关系 -->
@@ -28,6 +28,12 @@
          <set name="photo_pros">
              <key column="albumBookId"></key>
              <one-to-many class="Photo_pro"/>
+         </set>
+         
+         <!-- orders属性，本类与Order的一对多的关系 -->
+         <set name="orders">
+             <key column="albumBookId"></key>
+             <one-to-many class="Order"/>
          </set>
      </class> 
      

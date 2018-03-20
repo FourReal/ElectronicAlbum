@@ -119,6 +119,7 @@ public class AlbumAction extends BaseAction<Album>{
 		album.setAlbumName(model.getAlbumName());
 		album.setDescription(model.getDescription());
 //		System.out.println("saveaddr++++++++++++++++"+saveaddr);
+		album.setPrice(model.getPrice());
 		album.setCoverAddr(saveaddr);
 		
 		//保存到数据库

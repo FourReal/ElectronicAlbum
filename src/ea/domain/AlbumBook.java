@@ -11,6 +11,8 @@ public class AlbumBook implements java.io.Serializable{
 	private Album album;		//使用的相册模板
 	private User madeuser;	//制作人信息；
 	
+	private Set<Order> orders=new HashSet<Order>();		//相册书形成订单时候表示属于哪个订单
+	
 	private Set<Photo_pro> photo_pros=new HashSet<Photo_pro>();		//相册中的照片
 
 	public Long getId() {
@@ -60,6 +62,15 @@ public class AlbumBook implements java.io.Serializable{
 	public void setPhoto_pros(Set<Photo_pro> photo_pros) {
 		this.photo_pros = photo_pros;
 	}
+
+	public Set<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
+	}
+
 	
 	
 	

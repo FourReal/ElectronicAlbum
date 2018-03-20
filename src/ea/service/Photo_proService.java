@@ -7,6 +7,5 @@ import ea.domain.Photo_pro;
 
 public interface Photo_proService extends DaoSupport<Photo_pro>{
 
-
 }
 
