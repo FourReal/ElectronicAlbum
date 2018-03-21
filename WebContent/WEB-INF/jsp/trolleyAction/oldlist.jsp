@@ -6,8 +6,9 @@
 <head>
 
 	<%@ include file="/WEB-INF/jsp/public/commons.jspf" %>
-
-<style type="text/css">
+	<link rel="stylesheet" href="css/resetgowuche.css">
+<link rel="stylesheet" href="css/cartorder.css">
+<!-- <style type="text/css">
 	#table table {
 		width: 100%;
 		font-size: 14px;
@@ -78,44 +79,45 @@
 	
 	
 </style>
-
+ -->
 </head>
 <body>
 <!-- 	添加样式的版本 -->
-	<div id="table">
+
 	<span style="font-size:30px"><s:a action="trolley_list">购物车</s:a></span>||
 	<span style="font-size:30px"><s:a action="trolley_oldlist">我的订单</s:a></span>
-	<table cellpadding="0" cellspacing="0">
-		<thead>
-			<tr>
-				<th>订单id</th>
-				<th>订单数量</th>
-				<th>实付价格</th>
-				<th>状态</th>
-				<th>下单时间</th>
-				<th>操作</th>
-				
-			</tr>
-		</thead>
-		<tbody>
+<section class="cartMain">
+	<div class="cartMain_hd">
+		<ul class="order_lists cartTop">
+				<li class="list_con">订单id</li>
+				<li class="list_amount">订单数量</li>
+				<li class="list_sum">实付价格</li>
+				<li class="list_status">状态</li>
+				<li class="list_time">下单时间</li>
+				<li class="list_op">操作</li>
+			</ul>
+	</div>	
+	<div class="cartBox">
+	<div class="order_content">
 		<s:iterator value="#oldOrderList">
-			<tr>
-				<td width="10%">${id}&nbsp;</td>
-				<td width="10%">${count}&nbsp;</td>
-				<td>${ totalprice }</td>
-				<td>${ sign }</td>
-				<td>${remark}&nbsp;</td>
+		<ul class="order_lists">
+			<li class="list_con">
+				${id}</li>
+				<li class="list_amount">${count}</li>
+				<li class="list_sum">${ totalprice }</li>
+				<li class="list_status">${ sign }</li>
+				<li class="list_time">${remark}&nbsp;</li>
 				
-				<td width="10%"><span><s:a action="trolley_olddelete?id=%{id}" onclick="return confirm('您确定要删除该订单吗？')" class="delete">删除</s:a></span>
-				<span><s:a action="trolley_editUI?id=%{id}" class="edit">编辑</s:a></span>
-				</td>
-			</tr>
+				<li class="list_op"><s:a action="trolley_olddelete?id=%{id}" onclick="return confirm('您确定要删除该订单吗？')" class="delete">删除</s:a></li>
+				<%-- <span><s:a action="trolley_editUI?id=%{id}" class="edit">编辑</s:a></span> --%>
+				</ul>
+			
 		</s:iterator>
-		</tbody>
-	</table>
-	</div>
-
-	
+		</div>
+		</div>
+		</section>
+		<script src="js/jquery.min.js"></script>
+<script src="js/carts.js"></script>
 	
 </body>
 </html>

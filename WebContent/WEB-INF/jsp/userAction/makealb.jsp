@@ -531,7 +531,6 @@ ul li{list-style: none}
 	<div class="panel-heading" >
 		<div class="finishbtn" style="float:right;margin-right:10px">
 			<span id="submitbtn" class="btn btn-default">保存</span>
-			<span><input type="button" id="outputbtn" class="btn btn-default" onclick="window.location.href='albumbook_output.action?albumId=${id}'" value="导出" /></span>
 		</div>
 	</div>
   	<div class="panel-body" >

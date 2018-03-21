@@ -62,11 +62,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="nav">
 				<ul>
 					<li class="nav-item">
-					<li class="nav-item"><a href= "fengjing.html" target="right">旅游照片书</a></li>
-					<li class="nav-item"><a href="aiqing.html" target="right">爱情纪念册</a></li>
-					<li class="nav-item"><a href="baobao.html" target="right">宝宝成长册</a></li>
-					<li class="nav-item"><a href="biye.html" target="right">毕业纪念册</a></li>
-					<li class="nav-item"><a href="geren.html" target="right">个人写真</a></li>
+					<li class="nav-item"><a href= "fengjing.jsp" target="right">旅游照片书</a></li>
+					<li class="nav-item"><a href="aiqing.jsp" target="right">爱情纪念册</a></li>
+					<li class="nav-item"><a href="baobao.jsp" target="right">宝宝成长册</a></li>
+					<li class="nav-item"><a href="biye.jsp" target="right">毕业纪念册</a></li>
+					<li class="nav-item"><a href="geren.jsp" target="right">个人写真</a></li>
 
 				</ul>
 			</div>

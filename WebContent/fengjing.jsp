@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -12,7 +14,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/main.css">
-</head>
+
+
 <script>
 	$(document).ready(function(){
 var $miaobian=$('.Xcontent08>div');
@@ -54,25 +57,24 @@ function miaobian1(thisMb1){
 </script>
 
 </head>
-<body> 
-<a name="top" id="header"></a>
-
+<body>
+	<a name="top" id="header"></a>
 
 <div class="Xcontent" >
 	<ul class="Xcontent01">
-		<div class="Xcontent06">  <img src="images/191.jpg"></div>
+		<div class="Xcontent06">  <img src="images/geren1.jpg"></div>
 		<ol class="Xcontent08">
-			<div class="Xcontent07"><img src="images/191.jpg"></div>
-			<div class="Xcontent09"><img src="images/194.jpg"></div>
-			<div class="Xcontent10"><img src="images/195.jpg"></div>
-			<div class="Xcontent11"><img src="images/215.jpg"></div>
+			<div class="Xcontent07"><img src="images/geren1.jpg"></div>
+			<div class="Xcontent09"><img src="images/geren2.jpg"></div>
+			<div class="Xcontent10"><img src="images/geren3.jpg"></div>
+			<div class="Xcontent11"><img src="images/geren51.jpg"></div>
 		</ol>
 		<ol class="Xcontent13">
-			<div class="Xcontent14"><a href="#"><p>爱情纪念册</p></a></div>
+			<div class="Xcontent14"><a href="#"><p>旅游纪念册</p></a></div>
 			<!-- <div class="Xcontent15"><img src="images/shangpinxiangqing/X11.png"></div> -->
 			<div class="Xcontent17">
 				<p class="Xcontent18">售价</p>
-				<p class="Xcontent19">￥<span>999.00</span></p> 
+				<p class="Xcontent19">￥<span>您看着给</span></p>
 				<!-- <div class="Xcontent20">
 					<p class="Xcontent21">促销</p>
 					<img src="images/shangpinxiangqing/X12.png">
@@ -89,9 +91,15 @@ function miaobian1(thisMb1){
 				<form><input class="input" value="1"></form>
 				<div class="Xcontent33"><img src="images/16.png"></div>
 			</div>
-			<div class="Xcontent34"><a href="#">开始制作</a></div>
+			<div class="Xcontent34"><a href="${pageContext.request.contextPath}/user_makeAlbum.action">开始制作</a></div>
 		</ol>
 	</ul>
+	
+	
+	
+	
+	
+	
 </div>
 <div class="product">
 </div> 
@@ -99,31 +107,31 @@ function miaobian1(thisMb1){
   <div class="container">
   <div class="section-header">
                 <h2 class="wow fadeInDown animated">商品展示</h2>
-                <p class="wow fadeInDown animated">富有温暖感觉的色彩和简洁明确的设计，正如爱情一样，温暖美丽简单.</p>
+                <p class="wow fadeInDown animated"></p>
             </div>
     <div class="section-display">
-	  <span class="service-img"><img src="images/新191.jpg" alt="service"/> </span>
+	  <span class="service-img"><img src="images/geren5.jpg" alt="service"/> </span>
         <div class="services-content">
-          <h4>Love</h4>
+          <h4>缘亭</h4>
           <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu libero scelerisque ligula sagittis faucibus eget quis lacus.</p> -->
         </div>
         </div>
       </div>
     <div class="section-display">
-	  <span class="service-img"><img src="images/新194.jpg" alt="service"/> </span>
+	  <span class="service-img"><img src="images/geren7.jpg" alt="service"/> </span>
         <div class="services-content">
-          <h4>微笑</h4>
+          <h4>水月</h4>
          <!--  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu libero scelerisque ligula sagittis faucibus eget quis lacus.</p> -->
         </div>
+   
 	   </div>
     <div class="section-display">
-	  <span class="service-img"><img src="images/新195.jpg" alt="service"/> </span>
+	  <span class="service-img"><img src="images/geren9.jpg" alt="service"/> </span>
         <div class="services-content">
-          <h4>梦想</h4>
-          <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu libero scelerisque ligula sagittis faucibus eget quis lacus.</p> -->
+          <h4>荷塘</h4>
+         <!--  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu libero scelerisque ligula sagittis faucibus eget quis lacus.</p> -->
         </div>
       </div>
-  
 </div>
 <div id="footerimg">
 <a href="#header" id="top-arrow" title="Go to Top"><img src="images/top1.png" height="50px" width="50px"alt=""></a>
@@ -145,6 +153,5 @@ function miaobian1(thisMb1){
 	        <div class="end"></div>
         </div><!-- END footer-wrap -->
 	</div><!-- END footer-->
-
 </body>
 </html>
