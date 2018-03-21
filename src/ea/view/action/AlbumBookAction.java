@@ -17,6 +17,7 @@ import ea.base.BaseAction;
 import ea.domain.Album;
 import ea.domain.AlbumBgp;
 import ea.domain.AlbumBook;
+import ea.domain.Photo;
 import ea.domain.Photo_pro;
 import ea.domain.User;
 
@@ -24,6 +25,8 @@ import ea.domain.User;
 @Scope("prototype")
 public class AlbumBookAction extends BaseAction<AlbumBook>{
 
+	private Long albumId;	//接受前台页面跟随action请求传送过来的数据
+	
 	/** 相册书列表*/
 	public String list() throws Exception{
 		User user=(User)ActionContext.getContext().getSession().get("user");
@@ -115,6 +118,71 @@ public class AlbumBookAction extends BaseAction<AlbumBook>{
 		ActionContext.getContext().put("albumList", albumList);
 		return "make";
 		//return "show";
+	}
+	
+	
+	/**
+	 * 管路员查看用户相册展示
+	 */
+	public String adminlist() throws Exception{
+		System.out.println("AlbumBookadmin:==========");
+		List<AlbumBook> adminalbumbooks=albumBookService.findAll();
+		ActionContext.getContext().put("adminalbumbooks", adminalbumbooks);
+		
+		return "adminlist";
+	}
+	
+	/** 管理员删除用户相册书*/
+	public String admindelete() throws Exception{
+		AlbumBook albumBook=albumBookService.getById(model.getId());
+		Set<Photo_pro> photo_pros=albumBook.getPhoto_pros();
+		for(Photo_pro p:photo_pros)
+		{
+			photo_proService.delete(p.getId());
+		}
+		albumBookService.delete(model.getId());
+		return "toadminList";
+	}
+	
+	/**
+	 * 管理员根据用户id进行相册查找
+	 * 
+	 * @return
+	 */
+	public String adminfindByUserid() throws Exception{
+		//获取前台传送的数据
+		Long id=(long)4;
+		//
+		List<AlbumBook> adminalbumbooks=albumBookService.getAlbumBooksByUserId(id);
+		ActionContext.getContext().put("adminalbumbooks", adminalbumbooks);
+		return "adminlist";
+	}
+	
+	/**
+	 * 用户预览相册书
+	 * @return
+	 * @throws Exception
+	 */
+	public String output() throws Exception{
+		System.out.println(albumId);
+		AlbumBook albumBook=albumBookService.getById(albumId);		//获取相册书对象
+		ActionContext.getContext().put("photo_proList", albumBook.getPhoto_pros());
+		System.out.println(albumBook.getId());
+		List<AlbumBgp> modelBgps=albumService.findAllbgByAlbumId(albumBook.getAlbum().getId());
+		System.out.println(modelBgps);
+		ActionContext.getContext().put("modelBgps", modelBgps);
+		System.out.println("output");
+		return "output";
+	}
+
+	
+	//===========================
+	public Long getAlbumId() {
+		return albumId;
+	}
+
+	public void setAlbumId(Long albumId) {
+		this.albumId = albumId;
 	}
 	
 }

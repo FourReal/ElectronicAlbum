@@ -46,10 +46,14 @@ public class Installer {
 		menu1=new Privilege("角色管理","/role_list",menu);
 		menu2=new Privilege("相册模板管理","/album_list",menu);
 		menu3=new Privilege("用户管理","/user_list",menu);
+		menu4=new Privilege("用户照片管理","/photo_adminlist",menu);
+		menu5=new Privilege("用户相册管理","/albumbook_adminlist",menu);
 		session.save(menu);
 		session.save(menu1);
 		session.save(menu2);
 		session.save(menu3);
+		session.save(menu4);
+		session.save(menu5);
 		
 		session.save(new Privilege("角色列表","/role_list",menu1));
 		session.save(new Privilege("角色删除","/role_delete",menu1));

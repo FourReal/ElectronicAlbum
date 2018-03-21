@@ -80,8 +80,11 @@
 		<!-- 照片管理 -->
         <action name="photo_*" class="ea.view.action.PhotoAction" method="{1}">
             <result name="list" >/WEB-INF/jsp/photoAction/list.jsp</result>
+            <result name="adminlist" >/WEB-INF/jsp/adminAction/photolist.jsp</result>
             <result name="addPhoto" >/WEB-INF/jsp/photoAction/addUI.jsp</result>
             <result name="toList" type="redirectAction">photo_list</result>
+            
+            <result name="toadminList" type="redirectAction">photo_adminlist</result>
         	<result type="json">  
                 <!-- 这里指定将被Struts2序列化的属性，该属性在action中必须有对应的getter方法 -->  
                 <param name="root">phPath</param>  
@@ -106,10 +109,14 @@
         <!-- 相册书管理 -->
         <action name="albumbook_*" class="ea.view.action.AlbumBookAction" method="{1}">
             <result name="list" >/WEB-INF/jsp/albumBookAction/list.jsp</result>
+            <result name="adminlist" >/WEB-INF/jsp/adminAction/albumbooklist.jsp</result>
             <result name="edit" >/WEB-INF/jsp/albumBookAction/editUI.jsp</result>
             <result name="show" >/WEB-INF/jsp/albumBookAction/show.jsp</result>
             <result name="make" >/WEB-INF/jsp/albumBookAction/remake.jsp</result><!-- 再编辑 -->
-            <result name="toList" type="redirectAction">albumbook_list</result>   
+            <result name="output">/WEB-INF/jsp/albumBookAction/output.jsp</result><!-- 导出展示 -->
+            <result name="toList" type="redirectAction">albumbook_list</result> 
+            <result name="toadminList" type="redirectAction">albumbook_adminlist</result> 
+              
         </action>
         
         <!-- 购物车管理 -->

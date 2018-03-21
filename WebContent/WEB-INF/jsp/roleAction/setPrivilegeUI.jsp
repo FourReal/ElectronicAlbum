@@ -4,9 +4,9 @@
 <html>
 <head>
 	<%@	include file="/WEB-INF/jsp/public/commons.jspf" %>
-	<script src="jquery-3.2.1.min.js" type="text/javascript"></script>
-	<script language="javascript" src="${pageContext.request.contextPath}/script/jquery_treeview/jquery.treeview.js"></script>
-	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/script/jquery_treeview/jquery.treeview.css">
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script language="javascript" src="js/jquery_treeview/jquery.treeview.js"></script>
+	<link type="text/css" rel="stylesheet" href="js/jquery_treeview/jquery.treeview.css">
 	<script type="text/javascript">
 		$(function(){
 			//指定事件处理函数
@@ -51,23 +51,27 @@
 						</thead>
 						
 						<!-- 显示数据列表 -->	
-						<tbody id="TableData">
+						<%-- <tbody id="TableData">
 							<tr class="TableDetaill">
 								<!-- 显示权限树 -->
 								<td>
 								
-									<%-- <s:checkboxlist name="privilegeIds" list="#privilegeList" listKey="id" listValue="name"></s:checkboxlist>	 --%>
+									<s:checkboxlist name="privilegeIds" list="#privilegeList" listKey="id" listValue="name"></s:checkboxlist>	
 									<s:iterator value="#privilegeList">
 									 	<input type="checkbox" name="privilegeIds" value="${id}" id="cb_${id}"
 									 		<s:property value="%{id in privilegeIds ? 'checked' : ''}"/>
 									 	/>
 									 	<label for="cb_${id}">${name}</label>
 									 	<br/>
-									</s:iterator>	
-														
-
-							<!-- 显示树状结构内容 -->
-							<%-- <ul id="tree">
+									</s:iterator>							
+								</td>
+								
+								
+							</tr>
+						</tbody>
+						 --%>
+						<!-- 显示树状结构内容 -->
+							<ul id="tree">
 							<s:iterator value="#application.topPrivilegeList"> 
 								<li>
 									<input type="checkbox" name="privilegeIds" value="${id}" id="cb_${id}" <s:property value="%{id in privilegeIds ? 'checked' : ''}"/> />
@@ -90,15 +94,12 @@
 									</ul>
 								</li>
 							</s:iterator>
-							</ul> --%>								
+							</ul>								
 								
-								
-								
-								</td>
-								
-								
-							</tr>
-						</tbody>
+							<!-- 显示为树状结构 -->	
+							<script type="text/javascript">
+								//$("#tree").treeview();
+							</script>
 						
 						
 					</table>

@@ -165,17 +165,51 @@ public class PhotoAction extends BaseAction<Photo>{
 	    return "success";
 	}
 	
+	 /**
+	  * 用户添加照片
+	  */
+	public String add() throws Exception{
+		return "addPhoto";
+	}
 	
 	
 	/**
-	 * 照片上传
+	 * 管理员管理照片展示
 	 * @return
 	 */
-	
-	public String add() {
-		return "addPhoto";
+	public String adminlist() throws Exception{
+		List<Photo> adminphotos=photoService.findAll();
+		ActionContext.getContext().put("adminphotos", adminphotos);
+		return "adminlist";
 	}
-
+	
+	
+	/**
+	 * 管理员对用户的照片删除
+	 */
+	public String admindelete() throws Exception{
+		photoService.delete(model.getId());
+		return "toadminList";
+	}
+	
+	/**
+	 * 管理员根据用户id进行照片查找
+	 * 
+	 * @return
+	 */
+	public String adminfindByUserid() throws Exception{
+		//获取前台传送的数据
+		Long id=(long)4;
+		//
+		List<Photo> adminphotos=photoService.findPhotoByUserid(id);
+		ActionContext.getContext().put("adminphotos", adminphotos);
+		return "adminlist";
+	}
+	
+	
+	
+	
+	//=================================================
 
 	public int getPageNow() {
 		return pageNow;

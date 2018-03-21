@@ -81,6 +81,8 @@
 			console.log(ckid)
 			console.log(document.getElementById(ckid).checked)
 		}
+		
+		 
 	</script> 
 	<script>
 	
@@ -531,8 +533,10 @@ ul li{list-style: none}
 <div class="panel panel-default" >
 	<div class="panel-heading" >
 		<div class="finishbtn" style="float:right;margin-right:10px">
-			<span id="previewbtn" class="btn btn-default">预览</span>
-			<span id="submitbtn" class="btn btn-default">完成</span>
+			<span id="submitbtn" class="btn btn-default">保存</span>
+			<a href="albumbook_output.action?albumId=${id}" target="_parent" >
+			<span><input type="button" id="outputbtn" class="btn btn-default" value="导出"/></span>
+			</a>
 		</div>
 	</div>
   	<div class="panel-body" >
@@ -623,16 +627,6 @@ ${albumid }
 							mydrag("#bgp${page+1}",null); 
 						</script>
 						
-					<%-- 	<div>
-						id===${id}<br>
-						horizon==${horizon}<br>
-						ordinate==${ ordinate}<br>
-						size_x==${ size_x }<br>
-						size_x==${ size_y }<br>
-						photoId==${ photo.id }<br>
-						page==${page }
-						</div> --%>
-
 					</div>
 				</s:iterator>
 			</tbody>

@@ -19,7 +19,7 @@ public class PrivilegeServiceImpl extends DaoSupportImpl<Privilege> implements P
 	
 	public List<Privilege> findTopList() {
 		return getSession().createQuery(
-				"FROM Privilege p WHERE p.parent IS NULL")
+				"FROM Privilege p WHERE p.parent IS NULL ORDER BY id desc")
 				.list();
 	}
 

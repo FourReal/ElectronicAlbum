@@ -277,7 +277,7 @@
 	                    data : jsonString,//设置要传输的数据
 	                    contentType: "application/json; charset=utf-8",  
 	                    success : function(d) {
-							alert("success"); 
+							alert("相册制作完成！"); 
 	                    },
 	                    error : function(d) {
 	                    	alert("error");
@@ -530,8 +530,8 @@ ul li{list-style: none}
 <div class="panel panel-default" >
 	<div class="panel-heading" >
 		<div class="finishbtn" style="float:right;margin-right:10px">
-			<span id="previewbtn" class="btn btn-default">预览</span>
-			<span id="submitbtn" class="btn btn-default">完成</span>
+			<span id="submitbtn" class="btn btn-default">保存</span>
+			<span><input type="button" id="outputbtn" class="btn btn-default" onclick="window.location.href='albumbook_output.action?albumId=${id}'" value="导出" /></span>
 		</div>
 	</div>
   	<div class="panel-body" >
