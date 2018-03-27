@@ -61,8 +61,6 @@
 		  background: #cd9b9b;
 		}
 		.form .message {
-		  float:left;
-		  margin-left:70px;
 		  color: #b3b3b3;
 		  font-size: 12px;
 		}
@@ -70,16 +68,7 @@
 		  color: #bb0000;
 		  text-decoration: none;
 		}
-		.form .forget {
-		  float:left;
-		  color: #b3b3b3;
-		  font-size: 12px;
 		
-		}
-		.form .forget a {
-		  color: #bb0000;
-		  text-decoration: none;
-		}
 		.login-form span{
 		float:left;
 		margin:8px 8px 8px;
@@ -197,12 +186,9 @@
 	        <input name="password" type="password" placeholder="请输入密码">
 	        <br>
 	        <s:submit value="登录" class="button" id="login"></s:submit>
-		      <p class="message"><a href="#">免费注册</a></p>
-		    <span>|</span>
-		    <p class="forget"><a href="#">忘记密码？</a></p>
+		      <p class="message">还没有账号? <a href="#">免费注册</a></p>
 		    </s:form>
 		    <s:form action="user_add" class="register-form">
-		
 		       <input type="text" name="loginName" value="" placeholder="4-8位数字或字母组成的用户名" class="reg_user">
           		<span class="tip user_hint" style="display:none;"></span>
           		

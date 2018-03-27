@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>details</title>
 <link rel="stylesheet" href="css/shouye.css">
-<script   src="js/modernizr-custom-v2.7.1.min.js"></script>
+<script src="js/modernizr-custom-v2.7.1.min.js"></script>
 <link href="css/reset.css" rel="stylesheet" type="text/css">
 <script src="js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
@@ -14,8 +14,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/main.css">
-
-
 <script>
 	$(document).ready(function(){
 var $miaobian=$('.Xcontent08>div');
@@ -91,16 +89,35 @@ function miaobian1(thisMb1){
 				<form><input class="input" value="1"></form>
 				<div class="Xcontent33"><img src="images/16.png"></div>
 			</div>
-			<div class="Xcontent34"><a href="${pageContext.request.contextPath}/user_makeAlbum.action">开始制作</a></div>
+			
+	
+    <a href="JavaScript:;" onclick="panduan()" class="Xcontent34" style="display:inline-block;height:38px;
+	line-height:38px;text-decoration:none;background:#cd9b9b;font-size:20px;color:#fff;">开始制作</a>
+   
 		</ol>
 	</ul>
 	
-	
-	
-	
-	
-	
 </div>
+<script type="text/javascript" src="js/jquery.js"></script>
+ <script language="JavaScript" type="text/javascript">
+ function panduan(){
+	   /*alert("onclick attribute in html");  */
+	
+	 if ("${user}" == ""){
+			//console.log("user:"+${user})
+		 	alert("您还没有登陆，请先登陆！");
+			parent.location.href="${pageContext.request.contextPath}/user_loginUI.action";
+
+		
+	}else{
+		
+		location.href="${pageContext.request.contextPath}/user_makeAlbum.action";
+		
+		
+	} 
+	
+} 
+</script> 
 <div class="product">
 </div> 
 <div id="services" class="services service-section">

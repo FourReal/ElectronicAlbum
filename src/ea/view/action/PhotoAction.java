@@ -64,8 +64,10 @@ public class PhotoAction extends BaseAction<Photo>{
 	 * 照片删除
 	 */
 	public String delete() throws Exception{
+		System.out.println("PageNow:"+pageNow);
 		photoService.delete(model.getId());
-		return "toList";
+		getAllPhotos();
+		return "list";
 	}
 	
 	/**
@@ -136,7 +138,9 @@ public class PhotoAction extends BaseAction<Photo>{
 			}
 			List<Photo> photoList=photoService.findAllPhotosByUserid(page.getPageNow(),pageSize,user.getId());
 			if(photoList.size()>0) {   //bgp列表
-				ActionContext.getContext().put("photoList", photoList);			
+				ActionContext.getContext().put("photoList", photoList);		
+				ActionContext.getContext().put("currpage", pageNow);	
+		
 			}
 		}
 		
@@ -144,7 +148,19 @@ public class PhotoAction extends BaseAction<Photo>{
 		
 	}
 	
-	
+	/**
+	 * 操作页面中页数，展示照片
+	 */
+	public String getnPhotos() throws Exception{
+		User user=(User) ActionContext.getContext().getSession().get("user");
+		
+			List<Photo> photoList=photoService.findAllPhotosByUserid(pageNow,pageSize,user.getId());
+			if(photoList.size()>0) {   //bgp列表
+				ActionContext.getContext().put("photoList", photoList);			
+			}
+		return "list";
+		
+	}
 	 /**
 	  * 实现相册导入照片
 	  */
@@ -152,7 +168,7 @@ public class PhotoAction extends BaseAction<Photo>{
 //		System.out.println("浏览图片");
 		phPath = new HashMap<String,String>();
 		User user=(User) ActionContext.getContext().getSession().get("user");
-		List<Photo> photoList=photoService.findAllPhotosByUserid(pageNow,pageSize,user.getId());
+		List<Photo> photoList=photoService.findAllPhotosByUserid(pageNow,9999,user.getId());
 		Iterator<Photo> it = photoList.iterator();
 		int cnt = 0;			//照片下标
 		while(it.hasNext()) {
@@ -239,9 +255,5 @@ public class PhotoAction extends BaseAction<Photo>{
 	public void setDosign(int dosign) {
 		this.dosign = dosign;
 	}
-	
-	
-	
-	
-	
+		
 }

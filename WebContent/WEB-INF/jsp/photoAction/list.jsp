@@ -18,7 +18,9 @@
 		<script type="text/javascript" src="js/jquery-1.3.2.js"></script>
 		<script type="text/javascript" src="js/jquery.galleriffic.js"></script>
 		<script type="text/javascript" src="js/jquery.opacityrollover.js"></script>
-		
+		<link rel="stylesheet" type="text/css" href="css/pageNav.css" />
+        <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+        <script type="text/javascript" src="js/pageNav.js"></script>
 		<!-- We only want the thunbnails to display when javascript is disabled -->
 		<script type="text/javascript">
 			document.write('<style>.noscript { display: none; }</style>');
@@ -72,24 +74,42 @@
 				</div>
 				
 				<ul class="main-cont__list clearfix ">
-				<s:iterator value="#photoList">
-			  		<li class="item content-photo">
-						<a href="#" class="pic">
-							<img src="/ElectronicAlbum/imgs/${PName}" name="mvUrl" data-action="zoom"/>
-							<%-- <img src="/ElectronicAlbum/imgs/${PName}" class="preview"> --%>   
-						</a>
-						<div class="info">
-				  			<p class="title">照片描述</p>
-				  			<!--<p>68张图片 · 2255人收藏</p>-->
-				  			<s:a action="photo_delete?id=%{id}" onclick="return confirm('确定要删除吗?')" >刪除</s:a>
-						</div>
-			  		</li>
+					<s:iterator value="#photoList">
+				  		<li class="item content-photo">
+							<a href="#" class="pic">
+								<img src="/ElectronicAlbum/imgs/${PName}" name="mvUrl" data-action="zoom"/>
+								<%-- <img src="/ElectronicAlbum/imgs/${PName}" class="preview"> --%>   
+							</a>
+							<div class="info">
+					  			<p class="title">照片描述</p>
+					  			<!--<p>68张图片 · 2255人收藏</p>-->
+					  			<s:a action="photo_delete?id=%{id}&pageNow=%{pageNow}" onclick="return confirm('确定要删除吗?')" >刪除</s:a>
+							</div>
+				  		</li>
 			  		</s:iterator>
 				</ul>
 		  	</div><!--.main-cont/.main-album-->
 		</div><!--.main-inner/.body-width-->
 		
-		<div class="container" >
+        <nav aria-label="Page navigation" class="page-nav-outer" id="PageNavId"></nav>
+
+        <script type="text/javascript">
+        	var curpage= ${PageNow};
+            var pageNavObj = null;//用于储存分页对象
+            pageNavObj = new PageNavCreate("PageNavId",{
+                 pageCount:'${pagePhoto.getTotalPage()}', 
+                 currentPage:'${PageNow}', 
+                 perPageNum:14, 
+            });
+            pageNavObj.afterClick(pageNavCallBack);
+
+            function pageNavCallBack(clickPage){
+            	console.log("clickPage:"+clickPage)
+            	window.location="photo_getnPhotos.action?pageNow="+clickPage;
+            }
+        </script>
+        
+<%-- 		<div class="container" >
     
 		
 			
@@ -108,7 +128,7 @@
         				<s:if test="#session.pagePhoto.hasLast">  
            				<s:a action="photo_getPhotos?dosign=4" class="page-info">尾页</s:a>  
        				</s:if>  
-		</div><!-- 页码 -->
+		</div><!-- 页码 --> --%>
 		
 	<!-- 	
 		<div class="zzsc-container">

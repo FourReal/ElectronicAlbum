@@ -10,7 +10,6 @@
 		<link rel="stylesheet" type="text/css" href="${baseURL }/css/jquery.jscrollpane.custom.css" />
 		<link rel="stylesheet" type="text/css" href="${baseURL }/css/bookblock.css" />
 		<link rel="stylesheet" type="text/css" href="${baseURL }/css/custom.css" />
-		<link rel="stylesheet" type="text/css" href="${baseURL }/css/buttons.css" />
 		<script src="${baseURL }/js/modernizr.custom.79639.js"></script>
 		
 		<style type="text/css">
@@ -23,20 +22,26 @@
 			    position: relative;	
 			}
 			.bshare-custom{
+
 				display: flex;
 				justify-content:center;
-			}
-			.container{
-				height: 90%;
 			}
 		</style>
 	</head>
 	<body>
-	<button class="" onclick="history.go(-1)">返回</button>
 	
 		<div id="container" class="container">	
-			
-			
+
+			<div class="menu-panel">
+				<h3>Table of Contents</h3>
+				<ul id="menu-toc" class="menu-toc">
+					<li class="menu-toc-current"><a href="#item1">1</a></li>
+					<li><a href="#item2">1</a></li>
+
+				</ul>
+				
+			</div>
+
 			<div class="bb-custom-wrapper">
 			
 				<div id="bb-bookblock" class="bb-bookblock">
@@ -62,7 +67,10 @@
 				</nav>
 				
 				</div>
-				
+					
+
+				<span id="tblcontents" class="menu-button">Table of Contents</span>
+
 			</div>
 		
 		</div><!-- /container -->

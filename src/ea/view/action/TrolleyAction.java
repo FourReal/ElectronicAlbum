@@ -1,8 +1,12 @@
 package ea.view.action;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -22,6 +26,8 @@ import ea.domain.Order;
 import ea.domain.Photo_pro;
 import ea.domain.Trolley;
 import ea.domain.User;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 @Controller
 @Scope("prototype")
@@ -119,9 +125,35 @@ public class TrolleyAction extends BaseAction<Trolley>{
 	 * 完成购物车中商品的购买
 	 */
 	public String done() throws Exception{
+		HttpServletRequest request = ServletActionContext.getRequest();
+		StringBuilder sb=new StringBuilder();
+		try(BufferedReader reader = request.getReader();) {  
+			char[]buff = new char[1024];  
+			int len;  
+		    while((len = reader.read(buff)) != -1) {  
+		             sb.append(buff,0, len);  
+		    }  
+		}catch (IOException e) {  
+		        e.printStackTrace();  
+		}  
+		String data = URLDecoder.decode(sb.toString(),"UTF-8");					//获取前台ajax传送过来的数据
+		System.out.println("Done========"+data);
+		JSONArray result=JSONArray.fromObject(data);
+		Long [] getids =new Long[result.size()];
+		int j=0;
+		if(result.size()>0) {
+			for(int i=0;i<result.size();i++) {
+				JSONObject orderobj=(JSONObject) result.get(i);
+				getids[j++]=Long.parseLong(orderobj.getString("id"));
+			}
+		}
+//		for(int i=0;i<getids.length;i++)
+//		{
+//			System.out.println(getids[i]);
+//		}
 		Long[] ids= {(long)12,(long)16,(long)17};
 		String updatadate=new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-		List<Order> orders=orderService.getByIds(ids);
+		List<Order> orders=orderService.getByIds(getids);
 		for( Order o:orders)
 		{
 			o.setSign("1");
@@ -131,6 +163,8 @@ public class TrolleyAction extends BaseAction<Trolley>{
 		return "toList";
 	}
 
+	
+	
 	public Order getOrderget() {
 		return orderget;
 	}

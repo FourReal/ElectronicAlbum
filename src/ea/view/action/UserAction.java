@@ -57,7 +57,7 @@ public class UserAction extends BaseAction<User>{
 	private String uploadifyContentType;
 	private static final String savePath = "imgs";// 文件上传后保存的路径
 	private String mvUrl;
-	private Long albumId = (long) 0; //用户请求的相册模板ID
+	private Long albumId = (long) 1; //用户请求的相册模板ID
 	private Long userid;//标记哪个用户上传
 	private Long[] roleIds;
 	
@@ -67,6 +67,10 @@ public class UserAction extends BaseAction<User>{
 	
     private int BgppageNow=1;   //动态改变 页面获取
     private int BgppageSize=1;    //固定不变
+    
+    
+    private File image; //上传的文件  
+    private String imageFileName; //文件名称  
 	
 	
     private JSONObject jsonString;			//获取页面传过来的json数据
@@ -231,7 +235,7 @@ public class UserAction extends BaseAction<User>{
 	}
 	
 	/** 修改*/
-	public String edit() throws Exception{
+	/*public String edit() throws Exception{
 		
 		//从数据库获取原对象
 		User user=(User)ActionContext.getContext().getSession().get("user");
@@ -263,6 +267,65 @@ public class UserAction extends BaseAction<User>{
 		userService.update(user);
 		return "personal";
 	}
+	*/
+	public String edit() throws Exception{
+		String updatadate=new SimpleDateFormat("yyyyMMddHHmmss")
+				.format(new Date());
+		String filename=updatadate+"_"+imageFileName;
+		String realpath = ServletActionContext.getServletContext().getRealPath("/images");  
+        System.out.println("realpath: "+realpath); 
+        String saveaddr="/ElectronicAlbum/images/"+filename;
+        System.out.println("--------"+saveaddr+"------------");
+        if(image != null){  
+        	System.out.println("useredit================"+image);
+            File savefile = new File(new File(realpath), filename);  
+//            System.out.println(savefile);  
+//            System.out.println(savefile.getParentFile());  
+            if(savefile.getParentFile().exists()){  
+                try {  
+                    savefile.getParentFile().mkdirs();  
+                    FileUtils.copyFile(image, savefile);  
+                } catch (IOException e) {  
+                    e.printStackTrace();  
+                }  
+               
+                ActionContext.getContext().put("message", "文件上传成功");  
+            }  
+        } 
+		
+		User user=(User)ActionContext.getContext().getSession().get("user");
+		
+		System.out.println("怎么还不成功啊！！！！________________________"+user);
+		System.out.println("怎么还不成功啊！！！！________________________"+model);
+		//设置修改的属性
+		//设置修改的属性
+		ActionContext context=ActionContext.getContext();
+		Map<String, Object>map=context.getParameters();
+		Set<String> keys=map.keySet();
+		for(String key:keys) {
+			Object[] obj=(Object[]) map.get(key);
+			System.out.println(Arrays.toString(obj));
+		}
+		
+		
+		user.setTouxiang(saveaddr);
+		user.setName(model.getName());
+		user.setPhoneNumber(model.getPhoneNumber());
+		user.setEmail(model.getEmail());
+		
+		if(user.getTrolley()==null) {
+			Trolley trolley=new Trolley();
+			trolley.setUser(user);
+			trolleyService.save(trolley);
+			user.setTrolley(trolley);
+		}
+		
+		//保存到数据库
+		System.out.println("怎么还不成功啊！！！！________________________"+model.getName());
+		userService.update(user);
+		return "personal";
+	}	
+	
 	
 	/**管理员修改用户信息页面*/
 	public String AeditUI() throws Exception{
@@ -360,7 +423,15 @@ public class UserAction extends BaseAction<User>{
 	 * 用户进入个人中心
 	 */
 	public String personal() throws Exception{
-		
+		User user=(User) ActionContext.getContext().getSession().get("user");
+		System.out.println("getAllBgps:user++++++++++++"+user.getId());
+		System.out.println("getAllBgps:page++++++++++++"+getPageNow());
+
+		List<Photo> photoList=photoService.findAllPhotosByUserid(1,6,user.getId());
+		ActionContext.getContext().put("photoList", photoList);
+		PageShow page=new PageShow(pageNow,photoService.findPhotoSizeByUserid(user.getId()),pageSize);
+
+		ActionContext.getContext().getSession().put("pagePhoto", page);
 		return "personal";
 	}
 	
@@ -728,8 +799,21 @@ public class UserAction extends BaseAction<User>{
 		this.albumId = albumId;
 	}
 
-	
-	
+	public File getImage() {
+		return image;
+	}
+
+	public void setImage(File image) {
+		this.image = image;
+	}
+
+	public String getImageFileName() {
+		return imageFileName;
+	}
+
+	public void setImageFileName(String imageFileName) {
+		this.imageFileName = imageFileName;
+	}
 
 	
 }

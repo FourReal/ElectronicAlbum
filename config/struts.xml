@@ -126,7 +126,11 @@
             <result name="edit" >/WEB-INF/jsp/orderAction/editUI.jsp</result>
             <result name="show" >/WEB-INF/jsp/trolleyAction/show.jsp</result>
             <result name="toOldList" type="redirectAction">trolley_oldlist</result>  
-            <result name="toList" type="redirectAction">trolley_list</result> 
+            <result name="toList" type="redirectAction">trolley_list</result>
+            <result type="json">  
+                <!-- 这里指定将被Struts2序列化的属性，该属性在action中必须有对应的getter方法 -->  
+                <param name="root"></param>  
+            </result>  
              
         </action>
         

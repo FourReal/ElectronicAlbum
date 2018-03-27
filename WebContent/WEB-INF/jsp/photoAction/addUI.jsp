@@ -145,10 +145,10 @@ ul li{list-style: none}
 <body>
     <div id="some_file_queue"></div>  
 
-    <p>按钮</p>
+    
     <input type="file" name="uploadifys" id="uploadFile" />  
     <br /> 
-    <p>${baseURL}</p> 
+    
     <form action="${baseURL}upload.action?savePath=imgs" id="form1"  >  
       
     <ul id="pics" >  
@@ -179,6 +179,6 @@ ul li{list-style: none}
             <span class="ui-button-text">完成</span></button>
         </s:a> 
     </div> 
-    <s:a action="photo_findPhotos?userid=1"><input type="button"  value="查找"/></s:a>
+   
 </body>
 </html>

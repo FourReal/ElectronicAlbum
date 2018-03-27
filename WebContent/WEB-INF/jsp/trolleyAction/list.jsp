@@ -7,7 +7,52 @@
 
 	<%@ include file="/WEB-INF/jsp/public/commons.jspf" %>
 	<link rel="stylesheet" href="css/resetgowuche.css">
-<link rel="stylesheet" href="css/carts.css">
+	<link rel="stylesheet" href="css/carts.css">
+	<script src="js/jquery.min.js"></script>
+	<script src="js/carts.js"></script>
+	
+	<script type="text/javascript">
+	$(function() {
+		$("#jiesuan").click(function() {
+			var CheckName = document.getElementsByName("checkname"); 
+			console.log("点击成功！！！！");
+			//console.log(CheckName);
+			var data=new Array();
+			var j=0;
+			var orders=[];
+			for(var i = 0; i < CheckName.length; i++)
+			{
+				
+				if(CheckName[i].checked == true) 
+				{
+					var order={};
+					order.id=CheckName[i].id;
+					
+					orders.push(order);
+				}
+			}
+			//data.push(orders);
+			//console.log(data);
+			var jsonString = JSON.stringify(orders);
+			$.ajax({
+                type : "post",
+                url : 'trolley_done.action',//触发的action
+                data : jsonString,//设置要传输的数据
+                contentType: "application/json; charset=utf-8",  
+                success : function(d) {
+					alert("订单完成"); 
+                },
+                error : function(d) {
+                	alert("error");
+                    alert(d.responseText);
+                }
+	        });
+
+		});
+	});
+	
+	</script>
+
 
 </head>
 <body>
@@ -50,14 +95,14 @@
 	<div class="cartBox">
 	<div class="order_content">
 		<s:iterator value="#onOrderList" status="L">
-		<ul class="order_lists">
-				<li class="list_chk">
-					<input type="checkbox" name="checkname" id="check_<s:property value="#L.index+1" />" class="son_check">
-					<label for="check_<s:property value="#L.index+1" />"></label>
+		<ul class="order_lists" >
+				<li class="list_chk" >
+					<input type="checkbox" name="checkname" id="${ id }" class="son_check">
+					<label for="${ id }"></label>
 				</li>
 				<li class="list_con">
 				<div class="list_img">
-				<s:a action="orderList?id=%{id}"><img src="${albumBook.album.coverAddr}"></s:a></div>
+				<s:a action="albumbook_output.action?albumId=%{albumBook.id}"><img src="${albumBook.album.coverAddr}"></s:a></div>
 				<div class="list_text"><a href="#">古色古香个人写真模板</a></div>
 				</li>
 				<li class="list_price">
@@ -83,48 +128,16 @@
 						</ul>
 			</s:iterator>
 		</div>
-		<div class="clear"><s:a action="trolley_clear">清空购物车</s:a></div>
+		<div class="clear"><s:a action="trolley_clear" onclick="return confirm('您确定要清空购物车吗？')">清空购物车</s:a></div>
 		</div>
 	<div class="bar-wrapper">
 		<div class="bar-right">
 		
 		<div class="piece">已选商品<strong class="piece_num">0</strong>件</div>
 			<div class="totalMoney">共计: <strong class="total_text">0.00</strong></div>
-		<div class="calBtn"><s:a action="trolley_done" onclick='getCheck()' class="btn">结算</s:a></div>
+		<div class="calBtn"><a id="jiesuan" >结算</a></div>
 	</div>
 	</div>
 </section>
-	<script src="js/jquery.min.js"></script>
-<script src="js/carts.js"></script>
-	<script type="text/javascript">
-	 function getCheck()
-	{ 
-	   
-	   var CheckName = document.getElementsById("check_"+<s:property value="id" />);  
-	 
-	    for(var i = 0; i < CheckName.length; i++) 
-	    { 
-	       if(CheckName[i].checked == true) 
-	       { 
-	    	  alert( CheckName[i].value+""); 
-	    	  /*  $.ajax({
-	                type : 'post',
-	                url : 'trolley.action',
-	                data : {
-	                    id : id
-	                },
-	                success:function(response){ 
-	                    //服务端返回的信息
-	                    alert(response);
-	                }
-	            }); */
-	        }
-	       } 
-	    } 
-	   /*  var json= JSON.stringify(CheckName);
-	    alert(json); */
-	
-	
-	</script>
 </body>
 </html>

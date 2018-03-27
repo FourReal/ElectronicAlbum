@@ -92,10 +92,30 @@ function miaobian1(thisMb1){
 				<form><input class="input" value="1"></form>
 				<div class="Xcontent33"><img src="images/16.png"></div>
 			</div>
-			<div class="Xcontent34"><a href="${pageContext.request.contextPath}/user_makeAlbum.action">开始制作</a></div>
+			<a href="JavaScript:;" onclick="panduan()" class="Xcontent34" style="display:inline-block;height:38px;
+	line-height:38px;text-decoration:none;background:#cd9b9b;font-size:20px;color:#fff;">开始制作</a>
 		</ol>
 	</ul>
 </div>
+<script language="JavaScript" type="text/javascript">
+ function panduan(){
+	   /*alert("onclick attribute in html");  */
+	
+	 if ("${user}" == ""){
+			//console.log("user:"+${user})
+		 	alert("您还没有登陆，请先登陆！");
+			parent.location.href="${pageContext.request.contextPath}/user_loginUI.action";
+
+		
+	}else{
+		
+		location.href="${pageContext.request.contextPath}/user_makeAlbum.action";
+		
+		
+	} 
+	
+} 
+</script> 
 <div class="product">
 </div> 
 <div id="services" class="services service-section">

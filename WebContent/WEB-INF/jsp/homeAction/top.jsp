@@ -24,7 +24,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 	<div class="header1">
-		<div style="width: 1200px; margin: 0 auto;">
+		<div style="width: 90%; margin: 0 auto;">
 			<div class="befour">
 				<ul class="header1-ul" style="float: right">
 					<li><a href="${pageContext.request.contextPath}/trolley_list.action" target="right">我的购物车</a></li>

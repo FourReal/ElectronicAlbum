@@ -12,7 +12,7 @@
 		<div class="page ">
 			<!-- 会员注册页面样式 -->
 			<div class="banneradd bor">
-			<s:form action="user_edit">
+			<s:form action="user_edit" enctype="multipart/form-data" method="post">
 				<s:hidden name="id"></s:hidden>
 				<div class="baTopNo">
 					<span>用户信息</span>
@@ -30,6 +30,10 @@
 					</div>
 					<div class="bbD">
 					电话：<s:textfield name="phoneNumber" class="input3" />
+					</div>
+					<div class="bbD">
+					头像：
+						<input type="file" name="image" value="点击选择图片" />
 					</div>
 					<div class="bbD">
 						邮箱：<s:textfield name="email" class="input3" />

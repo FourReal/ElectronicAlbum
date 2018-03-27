@@ -119,7 +119,7 @@
 			  for(i=0;i<groupCheckbox.length;i++){
 				if(groupCheckbox[i].checked){
 						$('.addedph').append('<img src="/ElectronicAlbum/imgs/'+groupCheckbox[i].value+'" name="photosled" width="100px" height="100px" class="drag_l" onclick="photointo(src)"/>')
-						console.log(i);
+						console.log(groupCheckbox[i].value);
 				}
 						
 			  }
@@ -146,7 +146,7 @@
 	                    	console.log(d);
 	                    	//$('.selectphoto').append("<p>返回的图片</p>");
 	                    	for(var i in d){
-	                    		$('.selectphoto').append('<span><img src="/ElectronicAlbum/imgs/'+d[i]+'" class="photols" name="allphoto" id="'+i+'"  width="100px" height="100px" onclick="checkclick(id,\'ck\'+id)"/><input type="checkbox" name="photoselect"   style="display:none"   id=ck'+i+' value='+d[i]+'></span>');
+	                    		$('.selectphoto').append('<span><img src="/ElectronicAlbum/imgs/'+d[i]+'" class="photols" name="allphoto" id="'+i+'"  width="100px" height="100px" onclick="checkclick(id,\'ck\'+id)"/><input type="checkbox" name="photoselect"   style="display:none"   id=ck'+i+' value="'+d[i]+'"></span>');
 	                    		console.log(d[i]);
 	                    	}
 	                    	

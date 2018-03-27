@@ -22,7 +22,8 @@
             <h3>个人中心</h3>
             <p class="your-title">
                 <span >
-                    <img src="img/menu-top.jpg"/>
+                	<img src="${user.touxiang }"/>
+                     <!-- <img src="img/menu-top.jpg"/> -->
                     <br>
                     <button><s:a action="user_editUI">修改个人信息</s:a></button>
                 </span>
@@ -202,95 +203,31 @@
             <div class="content-photo">
                 <h4 style="text-align: center"><s:a action="photo_getAllPhotos">我的照片</s:a></h4>
                 <p style="font-size: 14px;text-align: right">（鼠标悬浮可预览照片描述）</p>
-                <a href="#" class="add-photo">
+<!--                 <a href="#" class="add-photo">
                     <button>添加照片</button>
-                </a>
+                </a> -->
                 <div class="zzsc-container">
                     <div class="container mt50">
                         <div class="row">
-                            <div class="col-md-4">
-                                <div class="box">
-                                    <img src="img/tour03.jpg" alt="">
-                                    <div class="over-layer">
-                                        <h4 class="title">我的照片</h4>
-                                        <p class="description">
-                                            照片描述balabalabala
-                                        </p>
+                        	<s:iterator value="#photoList">
+							  	<div class="col-md-4">
+	                                <div class="" style="height:200px;width:100%;">
+	                                    <img src="/ElectronicAlbum/imgs/${PName}" alt="" style="height:100%;width:100%;">
 
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="box">
-                                    <img src="img/tour03.jpg" alt="">
-                                    <div class="over-layer">
-                                        <h3 class="title">我的照片</h3>
-                                        <p class="description">
-                                            照片描述balabala
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="box">
-                                    <img src="img/tour03.jpg" alt="">
-                                    <div class="over-layer">
-                                        <h3 class="title">我的照片</h3>
-                                        <p class="description">
-                                            照片描述balabala
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="box">
-                                    <img src="img/tour03.jpg" alt="">
-                                    <div class="over-layer">
-                                        <h3 class="title">我的照片</h3>
-                                        <p class="description">
-                                            照片描述balabala
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="box">
-                                    <img src="img/tour03.jpg" alt="">
-                                    <div class="over-layer">
-                                        <h3 class="title">我的照片</h3>
-                                        <p class="description">
-                                            照片描述balabala
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="box">
-                                    <img src="img/tour03.jpg" alt="">
-                                    <div class="over-layer">
-                                        <h3 class="title">我的照片</h3>
-                                        <p class="description">
-                                            照片描述balabala
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--添加框-->
+	                                </div>
+	                            </div>
+					  		</s:iterator>
 
 
-                            <!--//.add-->
-                        </div><!--//row-->
+                       </div>
+                      
 
+ 
                     </div>
                 </div>
             </div>
         </div>
+        
         <div class="content2">
             <div class="content-album">
                 <h4 style="text-align: center"><s:a action="albumbook_list">

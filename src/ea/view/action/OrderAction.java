@@ -22,10 +22,10 @@ public class OrderAction extends BaseAction<Order>{
 	 */
 	public String add() throws Exception{
 		User user=(User)ActionContext.getContext().getSession().get("user");
-		AlbumBook albumBook=(AlbumBook)ActionContext.getContext().getSession().get("albumBook");
-		System.out.println("OrderAction:add======"+albumBook.getId());
+		AlbumBook albumBook=albumBookService.getById(albumBookid);
+		System.out.println("OrderAction:add======"+albumBookid);
 		Order order=new Order();					//准备订单数据
-		System.out.println("OrderAction:add======"+albumBook.getAlbum().getPrice());
+		//System.out.println("OrderAction:add======"+albumBook.getAlbum().getPrice());
 //		Long totalprice=albumBook.getAlbum().getPrice();
 		//设置订单属性
 		order.setAlbumBook(albumBook);

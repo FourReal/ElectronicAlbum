@@ -23,7 +23,11 @@ public class AlbumBookServiceImpl extends DaoSupportImpl<AlbumBook> implements A
 				"From AlbumBook a WHERE a.madeuser.id=?"
 				).setParameter(0, id).list();
 	}
-
+	public AlbumBook getAlbumBookById(Long id) {
+		return (AlbumBook)getSession().createQuery(
+				"From AlbumBook a WHERE a.id=?"
+				).setParameter(0, id);
+	}
 	/**
 	 * 根据相册书的id获取相册书的照片信息
 	 */

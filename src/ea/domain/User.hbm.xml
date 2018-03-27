@@ -15,6 +15,7 @@
          <property name="loginName" />
          <property name="password" />
          <property name="name" />
+         <property name="touxiang" />
          <property name="gender" />
          <property name="phoneNumber" />
          <property name="email" />

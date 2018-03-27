@@ -13,6 +13,7 @@ public class User implements java.io.Serializable{
 	private String loginName; 		//登录名
 	private String password;		//密码
 	private String name;			//真实姓名
+	private String touxiang;        //用户的头像图片地址（设置相应的setget方法）
 	private Set<Role> roles=new HashSet<Role>();	//用户角色
 	private String gender;	
 	private String phoneNumber;
@@ -189,6 +190,15 @@ public class User implements java.io.Serializable{
 	public void setTrolley(Trolley trolley) {
 		this.trolley = trolley;
 	}
+
+	public String getTouxiang() {
+		return touxiang;
+	}
+
+	public void setTouxiang(String touxiang) {
+		this.touxiang = touxiang;
+	}
+	
 	
 	
 }
