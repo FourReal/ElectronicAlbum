@@ -28,20 +28,27 @@ public class CheckPrivilegeInterceptor extends AbstractInterceptor{
 		//如果未登录，就转到登录界面
 		if(user==null)
 		{
-			if(privUrl.startsWith("/user_login")) {
-			//如果是去登录，就放行
-				return invocation.invoke();
-			}else {
-			//如果不是去登录，就转到登录界面
-				return "loginUI";
-			}
+//			if(privUrl.startsWith("/user_login")) {
+//			//如果是去登录，就放行
+//				return invocation.invoke();
+//			}else {
+//			//如果不是去登录，就转到登录界面
+//				return "loginUI";
+//			}
+			return invocation.invoke();
 		}
 		//如果已登录，就判断权限
 		else {
-			
+			if(user.hasPrivilegeByUrl(privUrl)) {
+			//如果有权限就放行
 				return invocation.invoke();
 			}
-			
+			else {	
+			//如果没有权限，就转到提示界面
+				return "noPrivilegeError";
+			}
 		}
-	
+//		return invocation.invoke();
+		}
+		
 	}

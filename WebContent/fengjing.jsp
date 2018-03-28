@@ -5,54 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>details</title>
-<link rel="stylesheet" href="css/shouye.css">
-<script src="js/modernizr-custom-v2.7.1.min.js"></script>
-<link href="css/reset.css" rel="stylesheet" type="text/css">
-<script src="js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="js/jquery.js"></script>
-<link href="css/topstyle.css" rel="stylesheet" type="text/css" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/main.css">
-<script>
-	$(document).ready(function(){
-var $miaobian=$('.Xcontent08>div');
-var $huantu=$('.Xcontent06>img');
-var $miaobian1=$('.Xcontent26>div');
-$miaobian.mousemove(function(){miaobian(this);});
-$miaobian1.click(function(){miaobian1(this);});
-function miaobian(thisMb){
-	for(var i=0; i<$miaobian.length; i++){
-		$miaobian[i].style.borderColor = '#dedede';
-	}
-	thisMb.style.borderColor = '#cd2426';
 
-	$huantu[0].src = thisMb.children[0].src;
-}
-function miaobian1(thisMb1){
-	for(var i=0; i<$miaobian1.length; i++){
-		$miaobian1[i].style.borderColor = '#dedede';
-	}
-//		thisMb.style.borderColor = '#cd2426';
-	$miaobian.css('border-color','#dedede');
-	thisMb1.style.borderColor = '#cd2426';
-	$huantu[0].src = thisMb1.children[0].src;
-}
-		$(".Xcontent33").click(function(){
-		var value=parseInt($('.input').val())+1;
-		$('.input').val(value);
-	})
-
-	$(".Xcontent32").click(function(){	
-		var num = $(".input").val()
-		if(num>0){
-			$(".input").val(num-1);
-		}			
-		
-	})
-
-	})
-</script>
+<%@	include file="/WEB-INF/jsp/public/detailtopfile.jspf" %>
 
 </head>
 <body>
@@ -60,12 +14,12 @@ function miaobian1(thisMb1){
 
 <div class="Xcontent" >
 	<ul class="Xcontent01">
-		<div class="Xcontent06">  <img src="images/geren1.jpg"></div>
+		<div class="Xcontent06">  <img src="images/lxingmoban2slt.jpg"></div>
 		<ol class="Xcontent08">
-			<div class="Xcontent07"><img src="images/geren1.jpg"></div>
-			<div class="Xcontent09"><img src="images/geren2.jpg"></div>
-			<div class="Xcontent10"><img src="images/geren3.jpg"></div>
-			<div class="Xcontent11"><img src="images/geren51.jpg"></div>
+			<div class="Xcontent07"><img src="images/lxingmoban2slt.jpg"></div>
+			<div class="Xcontent09"><img src="images/lxingmoban4slt.jpg"></div>
+			<div class="Xcontent10"><img src="images/lxingmoban5slt.jpg"></div>
+			<div class="Xcontent11"><img src="images/lxingmoban6slt.jpg"></div>
 		</ol>
 		<ol class="Xcontent13">
 			<div class="Xcontent14"><a href="#"><p>旅游纪念册</p></a></div>
@@ -111,7 +65,7 @@ function miaobian1(thisMb1){
 		
 	}else{
 		
-		location.href="${pageContext.request.contextPath}/user_makeAlbum.action";
+		location.href="${pageContext.request.contextPath}/user_makeAlbum.action?albumId=1";
 		
 		
 	} 
@@ -124,51 +78,54 @@ function miaobian1(thisMb1){
   <div class="container">
   <div class="section-header">
                 <h2 class="wow fadeInDown animated">商品展示</h2>
-                <p class="wow fadeInDown animated"></p>
+                <p class="wow fadeInDown animated">海滩，阳光，美食，给忙碌的生活带来休闲的独有时光</p>
             </div>
     <div class="section-display">
-	  <span class="service-img"><img src="images/geren5.jpg" alt="service"/> </span>
+	  <span class="service-img"><img src="images/lxingmoban2.jpg" alt="service"/> </span>
         <div class="services-content">
-          <h4>缘亭</h4>
+          <h4>休闲</h4>
           <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu libero scelerisque ligula sagittis faucibus eget quis lacus.</p> -->
         </div>
-        </div>
+        
       </div>
     <div class="section-display">
-	  <span class="service-img"><img src="images/geren7.jpg" alt="service"/> </span>
+	  <span class="service-img"><img src="images/lxingmoban3.jpg" alt="service"/> </span>
         <div class="services-content">
-          <h4>水月</h4>
+          <h4>舒畅</h4>
          <!--  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu libero scelerisque ligula sagittis faucibus eget quis lacus.</p> -->
         </div>
    
 	   </div>
     <div class="section-display">
-	  <span class="service-img"><img src="images/geren9.jpg" alt="service"/> </span>
+	  <span class="service-img"><img src="images/lxingmoban2.jpg" alt="service"/> </span>
         <div class="services-content">
-          <h4>荷塘</h4>
+          <h4>快乐</h4>
          <!--  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu libero scelerisque ligula sagittis faucibus eget quis lacus.</p> -->
         </div>
       </div>
 </div>
-<div id="footerimg">
-<a href="#header" id="top-arrow" title="Go to Top"><img src="images/top1.png" height="50px" width="50px"alt=""></a>
 </div>
-<div id="footer">
-    	<div id="footer-wrap">
-    	<div style="height:20px;"></div>
-	        <h3>服务指南</h3>
-	       <!--  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p> -->
-	         <ul id="sponsors">
-	            <li><a href="#"><p>定制指南</p></a></li>
-	            <li><a href="#"><p>关于我们</p></a></li>
-	            <li><a href="#"><p>信誉保证</p></a></li>
-	            <li><a href="#"><p>联系我们</p></a></li>
+<div class="footer">
+	<div style="height:20px;"></div>
+ 	<h3>服务指南</h3>
+    	<div class="footer-wrap">    
+	         <ul>
+	            <li><a href="#">定制指南</a></li>
+	            <li><a href="#">关于我们</a></li>
+	            <li><a href="#">信誉保证</a></li>
+	            <li><a href="#">联系我们</a></li>
 	        </ul>
-	        <div id="copyright">
-	        	<p>Copyright &copy; 2018.FourReal All rights reserved.<a href="#"><img src="images/logo6.png"></a></p>
-	        </div><!-- END copyright--> 
+	      </div>
+	      <div style="height:30px;"></div>
+	      <div class="copyright">
+	        
+	      
+	        <p>Copyright &copy; 2018.FourReal All rights reserved.</p>
+	        <!--  <li><img src="images/logo6.png"></li> -->
+	        
+	      </div><!-- END copyright--> 
 	        <div class="end"></div>
-        </div><!-- END footer-wrap -->
+       <!-- END footer-wrap -->
 	</div><!-- END footer-->
 </body>
 </html>

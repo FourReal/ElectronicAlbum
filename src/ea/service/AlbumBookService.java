@@ -12,4 +12,8 @@ public interface AlbumBookService extends DaoSupport<AlbumBook>{
 
 	List<Photo_pro> getPhoto_prosByAbumBookId(Long id);
 
+	List<AlbumBook> findAlbumBooksByUserid(int pageNow, int pageSize);
+
+	int findAlbumBookSize();
+
 }

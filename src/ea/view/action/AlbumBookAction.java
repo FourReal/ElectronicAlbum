@@ -20,6 +20,7 @@ import ea.domain.AlbumBook;
 import ea.domain.Photo;
 import ea.domain.Photo_pro;
 import ea.domain.User;
+import ea.util.PageShow;
 
 @Controller
 @Scope("prototype")
@@ -27,7 +28,8 @@ public class AlbumBookAction extends BaseAction<AlbumBook>{
 
 	private Long albumId;	//接受前台页面跟随action请求传送过来的数据
 	private Long searchId;	//根据用户id查找相册时获取页面传送的用户id
-	
+	private int pageNow=1;   //动态改变 页面获取
+    private int pageSize=14;    //固定不变
 	
 	/** 相册书列表*/
 	public String list() throws Exception{
@@ -122,6 +124,22 @@ public class AlbumBookAction extends BaseAction<AlbumBook>{
 		//return "show";
 	}
 	
+	/**
+	 * 操作页面中页数，展示相册书
+	 */
+	public String getnAlbumBooks() throws Exception{
+		User user=(User) ActionContext.getContext().getSession().get("user");
+		
+			List<AlbumBook> adminalbumbooks=albumBookService.findAlbumBooksByUserid(pageNow,pageSize);
+			if(adminalbumbooks.size()>0) {   
+				ActionContext.getContext().put("adminalbumbooks", adminalbumbooks);	
+				PageShow page=new PageShow(pageNow,albumBookService.findAlbumBookSize(),pageSize);
+				ActionContext.getContext().getSession().put("pageAlbumBook", page);
+			}
+		return "list";
+		
+	}
+	
 	
 	/**
 	 * 管路员查看用户相册展示
@@ -196,7 +214,22 @@ public class AlbumBookAction extends BaseAction<AlbumBook>{
 	public void setSearchId(Long searchId) {
 		this.searchId = searchId;
 	}
-	
+
+	public int getPageNow() {
+		return pageNow;
+	}
+
+	public void setPageNow(int pageNow) {
+		this.pageNow = pageNow;
+	}
+
+	public int getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
 	
 	
 }

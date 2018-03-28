@@ -10,25 +10,24 @@
 <meta name="keywords"
 	content="Majestic Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-<script src="js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="js/jquery.js"></script>
+ <script src="js/jquery-1.7.2.min.js"></script>
 <script type="application/x-javascript">
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
 </script>
 <script src="js/jquery-1.11.0.min.js"></script>
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 <link href="css/style.css" rel='stylesheet' type='text/css' />
-<link href="css/reset.css" rel="stylesheet" type="text/css">
+ <link href="css/reset.css" rel="stylesheet" type="text/css"> 
 <link href="css/topstyle.css" rel="stylesheet" type="text/css" />
 <title>首页</title>
 </head>
 <body>
+
 	<div class="header1">
-		<div style="width: 90%; margin: 0 auto;">
-			<div class="befour">
+		<div class="daohang">
+		<div class="right">
 				<ul class="header1-ul" style="float: right">
-					<li><a href="${pageContext.request.contextPath}/trolley_list.action" target="right">我的购物车</a></li>
-					<li><a href="#" target="right">关于我们</a></li>
+					<li><a href="about.html" target="right">关于我们</a></li>
 					<%
 						if (session.getAttribute("user") == null) {
 					%>
@@ -53,23 +52,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 	</div>
-	<div class="wraper">
-		<div class="th">
+	
+	<div class="wraper"> 
+		<div class="th" >
 			<div class="logodiv">
+			
 				<a target="_parent" href="${pageContext.request.contextPath}/home_index.action"><img src="images/logo5.png" /></a>
+			
 			</div>
 			<div class="nav">
 				<ul>
-					<li class="nav-item">
+					<!-- <li class="nav-item"> -->
 					<li class="nav-item"><a href= "fengjing.jsp" target="right">旅游照片书</a></li>
 					<li class="nav-item"><a href="aiqing.jsp" target="right">爱情纪念册</a></li>
 					<li class="nav-item"><a href="baobao.jsp" target="right">宝宝成长册</a></li>
 					<li class="nav-item"><a href="biye.jsp" target="right">毕业纪念册</a></li>
 					<li class="nav-item"><a href="geren.jsp" target="right">个人写真</a></li>
-
+					<li class="nav-item"><a href="jiating.jsp" target="right">家庭纪念册</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<%-- <script>
+  $('.nav li a').click(function () {
+    $(this).css("color","#000");
+    $(this).siblings().css("color","#fff");
+    
+  });
+</script> --%>
 </body>
 </html>

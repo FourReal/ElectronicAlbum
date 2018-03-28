@@ -10,9 +10,94 @@
 <link rel="stylesheet" href="css/main_show.css">
 <!--展示部分轮播图CSS-->
 <link rel="stylesheet" href="css/main_show_banner.css" />
-<link rel="stylesheet" href="css/foot.css" />
+<style type="text/css">
+.footer
+ {
+ 	margin: 0;
+	padding: 0;
+	background:#cd9b9b;
+	width:100%;
+	/* min-height:150px; */
+	overflow:hidden;
+	font-family:arial,tahoma,'Microsoft Yahei','\5b8b\4f53',sans-serif;
+	
+}
+.footer-wrap{
+	width:80%;
+	margin:0 auto;
+	min-width:960px;
+	
+
+}
+
+.footer h3 {
+	color:#b9e7ee;
+	text-align:center;
+	margin-bottom:20px;
+	font-size:18px;
+	font-weight:normal;
+	
+}
+/* #footer p,
+#signup-form p {
+	color:#FFFFFF;
+    margin: 0;
+}
+ */
+
+   .footer-wrap ul{
+	text-align:center;
+	list-style-type:none;
+}  
+ 
+.footer-wrap li a{
+	text-decoration:none;
+	color:#fff;
+	font-size:16px;
+	
+	
+}
+.footer-wrap ul li{
+	display:inline;
+	list-style-type:none;
+	margin:10px 50px;
+
+}
+.copyright {
+	border-top:1px solid #b9e7ee;
+	height:60px;
+	border-bottom:1px solid #b9e7ee;
+	width:58%;
+	margin:0 auto;
+	
+}
+ .copyright p{
+ 	
+	color:#ccc;
+	text-align:center;
+	line-height:60px;
+	font-size:14px;
+}
+/*  .copyright img
+{
+	
+	color:#b9e7ee;
+	margin-top:20px;
+	margin-left:40px;
+	
+} */
+.end{
+	height:50px;
+	background:#cd9b9b;
+	
+}
+
+
+
+</style>
 </head>
 <body>
+<div>
 	<!--顶端-->
 	<ul class="fold_wrap" id="sm" style="margin-top: 0px">
 		<li><a href="#">
@@ -44,6 +129,7 @@
 					style="background: url(images/gr3.jpg) no-repeat center 0;"></div>
 		</a></li>
 	</ul>
+	</div>
 	<!--//顶端-->
 	<!--展示部分-->
 	<div class="container-master">
@@ -222,22 +308,27 @@
 	<script type="text/javascript" src="js/index.js"></script>
 
 
-<div id="footer">
-    	<div id="footer-wrap">
-    	<div style="height:20px;"></div>
-	        <h3>服务指南</h3>
-	       <!--  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p> -->
-	         <ul id="sponsors">
-	            <li><a href="#"><p>定制指南</p></a></li>
-	            <li><a href="#"><p>关于我们</p></a></li>
-	            <li><a href="#"><p>信誉保证</p></a></li>
-	            <li><a href="#"><p>联系我们</p></a></li>
+<div class="footer">
+	<div style="height:20px;"></div>
+ 	<h3>服务指南</h3>
+    	<div class="footer-wrap">    
+	         <ul>
+	            <li><a href="#">定制指南</a></li>
+	            <li><a href="#">关于我们</a></li>
+	            <li><a href="#">信誉保证</a></li>
+	            <li><a href="#">联系我们</a></li>
 	        </ul>
-	        <div id="copyright">
-	        	<p>Copyright &copy; 2018.FourReal All rights reserved.<a href="#"><img src="images/logo6.png"></a></p>
-	        </div><!-- END copyright--> 
+	      </div>
+	      <div style="height:30px;"></div>
+	      <div class="copyright">
+	      
+	      
+	        <p>Copyright &copy; 2018.FourReal All rights reserved.</p>
+	        <!--  <li><img src="images/logo6.png"></li> -->
+	        
+	      </div><!-- END copyright--> 
 	        <div class="end"></div>
-        </div><!-- END footer-wrap -->
+       <!-- END footer-wrap -->
 	</div><!-- END footer-->
 
 

@@ -14,6 +14,11 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+ 	<style type="text/css">
+ 		button{
+ 			background-color:#FFC0CB;
+ 		}
+ 	</style>
 </head>
 <body >
 
@@ -25,13 +30,13 @@
             <p class="your-title">
                 <span >
                     <img src="${user.touxiang }"/>
-                    <br>
-                    <button><s:a action="user_editUI">修改个人信息</s:a></button>
                 </span>
                 <span class="your-name">
-                   <span class="fa fa-user-o"> 用户名:</span> ${user.name} 
-                   <span class="fa fa-bookmark-o"style="margin-left:40px"> 积分:</span>123
-                   <span class="fa fa-rmb"style="margin-left:40px"> 余额:</span>123
+                   <span class="fa fa-user-o" style="color:#CD9B9B;"> 用户名:</span><s:a action="user_editUI" style="cursor:pointer;color:#CD9B9B;"> ${user.name}</s:a> <br>
+                   
+                   <span class="fa fa-bookmark-o" style="margin-top:10px;color:#CD9B9B;"> 积分:</span>123<br>
+                   <span class="fa fa-rmb" style="margin-top:10px;color:#CD9B9B;"> 余额:</span>123<br>
+                   <span class="fa fa-shopping-cart" style="margin-top:10px;color:#CD9B9B;"><a href="${pageContext.request.contextPath}/trolley_list.action" target="right" style="color:#CD9B9B;">我的购物车</a></span>
                 </span>
             </p>
 
@@ -204,7 +209,7 @@
         <!--内容区++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
         <div class="content1">
             <div class="content-photo">
-                <h4 style="text-align: center"><s:a action="photo_getAllPhotos">我的照片</s:a></h4>
+                <h4 style="text-align: center"><s:a action="photo_getAllPhotos" style="color:#000;">我的照片</s:a></h4>
                 
 
                 
@@ -231,7 +236,7 @@
         </div>
         <div class="content2">
             <div class="content-album">
-                <h4 style="text-align: center"><s:a action="albumbook_list">我的相册</s:a></h4>
+                <h4 style="text-align: center"><s:a action="albumbook_list" style="color:#000;">我的相册</s:a></h4>
                 
 
 

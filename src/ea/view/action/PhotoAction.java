@@ -100,7 +100,7 @@ public class PhotoAction extends BaseAction<Photo>{
 			System.out.println("getAllBgps:page++++++++++++"+getPageNow());
 	//		Long userid=(long)1;
 			List<Photo> photoList=photoService.findAllPhotosByUserid(pageNow,pageSize,user.getId());
-			if(photoList.size()>0) {   //bgp列表
+			if(photoList.size()>0) {   
 				ActionContext.getContext().put("photoList", photoList);
 				PageShow page=new PageShow(pageNow,photoService.findPhotoSizeByUserid(user.getId()),pageSize);
 	//			Map request=(Map) ActionContext.getContext().get("request");

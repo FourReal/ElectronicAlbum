@@ -39,7 +39,7 @@ public class Installer {
 		
 		//===============================================
 		//保存权限数据
-		Privilege menu,menu1,menu2,menu3,menu4,menu5;
+		Privilege menu,menu1,menu2,menu3,menu4,menu5,menu6;
 		
 		//-------------------
 		menu=new Privilege("系统管理",null,null);
@@ -69,20 +69,24 @@ public class Installer {
 		session.save(new Privilege("用户删除","/user_delete",menu3));
 		session.save(new Privilege("用户添加","/user_add",menu3));
 		session.save(new Privilege("用户修改","/user_edit",menu3));
-		session.save(new Privilege("初始化密码","/user_initPassword",menu3));
-		
+		session.save(new Privilege("管理员修改","/user_Aedit",menu3));	
+		session.save(new Privilege("初始化密码","/user_initPassword",menu3));	
 		
 		//-------------------------
 		menu=new Privilege("你的一切",null,null);
-		menu1=new Privilege("个人信息","/user_personal",menu);
+		menu1=new Privilege("个人中心","/user_personal",menu);
 		menu2=new Privilege("我的照片","/photo_getAllPhotos",menu);
 		menu3=new Privilege("我的相册","/albumbook_list",menu);
 		menu4=new Privilege("相册制作","/user_makeAlbum",menu);
+		menu5=new Privilege("我的购物车","/trolley_list",menu);
+		menu6=new Privilege("我的订单","/trolley_oldlist",menu);
 		session.save(menu);
 		session.save(menu1);
 		session.save(menu2);
 		session.save(menu3);
 		session.save(menu4);
+		session.save(menu5);
+		session.save(menu6);
 		
 	
 		

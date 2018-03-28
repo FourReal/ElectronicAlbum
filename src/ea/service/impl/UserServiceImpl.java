@@ -1,5 +1,7 @@
 package ea.service.impl;
 
+import java.util.List;
+
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,6 +12,7 @@ import ea.service.UserService;
 
 @Service
 @Transactional
+@SuppressWarnings("unchecked")
 public class UserServiceImpl extends DaoSupportImpl<User> implements UserService{
 
 	public User findByLoginNameAndPassword(String loginName, String password) {
@@ -31,6 +34,16 @@ public class UserServiceImpl extends DaoSupportImpl<User> implements UserService
 				.setParameter(0, loginName)
 				.uniqueResult();
 	
+	}
+
+
+
+	
+	@Override
+	public List<User> getAllpublic() {
+		return (List<User>) getSession().createQuery(
+				"FROM User u WHERE u.sign=?"
+				).setParameter(0, "1").list();
 	}
 
 	

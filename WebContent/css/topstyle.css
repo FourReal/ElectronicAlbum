@@ -1,37 +1,95 @@
-body{margin:0;padding:0;font-family:arial,tahoma,'Microsoft Yahei','\5b8b\4f53',sans-serif;;}
-.wraper{ width:100%; text-align:center;background:#cd9b9b;}
+body{margin:0;padding:0;font-family:arial,tahoma,'Microsoft Yahei','\5b8b\4f53',sans-serif;}
+.wraper{ width:100%;background:#cd9b9b;height:100px;
+
+}
 .th{
-	width:60;margin:0 auto;
+	width:80%;margin:auto;
+	min-width:960px;
 }
 .logodiv{
-	float:left;overflow:hidden;
-}
-.nav{height:86px; background:#cd9b9b; overflow:hidden;}
-.nav-item{ margin:10px;padding:0;list-style:none; float:left; width:100px; height:86px; line-height:86px; text-align:center; font-size:18px; z-index:1}
- .nav-item a{ text-decoration:none;display:block; color:#fff;}
-.nav-item a:hover{ color:#fff} 
-.header1{
+	float:left;
+	width:30%;
+	padding-left:13%;
+	overflow:hidden;
 	
-	text-align:center;
-    border:0px;;
+}
+#nav{
+	height:86px;
+	background:#cd9b9b;
+	margin-left:100px; 
+	width:70%;
+	overflow:hidden;
+	
+	  }
+.nav-item{
+	
+	padding:0;
+	list-style:none; 
+	width:120px; 
+	height:86px; 
+	line-height:86px;
+ 	display:inline-block;
+ 	float:left;
+	font-size:18px; 
+	/* z-index:1; */
+	}
+ .nav-item a{
+  text-decoration:none;
+  display:block; 
+  color:#fff;
+  }
+.nav-item a:hover{
+	color:#fff
+	} 
+	#nav li a:focus{outline:none;}
+	#nav li a:hover {
+  text-decoration: none;
+/*   box-shadow: 0 0 0 1px rgba(200,125,25,1) inset;
+  background-image: -webkit-linear-gradient(top,#a65a12,#7e3106);
+  background-image: -moz-linear-gradient(top,#a65a12,#7e3106);
+  background-image: -o-linear-gradient(top,#a65a12,#7e3106);
+  background-image: -ms-linear-gradient(top,#a65a12,#7e3106);
+  background-image: linear-gradient(top,#a65a12,#7e3106); */
+}
+#nav li a:active,
+#nav li a.active {
+  color: #e6c35c;
+/*   box-shadow: 0 0 0 1px rgba(92,92,92,.8) inset;
+  background-image: -webkit-linear-gradient(top,#070707,#252525);
+  background-image: -moz-linear-gradient(top,#070707,#252525);
+  background-image: -o-linear-gradient(top,#070707,#252525);
+  background-image: -ms-linear-gradient(top,#070707,#252525);
+  background-image: linear-gradient(top,#070707,#252525); */
+}
+	
+.header1{
+	width:100%;
+    border:0px;
     height:40px;
     background-color:#efefef;
     font-family: DIN Bold, sans-serif; 
 }
-
+.daohang{
+	width:1100px;
+	margin:0 auto;
+	
+	
+	
+}
+.right{
+	float:right;
+	
+	
+}
 .header1-ul{
     list-style:none;    
     overflow:hidden;
   	margin-top:10px;
     margin-right:7px;
-    float:right;
 }
  .header1-ul>li{
     float:right;
     height:30px;
-     
-
-        
 } 
 .header1-ul>li>a{
     color:#000000;
@@ -42,3 +100,4 @@ body{margin:0;padding:0;font-family:arial,tahoma,'Microsoft Yahei','\5b8b\4f53',
     margin-right:7px;
    
 }
+

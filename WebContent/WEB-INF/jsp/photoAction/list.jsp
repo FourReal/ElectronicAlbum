@@ -29,38 +29,6 @@
 	<%@ include file="/WEB-INF/jsp/public/commons.jspf" %>
 </head>
 <body>
-	<%-- <div id="page">
-		<div id="container">
-			<!-- Start Advanced Gallery Html Containers -->
-			<div id="gallery" class="content">
-				<div id="controls" class="controls"></div>
-				<div class="slideshow-container">
-					<div id="loading" class="loader"></div>
-					<div id="slideshow" class="slideshow"></div>
-				</div>
-				<div id="caption" class="caption-container"></div>
-			</div>
-
-			<div id="thumbs" class="navigation">
-				<ul class="thumbs noscript">
-					<s:iterator value="#photoList">
-						<li><!-- 每一张照片-->
-							<a class="thumb" name="leaf" href="/ElectronicAlbum/imgs/${PName}" title="标题 #0">
-								<img src="/ElectronicAlbum/imgs/${PName}" height="75px" width="75px" alt="标题 #0" />
-							</a>
-							<div class="caption">					
-								<div class="download">
-									<div class="image-desc">描述</div>
-									<a href="/ElectronicAlbum/imgs/${PName}">下载原图</a>
-								</div>	
-							</div>
-						</li>
-					</s:iterator>
-				</ul>
-			</div><!-- #thumbs -->
-			<div style="clear: both;"></div>
-		</div><!-- #container -->
-	</div><!-- #page --> --%>
 	
 <div class="main">
 
@@ -110,34 +78,6 @@
             }
         </script>
         
-<%-- 		<div class="container" >
-    
-		
-			
-				<s:set name="page" value="#session.pagePhoto"></s:set>  
-       				当前是第<span style="font-weight:bold;"><s:property value="#session.pagePhoto.pageNow" /></span>页，
-       				共<span  style="font-weight:bold;"><s:property value="#session.pagePhoto.totalPage"/></span>页  
-       				<s:if test="#session.pagePhoto.hasFirst">  
-           				<s:a action="photo_getPhotos?dosign=1" class="page-info">首页</s:a>  
-       				</s:if>  
-       				<s:if test="#session.pagePhoto.hasPre">  
-           				<s:a action="photo_getPhotos?dosign=2" class="page-info">上一页</s:a>  
-       				</s:if>  
-       				<s:if test="#session.pagePhoto.hasNext">  
-           				<s:a action="photo_getPhotos?dosign=3" class="page-info">下一页</s:a>  
-       				</s:if>  
-        				<s:if test="#session.pagePhoto.hasLast">  
-           				<s:a action="photo_getPhotos?dosign=4" class="page-info">尾页</s:a>  
-       				</s:if>  
-		</div><!-- 页码 --> --%>
-		
-	<!-- 	
-		<div class="zzsc-container">
-	<div class="container" style="text-align: center">
-		<section id="ampager">
-			<div id="ampagination"></div>
-		</section>
-	</div> -->
 </div>
 		
 </div><!--.main-->

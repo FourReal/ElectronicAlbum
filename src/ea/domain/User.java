@@ -22,6 +22,7 @@ public class User implements java.io.Serializable{
 	private Set<Photo> photos=new HashSet<Photo>(); //用户拥有的照片
 	private Set<Album> albums=new HashSet<Album>(); //用户收藏的相册		
 	private Trolley trolley;		//用户的购物车
+	private String sign;			//标记用户（0:管理员；1：普通用户）
 	
 	private Set<AlbumBook> albumbooks=new HashSet<AlbumBook>();		//用户制作的相册
 	
@@ -197,6 +198,14 @@ public class User implements java.io.Serializable{
 
 	public void setTouxiang(String touxiang) {
 		this.touxiang = touxiang;
+	}
+
+	public String getSign() {
+		return sign;
+	}
+
+	public void setSign(String sign) {
+		this.sign = sign;
 	}
 	
 	

@@ -1,6 +1,8 @@
 package ea.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -55,10 +57,14 @@ public class Privilege implements java.io.Serializable{
 	public void setParent(Privilege parent) {
 		this.parent = parent;
 	}
+
 	public Set<Privilege> getChildren() {
 		return children;
 	}
+
 	public void setChildren(Set<Privilege> children) {
 		this.children = children;
 	}
+
+	
 }

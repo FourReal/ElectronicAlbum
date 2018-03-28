@@ -14,6 +14,19 @@
     <constant name="struts.multipart.maxSize" value="5242880"/>
     
     <package name="demo1" extends="struts-default,json-default" >
+        
+        <interceptors>
+            <!-- 声明拦截器 -->
+            <interceptor name="checkPrivilege" class="ea.util.CheckPrivilegeInterceptor">
+            </interceptor>
+            <!-- 重新定义默认的拦截器栈 -->
+            <interceptor-stack name="defaultStack">
+                <interceptor-ref name="checkPrivilege"></interceptor-ref>
+                <interceptor-ref name="defaultStack"></interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+        
+        
         <!-- 全局的Result结果配置 -->
         <global-results>
             <result name="loginUI">/WEB-INF/jsp/userAction/loginUI.jsp</result>

@@ -156,7 +156,17 @@ public class UserAction extends BaseAction<User>{
 	
 	/** 列表*/
 	public String list() throws Exception{
-		List<User> userList=userService.findAll();
+		User user=(User) ActionContext.getContext().getSession().get("user");
+		List<User> userList;
+		if(user.isAdmin())
+		{
+			userList=userService.findAll();
+		}
+		else
+		{
+			userList=userService.getAllpublic();
+		}
+		
 		ActionContext.getContext().put("userList", userList);
 		return "list";
 	}
@@ -199,6 +209,11 @@ public class UserAction extends BaseAction<User>{
 			Long[] ids= {(long) 1};
 			List<Role> roleList=roleService.getByIds(ids);
 			model.setRoles(new HashSet<Role>(roleList));
+			model.setSign("1");
+			Trolley trolley=new Trolley();
+			trolley.setUser(model);
+			trolleyService.save(trolley);
+			model.setTrolley(trolley);
 			userService.save(model);
 			return "loginUI";
 		}
@@ -220,7 +235,11 @@ public class UserAction extends BaseAction<User>{
 //		user.setDescription(model.getDescription());
 //		//保存到数据库中
 //		userService.save(user);
-		
+		model.setSign("1");
+		Trolley trolley=new Trolley();
+		trolley.setUser(model);
+		trolleyService.save(trolley);
+		model.setTrolley(trolley);
 		userService.save(model);
 		
 		return "toList";
@@ -235,39 +254,6 @@ public class UserAction extends BaseAction<User>{
 	}
 	
 	/** 修改*/
-	/*public String edit() throws Exception{
-		
-		//从数据库获取原对象
-		User user=(User)ActionContext.getContext().getSession().get("user");
-		
-		System.out.println("怎么还不成功啊！！！！________________________"+user);
-		System.out.println("怎么还不成功啊！！！！________________________"+model);
-		//设置修改的属性
-		//设置修改的属性
-		ActionContext context=ActionContext.getContext();
-		Map<String, Object>map=context.getParameters();
-		Set<String> keys=map.keySet();
-		for(String key:keys) {
-			Object[] obj=(Object[]) map.get(key);
-			System.out.println(Arrays.toString(obj));
-		}
-		
-		user.setName(model.getName());
-		user.setPhoneNumber(model.getPhoneNumber());
-		user.setEmail(model.getEmail());
-		if(user.getTrolley()==null) {
-			Trolley trolley=new Trolley();
-			trolley.setUser(user);
-			trolleyService.save(trolley);
-			user.setTrolley(trolley);
-		}
-		//保存到数据库
-		
-		System.out.println("怎么还不成功啊！！！！________________________"+model.getName());
-		userService.update(user);
-		return "personal";
-	}
-	*/
 	public String edit() throws Exception{
 		String updatadate=new SimpleDateFormat("yyyyMMddHHmmss")
 				.format(new Date());
@@ -312,14 +298,6 @@ public class UserAction extends BaseAction<User>{
 		user.setName(model.getName());
 		user.setPhoneNumber(model.getPhoneNumber());
 		user.setEmail(model.getEmail());
-		
-		if(user.getTrolley()==null) {
-			Trolley trolley=new Trolley();
-			trolley.setUser(user);
-			trolleyService.save(trolley);
-			user.setTrolley(trolley);
-		}
-		
 		//保存到数据库
 		System.out.println("怎么还不成功啊！！！！________________________"+model.getName());
 		userService.update(user);
@@ -365,6 +343,10 @@ public class UserAction extends BaseAction<User>{
 		//保存到数据库
 		
 		List<Role> roleList=roleService.getByIds(roleIds);
+		if(roleIds.length>1)
+			user.setSign("0");
+		else
+			user.setSign("1");
 		user.setRoles(new HashSet<Role>(roleList));
 //		System.out.println("怎么还不成功啊！！！！________________________"+model.getName());
 		userService.update(user);
@@ -539,25 +521,7 @@ public class UserAction extends BaseAction<User>{
 	 * @return
 	 */
 	public String makeAlbum()throws Exception{
-//		if(model.getId()!=null)
-//		{
-//			System.out.println("makeAlbum++++++++++"+model.getId());
-////			List<AlbumBgp> modelBgps=albumService.findAlbumBgpsByAlbumid(BgppageNow, BgppageSize, model.getId());
-////			System.out.println("MakeAlbum+++++++++++"+modelBgps);
-////			if(modelBgps.size()>0)
-////			{
-////				ActionContext.getContext().put("modelBgps", modelBgps);
-////				PageShow page=new PageShow(BgppageNow,albumService.findAlbumBgpSizeByAlbumid(model.getId()),BgppageSize);
-////
-////				ActionContext.getContext().put("pageAlbumBgp", page);
-////			}
-//			
-//			List<AlbumBgp> modelBgps=albumService.findAllbgByAlbumId(model.getId());
-//			if(modelBgps.size()>0)
-//				ActionContext.getContext().put("modelBgps", modelBgps);
-//		}
-//		getAllPhotos();
-//		Templist();	
+
 		System.out.println("MakeAlbum:model:================="+getAlbumId());
 		List<AlbumBgp> modelBgps=albumService.findAllbgByAlbumId((long)this.getAlbumId());
 		ActionContext.getContext().getSession().put("editAlbumBookid", null);

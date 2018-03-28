@@ -46,7 +46,8 @@ public class TrolleyAction extends BaseAction<Trolley>{
 //		System.out.println("TrolleyAction:user======================="+user.getTrolley().getId());
 		List<Order> onOrderList=trolleyService.getonOrdersByUserId(user.getTrolley().getId());
 		ActionContext.getContext().put("onOrderList", onOrderList);
-		ActionContext.getContext().getSession().put("totalprice", null);  //未选择订单时，将总价初始化为null		
+		ActionContext.getContext().getSession().put("totalprice", null);  //未选择订单时，将总价初始化为null	
+		ActionContext.getContext().getSession().put("payorders", null);		//初始化支付订单为null
 		return "list";
 	}
 	

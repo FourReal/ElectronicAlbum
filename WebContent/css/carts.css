@@ -27,10 +27,11 @@ a:hover{
 }
 
 .daohanglan{
-	 position: relative;
+	position: relative;
     width: 1200px;
+    padding-top:20px;
     margin: 0 auto;
-    height:100px;
+    height:80px;
 	
 }
 .logodis{

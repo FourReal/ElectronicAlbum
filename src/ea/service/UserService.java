@@ -1,5 +1,7 @@
 package ea.service;
 
+import java.util.List;
+
 import ea.base.DaoSupport;
 import ea.domain.User;
 
@@ -13,5 +15,6 @@ public interface UserService extends DaoSupport<User>{
 	 */
 	User findByLoginNameAndPassword(String loginName, String password);
 	User findByLoginName(String loginName);
+	List<User> getAllpublic();
 
 }

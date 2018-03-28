@@ -1,0 +1,50 @@
+<link rel="stylesheet" href="css/shouye.css">
+<script   src="js/modernizr-custom-v2.7.1.min.js"></script>
+<link href="css/reset.css" rel="stylesheet" type="text/css">
+<script src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<link href="css/topstyle.css" rel="stylesheet" type="text/css" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/foot.css">
+<script>
+	$(document).ready(function(){
+var $miaobian=$('.Xcontent08>div');
+var $huantu=$('.Xcontent06>img');
+var $miaobian1=$('.Xcontent26>div');
+$miaobian.mousemove(function(){miaobian(this);});
+$miaobian1.click(function(){miaobian1(this);});
+function miaobian(thisMb){
+	for(var i=0; i<$miaobian.length; i++){
+		$miaobian[i].style.borderColor = '#dedede';
+	}
+	thisMb.style.borderColor = '#cd2426';
+
+	$huantu[0].src = thisMb.children[0].src;
+}
+function miaobian1(thisMb1){
+	for(var i=0; i<$miaobian1.length; i++){
+		$miaobian1[i].style.borderColor = '#dedede';
+	}
+//		thisMb.style.borderColor = '#cd2426';
+	$miaobian.css('border-color','#dedede');
+	thisMb1.style.borderColor = '#cd2426';
+	$huantu[0].src = thisMb1.children[0].src;
+}
+		$(".Xcontent33").click(function(){
+		var value=parseInt($('.input').val())+1;
+		$('.input').val(value);
+	})
+
+	$(".Xcontent32").click(function(){	
+		var num = $(".input").val()
+		if(num>0){
+			$(".input").val(num-1);
+		}			
+		
+	})
+
+	})
+</script>

@@ -24,4 +24,7 @@ public class HomeAction extends ActionSupport{
 	public String right() throws Exception{
 		return "right";
 	}
+	public String about() throws Exception{
+		return "about";
+	}
 }

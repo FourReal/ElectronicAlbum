@@ -17,6 +17,7 @@
          <property name="name" />
          <property name="touxiang" />
          <property name="gender" />
+         <property name="sign" />
          <property name="phoneNumber" />
          <property name="email" />
          <property name="description" />
