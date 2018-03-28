@@ -58,10 +58,6 @@ a {
 				method="post">
 				<input type="file" name="image" value="点击选择图片" />
 				<input type="submit" value="上传" />
-				<s:a action="album_make?id=%{id}"
-					style="margin-left:20px;color:#008cd5">添加相册背景图</s:a>
-				<s:a action="user_addalbum?id=%{id}"
-					style="margin-left:20px;color:#008cd5">收藏该相册</s:a>
 			</s:form>
 		</div>
 	</div>

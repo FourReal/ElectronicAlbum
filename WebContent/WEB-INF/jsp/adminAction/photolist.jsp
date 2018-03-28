@@ -24,19 +24,51 @@
 			document.write('<style>.noscript { display: none; }</style>');
 		</script>
 	<%@ include file="/WEB-INF/jsp/public/commons.jspf" %>
+	<style type="text/css">
+		form {
+		  position: relative;
+		  width: 300px;
+		}
+		.d1 input {
+		  width: 95%;
+		  height: 42px;
+		  padding-left: 10px;
+		  border: 2px solid #cd9b9b;
+		  border-radius: 3px;
+		  outline: none;
+		  background: #FFFFFF;
+		  color: #9E9C9C;
+		}
+		.d1 button {
+		  position: absolute; 
+		  top: 0;
+		  right: 0px;
+		  width: 50px;
+		  height: 42px;
+		  border: none;
+		  background: #cd9b9b;
+		  border-radius: 0 3px 3px 0;
+		  cursor: pointer;
+		
+		  margin-right:1px;
+		  color:#FFFFFF;
+		  font-size:16px;
+		  
+		}
+	</style>
 </head>
 <body>
 	
 <div class="main">
 	<div class="main-inner body-width">
-		<div>
+		<div class="search d1">
 			<s:form action="photo_adminfindByUserid">
 				<s:hidden name="id"></s:hidden>
 				<font color="red">
 					<s:fielderror/>
 				</font>
-				<s:textfield name="userid" cssClass="InputStyle" placeholder="用户id" />
-				<s:submit value="查找"></s:submit>
+				<s:textfield name="searchId" cssClass="InputStyle" placeholder="用户id" />
+				<button type="submit">查找</button>
 			</s:form>
 		</div>
 		

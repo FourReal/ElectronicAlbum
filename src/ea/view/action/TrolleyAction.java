@@ -31,6 +31,7 @@ import net.sf.json.JSONObject;
 
 @Controller
 @Scope("prototype")
+@SuppressWarnings("unchecked")
 public class TrolleyAction extends BaseAction<Trolley>{
 	
 	private Order orderget;		//用于接受页面传送过来的order对象
@@ -45,6 +46,7 @@ public class TrolleyAction extends BaseAction<Trolley>{
 //		System.out.println("TrolleyAction:user======================="+user.getTrolley().getId());
 		List<Order> onOrderList=trolleyService.getonOrdersByUserId(user.getTrolley().getId());
 		ActionContext.getContext().put("onOrderList", onOrderList);
+		ActionContext.getContext().getSession().put("totalprice", null);  //未选择订单时，将总价初始化为null		
 		return "list";
 	}
 	
@@ -122,7 +124,7 @@ public class TrolleyAction extends BaseAction<Trolley>{
 	
 	
 	/**
-	 * 完成购物车中商品的购买
+	 * 完成购物车中商品的下单
 	 */
 	public String done() throws Exception{
 		HttpServletRequest request = ServletActionContext.getRequest();
@@ -140,29 +142,61 @@ public class TrolleyAction extends BaseAction<Trolley>{
 		System.out.println("Done========"+data);
 		JSONArray result=JSONArray.fromObject(data);
 		Long [] getids =new Long[result.size()];
+		float[] prices=new float[result.size()];
 		int j=0;
+		float totalprice=0;
 		if(result.size()>0) {
 			for(int i=0;i<result.size();i++) {
 				JSONObject orderobj=(JSONObject) result.get(i);
-				getids[j++]=Long.parseLong(orderobj.getString("id"));
+				getids[j]=Long.parseLong(orderobj.getString("id"));
+				String price=orderobj.getString("price");
+				System.out.println("Trolley:price===++++="+price.substring(1));
+				price=price.substring(1);
+				prices[j]=Float.parseFloat(price);
+				j++;
+				System.out.println("Trolley:prices========"+prices[j-1]);
 			}
 		}
-//		for(int i=0;i<getids.length;i++)
-//		{
-//			System.out.println(getids[i]);
-//		}
-		Long[] ids= {(long)12,(long)16,(long)17};
+		for(int i=0;i<prices.length;i++)
+		{
+			totalprice+=prices[i];
+		}
+		ActionContext.getContext().getSession().put("totalprice", totalprice);
 		String updatadate=new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
 		List<Order> orders=orderService.getByIds(getids);
-		for( Order o:orders)
+		for(int i=0;i<orders.size();i++)
 		{
-			o.setSign("1");
-			o.setRemark(updatadate);
-			orderService.update(o);
+			int count=(int) (prices[i]/(orders.get(i).getAlbumBook().getAlbum().getPrice()));		//计算订单的数量
+			orders.get(i).setRemark(updatadate);
+			orders.get(i).setCount(count);
+			orders.get(i).setTotalprice(prices[i]);
+			orderService.update(orders.get(i));
 		}
-		return "toList";
+		System.out.println("payorders========="+orders);
+		ActionContext.getContext().getSession().put("payorders", orders);
+//		for( Order o:orders)
+//		{
+//			o.setSign("1");
+//			o.setRemark(updatadate);
+//			orderService.update(o);
+//		}
+//		System.out.println("开始to  pay");
+		return "topay";
 	}
 
+	/**
+	 * 完成订单的支付
+	 */
+	public String pay() throws Exception{
+		
+		List<Order> orders=(List<Order>) ActionContext.getContext().getSession().get("payorders");
+		for(Order o:orders)
+		{
+			o.setSign("1");
+			orderService.update(o);
+		}
+		return "toOldList";
+	}
 	
 	
 	public Order getOrderget() {

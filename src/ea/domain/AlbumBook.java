@@ -6,7 +6,7 @@ import java.util.Set;
 public class AlbumBook implements java.io.Serializable{
 	private Long id;			//相册id
 	private	String name="新建相册";		//相册名字
-	private String description;	//相册描述
+	private String description="这是我新建的相册";	//相册描述
 	
 	private Album album;		//使用的相册模板
 	private User madeuser;	//制作人信息；

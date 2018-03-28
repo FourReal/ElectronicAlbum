@@ -12,6 +12,8 @@
     <link type="text/css" href="css/personal.css" rel="stylesheet">
     <!--bootstrap-->
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body >
 
@@ -19,16 +21,17 @@
     <div class="container">
         <!--头部：头像，时钟-->
         <div class="your-brief-intro" style="position: relative">
-            <h3>个人中心</h3>
+            <h3><span class=" fa fa-user-circle"></span> 个人中心</h3>
             <p class="your-title">
                 <span >
-                	<img src="${user.touxiang }"/>
-                     <!-- <img src="img/menu-top.jpg"/> -->
+                    <img src="${user.touxiang }"/>
                     <br>
                     <button><s:a action="user_editUI">修改个人信息</s:a></button>
                 </span>
                 <span class="your-name">
-                    ${user.name}
+                   <span class="fa fa-user-o"> 用户名:</span> ${user.name} 
+                   <span class="fa fa-bookmark-o"style="margin-left:40px"> 积分:</span>123
+                   <span class="fa fa-rmb"style="margin-left:40px"> 余额:</span>123
                 </span>
             </p>
 
@@ -198,20 +201,19 @@
             </div>
         </div>
 
-        <!--内容区-->
+        <!--内容区++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
         <div class="content1">
             <div class="content-photo">
                 <h4 style="text-align: center"><s:a action="photo_getAllPhotos">我的照片</s:a></h4>
-                <p style="font-size: 14px;text-align: right">（鼠标悬浮可预览照片描述）</p>
-<!--                 <a href="#" class="add-photo">
-                    <button>添加照片</button>
-                </a> -->
+                
+
+                
                 <div class="zzsc-container">
                     <div class="container mt50">
                         <div class="row">
                         	<s:iterator value="#photoList">
 							  	<div class="col-md-4">
-	                                <div class="" style="height:200px;width:100%;">
+	                                <div class="" style="height:200px;width:100%;margin-top:20px">
 	                                    <img src="/ElectronicAlbum/imgs/${PName}" alt="" style="height:100%;width:100%;">
 
 	                                </div>
@@ -227,68 +229,39 @@
                 </div>
             </div>
         </div>
-        
         <div class="content2">
             <div class="content-album">
-                <h4 style="text-align: center"><s:a action="albumbook_list">
-                    我的相册</s:a>
-                </h4>
-                <p style="font-size: 14px;text-align: right">（点击可预览翻页相册）</p>
-                <a href="#" class="add-album">
-                    <button><s:a>添加相册</s:a></button>
-                </a>
+                <h4 style="text-align: center"><s:a action="albumbook_list">我的相册</s:a></h4>
+                
 
-                <div>
-                    <section class="content">
-                        <div class="grid grid--effect-castor col-md-4 col-sm-2">
-                            <a href="#" class="grid__item grid__item--c1  ">
-                                <div class="stack">
-                                    <div class="stack__deco"></div>
-                                    <div class="stack__deco"></div>
-                                    <div class="stack__deco"></div>
-                                    <div class="stack__deco"></div>
-                                    <div class="stack__figure">
-                                        <img class="stack__img" src="img/tour03.jpg" alt="Image">
-                                    </div>
-                                </div>
-                                <div class="grid__item-caption">
-                                    <h3 class="grid__item-title">相册类别</h3>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="grid grid--effect-castor col-md-4 col-sm-2">
-                            <a href="#" class="grid__item grid__item--c2">
-                                <div class="stack">
-                                    <div class="stack__deco"></div>
-                                    <div class="stack__deco"></div>
-                                    <div class="stack__deco"></div>
-                                    <div class="stack__deco"></div>
-                                    <div class="stack__figure">
-                                        <img class="stack__img" src="img/tour03.jpg" alt="Image">
-                                    </div>
-                                </div>
-                                <div class="grid__item-caption">
-                                    <h3 class="grid__item-title">相册类别</h3>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="grid grid--effect-castor col-md-4 col-sm-2" >
-                            <a href="#" class="grid__item grid__item--c3">
-                                <div class="stack">
-                                    <div class="stack__deco"></div>
-                                    <div class="stack__deco"></div>
-                                    <div class="stack__deco"></div>
-                                    <div class="stack__deco"></div>
-                                    <div class="stack__figure">
-                                        <img class="stack__img" src="img/tour03.jpg" alt="Image">
-                                    </div>
-                                </div>
-                                <div class="grid__item-caption">
-                                    <h3 class="grid__item-title">相册类别</h3>
-                                </div>
-                            </a>
-                        </div>
-                    </section>
+
+                <div class="container mt50">
+                    <div class="row">
+
+                            <s:iterator value="#albumBookList" status="status">
+                            	<s:if test="#status.count<=3">
+		                        <div class="col-md-4">
+		                       
+		                        
+		                            
+			                           	<div class="grid__item-caption">
+			                                    <a class="grid__item-title" href="albumbook_list.action">${name}</a>
+			                            </div>
+		                                <div class="stack">
+
+		                                    <div class="stack__deco"></div>
+		                                    <div class="stack__figure">
+		                                        <a href="albumbook_list.action"><img class="stack__img" src="${album.coverAddr}" alt="Image" ></a>
+		                                    </div>
+		                                </div>
+		                                
+		                            
+		                            
+		                            
+		                        </div>
+                            </s:if>
+                            </s:iterator>
+                    </div>
                 </div>
             </div><!--//.content-album-->
         </div><!--//.content2-->

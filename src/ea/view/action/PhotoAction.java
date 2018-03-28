@@ -31,6 +31,8 @@ public class PhotoAction extends BaseAction<Photo>{
 	private int pageNow=1;   //动态改变 页面获取
     private int pageSize=14;    //固定不变
 	private int dosign=1;		//标记页面操作的动作类型
+	private Long searchId;		//进行查找操作时获取页面传送的用户id
+	
     
     private Map<String,String> phPath = new HashMap<String,String>();		//返回给makealb页面的相册导入事件的照片路径
 	
@@ -215,9 +217,11 @@ public class PhotoAction extends BaseAction<Photo>{
 	 */
 	public String adminfindByUserid() throws Exception{
 		//获取前台传送的数据
-		Long id=(long)4;
-		//
-		List<Photo> adminphotos=photoService.findPhotoByUserid(id);
+		List<Photo> adminphotos;
+		if(getSearchId()==null)
+			adminphotos=photoService.findAll();
+		else
+			adminphotos=photoService.findPhotoByUserid(getSearchId());
 		ActionContext.getContext().put("adminphotos", adminphotos);
 		return "adminlist";
 	}
@@ -255,5 +259,16 @@ public class PhotoAction extends BaseAction<Photo>{
 	public void setDosign(int dosign) {
 		this.dosign = dosign;
 	}
+
+
+	public Long getSearchId() {
+		return searchId;
+	}
+
+
+	public void setSearchId(Long searchId) {
+		this.searchId = searchId;
+	}
 		
+	
 }

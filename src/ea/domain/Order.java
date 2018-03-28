@@ -10,7 +10,7 @@ public class Order implements java.io.Serializable{
 	private String sign;		//标记订单是否完成：（未完成：0；完成：1）
 	private String remark;
 	
-	private Long totalprice;		//订单的总价
+	private float totalprice;		//订单的总价
 	
 	public Long getId() {
 		return id;
@@ -54,11 +54,12 @@ public class Order implements java.io.Serializable{
 	public void setSign(String sign) {
 		this.sign = sign;
 	}
-	public Long getTotalprice() {
+	public float getTotalprice() {
 		return totalprice;
 	}
-	public void setTotalprice(Long totalprice) {
+	public void setTotalprice(float totalprice) {
 		this.totalprice = totalprice;
 	}
+	
 	
 }

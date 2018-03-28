@@ -125,6 +125,7 @@
             <result name="oldlist" >/WEB-INF/jsp/trolleyAction/oldlist.jsp</result>
             <result name="edit" >/WEB-INF/jsp/orderAction/editUI.jsp</result>
             <result name="show" >/WEB-INF/jsp/trolleyAction/show.jsp</result>
+            <result name="topay" >/WEB-INF/jsp/userAction/zhifu.jsp</result>
             <result name="toOldList" type="redirectAction">trolley_oldlist</result>  
             <result name="toList" type="redirectAction">trolley_list</result>
             <result type="json">  

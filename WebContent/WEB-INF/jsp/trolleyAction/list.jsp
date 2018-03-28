@@ -15,8 +15,15 @@
 	$(function() {
 		$("#jiesuan").click(function() {
 			var CheckName = document.getElementsByName("checkname"); 
+			var total=document.getElementsByClassName("sum_price");
+			//for(var i=0;i<total.length;i++){
+			//	console.log(total[i].innerHTML);
+			//}
+			
 			console.log("点击成功！！！！");
-			//console.log(CheckName);
+	        var $inputVal = $(this).next('input');
+            $count = parseInt($inputVal.val())-1;
+           
 			var data=new Array();
 			var j=0;
 			var orders=[];
@@ -27,13 +34,15 @@
 				{
 					var order={};
 					order.id=CheckName[i].id;
-					
+					order.price=total[i].innerHTML;
+					//console.log(total[i].innerHTML);
 					orders.push(order);
 				}
 			}
 			//data.push(orders);
-			//console.log(data);
+			
 			var jsonString = JSON.stringify(orders);
+			console.log(jsonString);
 			$.ajax({
                 type : "post",
                 url : 'trolley_done.action',//触发的action
@@ -41,10 +50,10 @@
                 contentType: "application/json; charset=utf-8",  
                 success : function(d) {
 					alert("订单完成"); 
+					window.location.href="zhifu.jsp";
                 },
                 error : function(d) {
-                	alert("error");
-                    alert(d.responseText);
+         			alert("error");
                 }
 	        });
 
@@ -66,7 +75,7 @@
 	<img src="images/logogowuche.png" />
 	</div>
 	<div class="search d1">
-	<form>
+	  <form>
 	  <input type="text" placeholder="搜索从这里开始..." />
 	  <button type="submit">搜索</button>
 	  </form>
@@ -103,7 +112,7 @@
 				<li class="list_con">
 				<div class="list_img">
 				<s:a action="albumbook_output.action?albumId=%{albumBook.id}"><img src="${albumBook.album.coverAddr}"></s:a></div>
-				<div class="list_text"><a href="#">古色古香个人写真模板</a></div>
+				<div class="list_text">${ albumBook.description }</div>
 				</li>
 				<li class="list_price">
 				<p class="price">￥${ totalprice }</p>
@@ -134,8 +143,8 @@
 		<div class="bar-right">
 		
 		<div class="piece">已选商品<strong class="piece_num">0</strong>件</div>
-			<div class="totalMoney">共计: <strong class="total_text">0.00</strong></div>
-		<div class="calBtn"><a id="jiesuan" >结算</a></div>
+			<div class="totalMoney" id="zongjia">共计: <strong class="total_text" >0.00</strong></div>
+		<div class="calBtn"><a id="jiesuan">结算</a></div>
 	</div>
 	</div>
 </section>

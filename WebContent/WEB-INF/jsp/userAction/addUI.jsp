@@ -174,6 +174,13 @@
 <body>
 
 		<div id="wrapper" class="login-page">
+						<header class="htmleaf-header">
+			
+			<div class="htmleaf-links">
+				<a class="htmleaf-icon icon-htmleaf-home-outline" href="home_index.action" title="返回首页" target="_parent"><span>返回首页</span></a>
+				<a class="htmleaf-icon icon-htmleaf-arrow-forward-outline" href="#" onclick="history.go(-1)" title="返回上一页" target="_parent"><span> 返回上一页</span></a>
+			</div>
+		</header>
 		  <div id="login_form" class="form">
 		  
 		  	<s:form action="user_login" class="login-form">

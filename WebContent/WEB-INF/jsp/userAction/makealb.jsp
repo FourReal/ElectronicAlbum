@@ -16,7 +16,7 @@
 	<link rel="stylesheet" type="text/css" href="css/bookblock.css" />
 	<link rel="stylesheet" type="text/css" href="css/demo5.css" />
 	<link href="http://how2j.cn/study/css/bootstrap/3.3.5/bootstrap.min.css" rel="stylesheet">
-	
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 	<script type="text/javascript" src="${baseURL }/js/jquery.Huploadify.js"></script>
 	<script src="${baseURL }/js/jquery-ui.min.js"></script>
@@ -41,7 +41,7 @@
 				showUploadedSize:true,
 				removeTimeout:0,
 				fileObjName:'uploadify',  
-				buttonText:'从本地上传',
+				buttonText:'<span class="fa fa-upload"></span>从本地上传',
 				
 				uploader:'user_upload.action',
 				onUploadStart:function(){
@@ -530,7 +530,7 @@ ul li{list-style: none}
 <div class="panel panel-default" >
 	<div class="panel-heading" >
 		<div class="finishbtn" style="float:right;margin-right:10px">
-			<span id="submitbtn" class="btn btn-default">保存</span>
+			<span id="submitbtn" class="btn btn-default"><span class="	glyphicon glyphicon-floppy-save"></span> 保存</span>
 		</div>
 	</div>
   	<div class="panel-body" >
@@ -539,13 +539,12 @@ ul li{list-style: none}
         
         
         <!-- 左侧照片操作区域 -->
-        <div class="col-xs-2 ">
+        <div class="col-xs-2 " width="">
         	<div class="panel panel-danger">
 			  <div class="panel-heading">
-			  	<h5 style="display:none">选择图片</h5>
 			  		<div class="impbtngroup" align="center">
 						<button type="button"  id="fralb" class="btn btn-primary" data-toggle="modal" data-target="#ipfalbdia">
-						从相册导入</button>
+						<span class="fa fa-folder-o"> 从相册导入</span></button>
 						<span id="upload"></span> 
 					</div>
 			  </div>

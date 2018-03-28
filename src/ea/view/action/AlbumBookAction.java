@@ -26,6 +26,8 @@ import ea.domain.User;
 public class AlbumBookAction extends BaseAction<AlbumBook>{
 
 	private Long albumId;	//接受前台页面跟随action请求传送过来的数据
+	private Long searchId;	//根据用户id查找相册时获取页面传送的用户id
+	
 	
 	/** 相册书列表*/
 	public String list() throws Exception{
@@ -151,9 +153,11 @@ public class AlbumBookAction extends BaseAction<AlbumBook>{
 	 */
 	public String adminfindByUserid() throws Exception{
 		//获取前台传送的数据
-		Long id=(long)4;
-		//
-		List<AlbumBook> adminalbumbooks=albumBookService.getAlbumBooksByUserId(id);
+		List<AlbumBook> adminalbumbooks;
+		if(getSearchId()==null)
+			adminalbumbooks=albumBookService.findAll();
+		else
+			adminalbumbooks=albumBookService.getAlbumBooksByUserId(getSearchId());
 		ActionContext.getContext().put("adminalbumbooks", adminalbumbooks);
 		return "adminlist";
 	}
@@ -184,5 +188,15 @@ public class AlbumBookAction extends BaseAction<AlbumBook>{
 	public void setAlbumId(Long albumId) {
 		this.albumId = albumId;
 	}
+
+	public Long getSearchId() {
+		return searchId;
+	}
+
+	public void setSearchId(Long searchId) {
+		this.searchId = searchId;
+	}
+	
+	
 	
 }

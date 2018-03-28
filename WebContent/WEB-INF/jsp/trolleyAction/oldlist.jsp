@@ -99,14 +99,19 @@
 	</div>	
 	<div class="cartBox">
 	<div class="order_content">
-		<s:iterator value="#oldOrderList">
+		<s:iterator value="#oldOrderList" var="var">
 		<ul class="order_lists">
 			<li class="list_con">
 				${id}</li>
 				<li class="list_amount">${count}</li>
 				<li class="list_sum">${ totalprice }</li>
-				<li class="list_status">${ sign }</li>
-				<li class="list_time">${remark}&nbsp;</li>
+				<s:if test='#var.sign=="0"'>
+					<li class="list_status">未完成支付</li>
+				</s:if>
+				<s:if test='#var.sign=="1"'>
+					<li class="list_status">已完成支付</li>
+				</s:if>
+				<li class="list_time">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${remark}&nbsp;</li>
 				
 				<li class="list_op"><s:a action="trolley_olddelete?id=%{id}" onclick="return confirm('您确定要删除该订单吗？')" class="delete">删除</s:a></li>
 				<%-- <span><s:a action="trolley_editUI?id=%{id}" class="edit">编辑</s:a></span> --%>

@@ -12,7 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="${baseURL }/css/custom.css" />
 		<link rel="stylesheet" type="text/css" href="${baseURL }/css/buttons.css" />
 		<script src="${baseURL }/js/modernizr.custom.79639.js"></script>
-		
+		<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 		<style type="text/css">
 			.draggable {    
 			position: absolute;
@@ -29,10 +29,52 @@
 			.container{
 				height: 90%;
 			}
+			.button0 {
+				display: inline-block;
+				position: relative;
+				color: #888;
+				text-shadow: 0 1px 0 rgba(255,255,255, 0.8);
+				text-decoration: none;
+				text-align: center;
+				padding:8px 8px;
+				font-size: 12px;
+				font-weight: 700;
+				font-family: helvetica, arial, sans-serif;
+				border-radius: 4px;
+				border: 1px solid #bcbcbc;
+				cursor:pointer;
+				margin-left:10px;
+				-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+				box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+			
+				background-image: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
+				background-image: -moz-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
+				background-image: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
+				background-image: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
+				background-image: linear-gradient(top, rgba(255,255,255,1) 0%,rgba(239,239,239,1) 60%,rgba(225,223,226,1) 100%);
+			}
+
+			.button0:hover {
+				color: #555;
+			}
+			
+			.button0:active,.button:active:after,.button:active:before {
+				-webkit-box-shadow: none;
+				box-shadow: none;
+			}
+			
+			/* Back Button */
+			.button.back {
+				border-left: none;
+			}
+
+
+			
 		</style>
 	</head>
 	<body>
-	<button class="" onclick="history.go(-1)">返回</button>
+	<a href="#" onclick="history.go(-1)"><i class="fa fa-hand-o-left fa-2x" style="padding:10px;margin-left:10px" title="返回上一页"></i></a>
+	<a href="home_index.action"><i class="fa fa-home fa-2x" style="padding:10px" title="返回首页"></i></a>
 	
 		<div id="container" class="container">	
 			

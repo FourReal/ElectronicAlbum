@@ -426,8 +426,10 @@ public class UserAction extends BaseAction<User>{
 		User user=(User) ActionContext.getContext().getSession().get("user");
 		System.out.println("getAllBgps:user++++++++++++"+user.getId());
 		System.out.println("getAllBgps:page++++++++++++"+getPageNow());
-
-		List<Photo> photoList=photoService.findAllPhotosByUserid(1,6,user.getId());
+		List<AlbumBook> albumBookList=albumBookService.getAlbumBooksByUserId(user.getId());//查找用户相册
+		ActionContext.getContext().put("albumBookList", albumBookList);
+		
+		List<Photo> photoList=photoService.findAllPhotosByUserid(1,6,user.getId());//查找用户照片
 		ActionContext.getContext().put("photoList", photoList);
 		PageShow page=new PageShow(pageNow,photoService.findPhotoSizeByUserid(user.getId()),pageSize);
 

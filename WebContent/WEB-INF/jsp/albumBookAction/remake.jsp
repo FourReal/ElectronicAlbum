@@ -535,7 +535,6 @@ ul li{list-style: none}
 		<div class="finishbtn" style="float:right;margin-right:10px">
 			<span id="submitbtn" class="btn btn-default">保存</span>
 			<a href="albumbook_output.action?albumId=${id}" target="_parent" >
-			<span><input type="button" id="outputbtn" class="btn btn-default" value="导出"/></span>
 			</a>
 		</div>
 	</div>
