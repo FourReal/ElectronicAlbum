@@ -40,10 +40,7 @@ public class TrolleyAction extends BaseAction<Trolley>{
 	
 	/** 展示购物车未完成的订单*/
 	public String list() throws Exception{
-//		System.out.println("TrolleyAction:list===========================");
 		User user=(User) ActionContext.getContext().getSession().get("user");
-//		System.out.println("TrolleyAction:user======================="+user.getId());
-//		System.out.println("TrolleyAction:user======================="+user.getTrolley().getId());
 		List<Order> onOrderList=trolleyService.getonOrdersByUserId(user.getTrolley().getId());
 		ActionContext.getContext().put("onOrderList", onOrderList);
 		ActionContext.getContext().getSession().put("totalprice", null);  //未选择订单时，将总价初始化为null	
@@ -77,9 +74,7 @@ public class TrolleyAction extends BaseAction<Trolley>{
 	/**修改订单信息*/
 	public String editUI() throws Exception{
 		//准备回显数据
-//		System.out.println("TrolleyAction:editUI===="+model.getId());
 		Order order=orderService.getById(model.getId());
-//		System.out.println("TrolleyAction:edit======="+order.getId());
 		ActionContext.getContext().getValueStack().push(order);
 		return "edit";
 	}
@@ -90,7 +85,6 @@ public class TrolleyAction extends BaseAction<Trolley>{
 		Order order=orderService.getById(model.getId());
 		System.out.println("TrolleyAction:edit======="+model);
 		System.out.println("TrolleyAction:edit======="+model.getId());
-//		System.out.println("this:======"+getOrderget().getCount());
 		//设置修改的属性
 
 		ActionContext context=ActionContext.getContext();
@@ -98,11 +92,8 @@ public class TrolleyAction extends BaseAction<Trolley>{
 		int count1=Integer.parseInt(getCount());
 		System.out.println(getCount());
 		Long totalprice=count1*order.getAlbumBook().getAlbum().getPrice();
-//		String[] remark=(String[]) map.get("remark");
-//		System.out.println(this.remark);
 		order.setCount(count1);
 		order.setTotalprice(totalprice);
-//		order.setRemark();
 		orderService.update(order);
 		//保存到数据库	
 		return "toList";
@@ -175,13 +166,6 @@ public class TrolleyAction extends BaseAction<Trolley>{
 		}
 		System.out.println("payorders========="+orders);
 		ActionContext.getContext().getSession().put("payorders", orders);
-//		for( Order o:orders)
-//		{
-//			o.setSign("1");
-//			o.setRemark(updatadate);
-//			orderService.update(o);
-//		}
-//		System.out.println("开始to  pay");
 		return "topay";
 	}
 

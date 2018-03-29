@@ -62,32 +62,6 @@
 		width: 62%;
 	
 	}
-	/* .ItemBlockBoder select {
-		background: #FFF url('down-arrow.png') no-repeat right;
-		background: #FFF url('down-arrow.png') no-repeat right);
-		appearance:none;
-		-webkit-appearance:none;
-		-moz-appearance: none;
-		text-indent: 0.01px;
-		text-overflow: '';
-		width: 70%;
-		height: 35px;
-		line-height: 25px;
-		} */
-		}   
-	/* .button {
-	background: #E27575;
-	border: none;
-	padding: 10px 25px 10px 25px;
-	color: #FFF;
-	box-shadow: 1px 1px 5px #B6B6B6;
-	border-radius: 3px;
-	text-shadow: 1px 1px 1px #9E3F3F;
-	cursor: pointer;
-}
- .button:hover {
-	background: #CF7A7A;
-} */
 	</style>
 </head>
 <body>

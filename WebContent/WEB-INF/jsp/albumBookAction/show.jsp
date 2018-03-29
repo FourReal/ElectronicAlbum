@@ -94,8 +94,6 @@ a {
 <body>
 	<div class="shangchuan">
 		<div class="caozuos">
-			<%-- albumbook==${ albumBook }<br>
-			id==${ albumBook.id } --%>
 			<button type="button" id="addorder">加入购物车</button>||
 			<s:a action="order_add">下订单</s:a>
 		</div>
@@ -119,8 +117,6 @@ a {
 			</tbody>
 		</table>
 	</div>
-
-
 
 </body>
 </html>

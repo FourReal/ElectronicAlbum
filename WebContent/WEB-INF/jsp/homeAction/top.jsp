@@ -20,6 +20,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
  <link href="css/reset.css" rel="stylesheet" type="text/css"> 
 <link href="css/topstyle.css" rel="stylesheet" type="text/css" />
 <title>首页</title>
+ <script>
+window.onload = function(){
+
+	var oNav = document.getElementById('nav');
+	var aLi  = oNav.getElementsByTagName('a');
+
+	for( var i = aLi.length; i--;){
+
+		aLi[i].onclick = function(){
+			 for( var i = aLi.length; i--;){
+			 	aLi[i].className = '';
+			 }
+			 this.className = 'active';
+		}
+	}
+}
+	</script> 
 </head>
 <body>
 
@@ -27,7 +44,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="daohang">
 		<div class="right">
 				<ul class="header1-ul" style="float: right">
-					<li><a href="about.html" target="right">关于我们</a></li>
+					<li><a href="#">联系我们</a></li>
+					<li><a href="#">帮助</a></li>
 					<%
 						if (session.getAttribute("user") == null) {
 					%>
@@ -40,6 +58,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<%
 						} else {
 					%>
+						<li><a
+						href="${pageContext.request.contextPath}/trolley_list.action" target="right"
+						target="right">我的购物车</a></li>
 					<li><a
 						href="${pageContext.request.contextPath}/user_logout.action"
 						target="_parent">注销</a></li>
@@ -47,7 +68,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<%
 						}
 					%>
-
 				</ul>
 			</div>
 		</div>
@@ -56,13 +76,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="wraper"> 
 		<div class="th" >
 			<div class="logodiv">
-			
 				<a target="_parent" href="${pageContext.request.contextPath}/home_index.action"><img src="images/logo5.png" /></a>
 			
 			</div>
-			<div class="nav">
+			<div id="nav">
 				<ul>
-					<!-- <li class="nav-item"> -->
+					<%-- <li class="nav-item"><a href= "${pageContext.request.contextPath}/home_index.action" target="_top" class="active">首页</a></li> --%>
 					<li class="nav-item"><a href= "fengjing.jsp" target="right">旅游照片书</a></li>
 					<li class="nav-item"><a href="aiqing.jsp" target="right">爱情纪念册</a></li>
 					<li class="nav-item"><a href="baobao.jsp" target="right">宝宝成长册</a></li>

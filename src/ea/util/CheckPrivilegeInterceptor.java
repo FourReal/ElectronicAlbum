@@ -14,10 +14,7 @@ public class CheckPrivilegeInterceptor extends AbstractInterceptor{
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
 		
-//		System.out.println("------->之前");
-//		String result=invocation.invoke(); //放行
-//		System.out.println("------->之后");
-//		return result;
+
 		
 		//获取信息
 		User user=(User)ActionContext.getContext().getSession().get("user");
@@ -48,7 +45,6 @@ public class CheckPrivilegeInterceptor extends AbstractInterceptor{
 				return "noPrivilegeError";
 			}
 		}
-//		return invocation.invoke();
 		}
 		
 	}

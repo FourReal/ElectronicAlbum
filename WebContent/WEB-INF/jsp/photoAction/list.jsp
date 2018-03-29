@@ -95,48 +95,7 @@
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		   		<%-- <div class="container" >
-    			<table >
-		
-			<span style="color:#FF0000; ">
-				<s:set name="page" value="#session.pagePhoto"></s:set>  
-        		<tr style="padding:10px;">  
-        			<td style="float:right;">  
-        				当前是第<span style="font-weight:bold;"><s:property value="#session.pagePhoto.pageNow" /></span>页，
-        				共<span  style="font-weight:bold;"><s:property value="#session.pagePhoto.totalPage"/></span>页  
-        				<s:if test="#session.pagePhoto.hasFirst">  
-            				<s:a action="photo_getAllPhotos?pageNow=1" class="page-info">首页</s:a>  
-        				</s:if>  
-        				<s:if test="#session.pagePhoto.hasPre">  
-            				<s:a action="photo_getAllPhotos?pageNow=1" class="page-info">上一页</s:a>  
-        				</s:if>  
-        				<s:if test="#session.pagePhoto.hasNext">  
-            				<s:a action="photo_getAllPhotos?pageNow=2" class="page-info">下一页</s:a>  
-        				</s:if>  
-         				<s:if test="#session.pagePhoto.hasLast">  
-            				<s:a action="photo_getAllPhotos?pageNow=2" class="page-info">尾页</s:a>  
-        				</s:if>  
-     				</td>  
-  				</tr>
-  			</span>	
-		</table>
-		</div><!-- 页码 --> --%>
-		
-		
-
-
-
-
-
+	
 	
 	
  

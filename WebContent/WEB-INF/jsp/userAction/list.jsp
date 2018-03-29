@@ -80,48 +80,6 @@ button {
 	color: #fff;
 }
 
-/* #mask {
-		background: rgba(0, 0, 0, .5);
-		width: 100%;
-		height: 100%;
-		position: fixed;
-		z-index: 4;
-		top: 0;
-		left: 0;
-	}
-	
-	.mask {
-		width: 300px;
-		height: 250px;
-		background: rgba(255, 255, 255, 1);
-		position: absolute;
-		left: 0;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		margin: auto;
-		z-index: 47;
-		border-radius: 5px;
-	} */
-
-/* .title {
-		padding: 10px;
-		border-bottom: 1px solid #eee;
-	}
-	
-	.title span {
-		float: right;
-		cursor: pointer;
-	}
-	
-	.content {
-		padding: 10px;
-	}
-	
-	.content input {
-		width: 270px;
-		margin-bottom: 15px;
-	} */
 a {
 	text-decoration: none;
 }

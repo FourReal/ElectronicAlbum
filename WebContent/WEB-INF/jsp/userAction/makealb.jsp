@@ -11,7 +11,7 @@
 %>
 <meta charset="utf-8">
 
-<title>makealb</title>
+<title>相册制作</title>
 
 <link rel="stylesheet" type="text/css"
 	href="${baseURL }/css/Huploadify.css" />
@@ -65,8 +65,6 @@
 								console.log(file);
 							},
 							onUploadSuccess : function(file, data, response) {
-								//$.parseJSON(json)  
-								// alert('The file ' + file.name + ' was successfully uploaded with a response of ' + response + ':' + data);  
 								$('.addedph')
 										.append(
 												'<img src="${baseURL}/'
@@ -159,7 +157,6 @@
 										dataType : "json",//设置需要返回的数据类型
 										success : function(d) {
 											console.log(d);
-											//$('.selectphoto').append("<p>返回的图片</p>");
 											for ( var i in d) {
 												$('.selectphoto')
 														.append(
@@ -190,7 +187,6 @@
 				.prepend(
 						'<div class="draggable" id="dg">\n'
 								+
-								//'            <h4>' + $(this).text() + '</h4>\n' +
 								'            <p class="lt"></p>\n'
 								+ '			 <img src="'
 								+ src
@@ -205,7 +201,6 @@
 
 	function mydrag(a, b) {
 		console.log(a, b);
-		// target elements with the "draggable" class
 		$(a + ' .draggable').each(function(index) {
 			$(this).myDrag({
 				randomPosition : false,
@@ -220,11 +215,6 @@
 		$("#ipfalbdia").on("hidden.bs.modal", function() {
 			$(".selectphoto").empty();
 			console.log(this);
-			//for(var i=1;i<50;i++){
-			//	document.getElementById(i).style="border:none";
-			//document.getElementById('ck'+i).checked="false";
-			//}
-			//alert("隐藏模态窗口完毕");
 		});
 	});
 	$(function() {
@@ -237,12 +227,10 @@
 		$("#lastpage").click(function() {
 			$(".middle").css("background", "");
 			$(".middle").empty();
-			//htmlobj=$.ajax({url:"/jquery/test1.txt",async:false});
 		});
 		$("#nextpage").click(function() {
 			$(".middle").css("background", "");
 			$(".middle").empty();
-			//htmlobj=$.ajax({url:"/jquery/test1.txt",async:false});
 		});
 	});
 
@@ -264,13 +252,6 @@
 								.getElementsByClassName("draggable"); //获取每个li中的div标签：（存放照片的元素）
 						console.log("div:" + i + draggable.length);
 						console.log("当前模板页数：" + $curr_page);
-						/*  var photos=[];
-						 console.log("photodiv:"+draggable[0]+draggable[0].offsetLeft);
-						 for(var j =0;j<draggable.length;j++){//遍历照片
-						    var photodiv=draggable[j].getElementsByClassName("opphotoc")[0].src;
-						 		console.log("photodiv:"+j+draggable[j]+photodiv+draggable[j].offsetLeft);
-						 } */
-
 						/**
 						 *修正取draggable对象位置大小信息的方式
 						 */
@@ -600,7 +581,6 @@ ul li {
 
 			<div class="row">
 
-
 				<!-- 左侧照片操作区域 -->
 				<div class="col-xs-2 " width="">
 					<div class="panel panel-danger">
@@ -618,8 +598,6 @@ ul li {
 						</div>
 					</div>
 				</div>
-
-
 
 				<!-- 中间相册编辑区域 -->
 				<div class="col-xs-9 ">
@@ -641,8 +619,6 @@ ul li {
 
 					</div>
 				</div>
-
-
 
 				<!-- 右侧模板选择区域 -->
 				<div class="col-xs-1 ">
@@ -693,7 +669,6 @@ ul li {
 		</div>
 		<!-- /.modal-dialog -->
 	</div>
-
 
 </body>
 </html>

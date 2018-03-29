@@ -51,25 +51,6 @@
 						</thead>
 						
 						<!-- 显示数据列表 -->	
-						<%-- <tbody id="TableData">
-							<tr class="TableDetaill">
-								<!-- 显示权限树 -->
-								<td>
-								
-									<s:checkboxlist name="privilegeIds" list="#privilegeList" listKey="id" listValue="name"></s:checkboxlist>	
-									<s:iterator value="#privilegeList">
-									 	<input type="checkbox" name="privilegeIds" value="${id}" id="cb_${id}"
-									 		<s:property value="%{id in privilegeIds ? 'checked' : ''}"/>
-									 	/>
-									 	<label for="cb_${id}">${name}</label>
-									 	<br/>
-									</s:iterator>							
-								</td>
-								
-								
-							</tr>
-						</tbody>
-						 --%>
 						<!-- 显示树状结构内容 -->
 							<ul id="tree">
 							<s:iterator value="#application.topPrivilegeList"> 

@@ -36,12 +36,6 @@
 					<div class="bbD">
 						邮箱：<s:textfield name="email" class="input3" />
 					</div>
-					<!-- <div class="bbD">
-						<p class="bbDP">
-							<button class="btn_ok btn_yes" href="#">提交</button>
-							<a class="btn_ok btn_no" href="#">取消</a>
-						</p>
-					</div> -->
 				</div>
 				<s:submit value="提交" class="tijiao"></s:submit>
 			</s:form>

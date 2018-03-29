@@ -19,9 +19,6 @@
 		$("#jiesuan").click(function() {
 			var CheckName = document.getElementsByName("checkname");
 			var total = document.getElementsByClassName("sum_price");
-			//for(var i=0;i<total.length;i++){
-			//	console.log(total[i].innerHTML);
-			//}
 
 			console.log("点击成功！！！！");
 			var $inputVal = $(this).next('input');

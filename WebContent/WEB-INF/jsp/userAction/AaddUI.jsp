@@ -54,34 +54,6 @@
 		
 		
 }
-	  /*  .ItemBlockBoder select {
-		  background: #FFF url('down-arrow.png') no-repeat right;
-		background: #FFF url('down-arrow.png') no-repeat right);  
-		 appearance:none;
-		-webkit-appearance:none;
-		-moz-appearance: none; 
-		 text-indent: 0.01px;
-		text-overflow: ''; 
-		width: 62%;
-		height: px;
-		line-height: 25px;
-		}    */
-/* .button {
-	background: #E27575;
-	border: none;
-	padding: 10px 25px 10px 25px;
-	color: #FFF;
-	box-shadow: 1px 1px 5px #B6B6B6;
-	border-radius: 3px;
-	text-shadow: 1px 1px 1px #9E3F3F;
-	cursor: pointer;
-}
- .button:hover {
-	background: #CF7A7A;
-} */
-	/* .ItemBlockBoder.btn:hover {
-		background: #CF7A7A
-} */
 	</style>
 </head>
 <body>
@@ -98,14 +70,6 @@
 				<label><span>姓名:</span>
 					<s:textfield name="name" cssClass="InputStyle" /> 
 				</label>
-				<%-- <label><span>性别:</span>
-						 <s:radio name="gender" list="%{#{'男':'男','女':'女'} }" class="radiosax"></s:radio>
-						
-					</label> --%>
-				<%-- <label><span>性别:</span>
-						 <s:radio name="gender" list="%{#{'男':'男','女':'女'} }" class="radiosax"></s:radio>
-						
-					</label> --%>
 				
 				<label><span>联系电话:</span>
 					<s:textfield name="phoneNumber" cssClass="InputStyle" />
@@ -117,24 +81,6 @@
 					<s:textarea name="description" cssClass="TextareaStyle" ></s:textarea>
 				</label>
 				
-		
-		<!-- <div class="ItemBlock_Title1">信息说明<div class="ItemBlock_Title">角色设置</div>
-		</div> -->
-		
-		<!-- 表单内容显示 -->
-		<%-- <div class="ItemBlockBorder">
-			<table cellspacing="0" cellpadding="0" class="mainForm">
-				<tr>
-					<td width="100px">角色</td>
-					<td>
-						<s:select name="roleIds" cssClass="SelectStyle" 
-						multiple="true" size="10" list="#roleList" 
-						listKey="id" listValue="name"/>
-						按住Ctrl键可以多选或者选择取消
-					</td>
-				</tr>	
-			</table>
-		</div> --%>
 			<label><span>&nbsp;</span>
 			<s:submit value="提交" style="color:#fff;width:62%;background: #E27575;border: none;border-radius: 3px;padding: 8px 22px 8px 22px;margin-top:10px;"></s:submit>
 		</label>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
+<title>出錯啦</title>
 </head>
 <body>
 	<font color="red">出错了，您没有权限访问该功能！！</font>

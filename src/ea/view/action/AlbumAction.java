@@ -90,14 +90,9 @@ public class AlbumAction extends BaseAction<Album>{
 				.format(new Date());
 		String filename=updatadate+"_"+imageFileName;
 		String realpath = ServletActionContext.getServletContext().getRealPath("/images");  
-//        System.out.println("realpath: "+realpath); 
         String saveaddr="/ElectronicAlbum/images/"+filename;
-//        System.out.println("--------"+saveaddr+"------------");
         if(image != null){  
-//        	System.out.println("EditAlbum================"+image);
-            File savefile = new File(new File(realpath), filename);  
-//            System.out.println(savefile);  
-//            System.out.println(savefile.getParentFile());  
+            File savefile = new File(new File(realpath), filename);    
             if(savefile.getParentFile().exists()){  
                 try {  
                     savefile.getParentFile().mkdirs();  
@@ -118,7 +113,6 @@ public class AlbumAction extends BaseAction<Album>{
 		//设置修改的属性
 		album.setAlbumName(model.getAlbumName());
 		album.setDescription(model.getDescription());
-//		System.out.println("saveaddr++++++++++++++++"+saveaddr);
 		album.setPrice(model.getPrice());
 		album.setCoverAddr(saveaddr);
 		
@@ -156,7 +150,6 @@ public class AlbumAction extends BaseAction<Album>{
 	
 	/** 添加相册背景图*/
 	public String addBgp() throws Exception{
-//		System.out.println("ADDBGP++++++++++++"+model.getId());
 		Album album=(Album)albumService.getById(model.getId());
 		String updatadate=new SimpleDateFormat("yyyyMMddHHmmss")
 				.format(new Date());
@@ -181,23 +174,19 @@ public class AlbumAction extends BaseAction<Album>{
             }  
         }  
 		
-       // System.out.println("albumid________________________________________"+album.getId());
         
 		AlbumBgp bgp=new AlbumBgp();
 		bgp.setAddr(saveaddr);
 		bgp.setAlbum(album);
 		albumService.addBgp(bgp);
-//		System.out.println("addBgp()+=====id="+model.getId());
 		ActionContext.getContext().getSession().put("bgpid", model.getId());
 		return "toShow";
 	}
 	
 	/**删除相册中的背景图*/
 	public String deleteBgp()throws Exception{
-//		System.out.println("DELETE===="+model.getId());
 		AlbumBgp bgp=(AlbumBgp)albumService.findBgpByBgpId(model.getId());
 		Album album=bgp.getAlbum();
-//		System.out.println("albumBgp+++++++"+bgp.getId()+"+++++++"+bgp.getAddr());
 		ActionContext.getContext().getSession().put("bgpid", album.getId());
 		albumService.deleteBgp(bgp.getId());
 	
@@ -234,13 +223,6 @@ public class AlbumAction extends BaseAction<Album>{
 	 * @return
 	 */
 	public String getAllBgps() {
-//		if(ActionContext.getContext().getSession().get("page")!=null)
-//		{
-//			PageShow page=(PageShow) ActionContext.getContext().getSession().get("page");
-//			int pagenow=getPageNow();
-//			System.out.println("getAllBgps:page++++++++++++"+page.getPageNow()+"+++"+pagenow);
-//			pageNow=page.getPageNow();
-//		}
 		
 		System.out.println("getAllBgps:page++++++++++++"+getPageNow());
 		List<AlbumBgp> bgpsList=albumBgpService.findAllbgp(pageNow,pageSize);
@@ -248,8 +230,6 @@ public class AlbumAction extends BaseAction<Album>{
 		if(bgpsList.size()>0) {   //bgp列表
 			ActionContext.getContext().put("bgpsList", bgpsList);
 			PageShow page=new PageShow(pageNow,albumBgpService.findBgpSize(),pageSize);
-//			Map request=(Map) ActionContext.getContext().get("request");
-//			request.put("page", page);
 			ActionContext.getContext().getSession().put("page", page);
 			System.out.println("getAllBgps+++++++++"+page.getPageSize()+page.getPageNow());
 			
@@ -257,11 +237,7 @@ public class AlbumAction extends BaseAction<Album>{
 		
 		return "bgpsshow";
 	}
-	
-	
-	
-	
-	
+
 	
 	//----------------------------------------
 	public File getImage() {

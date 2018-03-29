@@ -90,7 +90,6 @@ public class AlbumBookAction extends BaseAction<AlbumBook>{
 		//传递参数
 		ActionContext.getContext().put("photo_proList", photo_proList);		//传递相册书中的照片信息
 		ActionContext.getContext().getSession().put("albumBook", albumBook);
-//		ActionContext.getContext().getSession().put("bgpid", null);
 		
 		return "show";
 	}
@@ -105,13 +104,9 @@ public class AlbumBookAction extends BaseAction<AlbumBook>{
 		System.out.println("show:albumbookid-------------------"+model.getId());
 		//准备相册数据
 		
-		AlbumBook albumBook=albumBookService.getById(model.getId());
-		
-		//List<Photo_pro> photo_proList=albumBookService.getPhoto_prosByAbumBookId(albumBook.getId());
-		
+		AlbumBook albumBook=albumBookService.getById(model.getId());	
 		//传递参数
 		ActionContext.getContext().put("photo_proList", albumBook.getPhoto_pros());
-//		ActionContext.getContext().getSession().put("bgpid", null);
 		ActionContext.getContext().put("albumid", albumBook.getAlbum().getId());
 		List<AlbumBgp> modelBgps=albumService.findAllbgByAlbumId(albumBook.getAlbum().getId());
 		ActionContext.getContext().getSession().put("editAlbumBookid", albumBook.getId());
@@ -121,7 +116,6 @@ public class AlbumBookAction extends BaseAction<AlbumBook>{
 		
 		ActionContext.getContext().put("albumList", albumList);
 		return "make";
-		//return "show";
 	}
 	
 	/**

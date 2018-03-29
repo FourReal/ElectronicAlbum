@@ -230,11 +230,6 @@ public class UserAction extends BaseAction<User>{
 		String md5Digest=DigestUtils.md5Hex("1234");
 		
 		model.setPassword(md5Digest);
-//		User user=new User();
-//		user.setName(model.getName());
-//		user.setDescription(model.getDescription());
-//		//保存到数据库中
-//		userService.save(user);
 		model.setSign("1");
 		Trolley trolley=new Trolley();
 		trolley.setUser(model);
@@ -264,9 +259,7 @@ public class UserAction extends BaseAction<User>{
         System.out.println("--------"+saveaddr+"------------");
         if(image != null){  
         	System.out.println("useredit================"+image);
-            File savefile = new File(new File(realpath), filename);  
-//            System.out.println(savefile);  
-//            System.out.println(savefile.getParentFile());  
+            File savefile = new File(new File(realpath), filename);   
             if(savefile.getParentFile().exists()){  
                 try {  
                     savefile.getParentFile().mkdirs();  
@@ -426,12 +419,11 @@ public class UserAction extends BaseAction<User>{
 	 */
 	public String addalbum()throws Exception{
 		User user=(User) ActionContext.getContext().getSession().get("user");
-//		System.out.println("Addalbum:user+++++++++++"+user);
-//		System.out.println("Addalbum:model.id+++++++++++"+model.getId());
+
 		Album album=albumService.getById(model.getId());
-//		System.out.println("Addalbum:album+++++++++++"+album);
+
 		Set<Album> albums=user.getAlbums();
-//		System.out.println("Addalbum:albums+++++++++++"+user.getAlbums());
+
 		int sign=0;
 		for(Album a:albums)
 		{
@@ -455,9 +447,7 @@ public class UserAction extends BaseAction<User>{
 	 * @return
 	 */
 	public String showalbum()throws Exception{
-		User user=(User) ActionContext.getContext().getSession().get("user");
-//		System.out.println("Showalbum:user++++++++++"+user);		
-//		List<Album> userAlbums= albumService.findAlbumByUserid(user.getId());	
+		User user=(User) ActionContext.getContext().getSession().get("user");	
 		
 		
 		Set<Album> albums=user.getAlbums();
@@ -473,21 +463,16 @@ public class UserAction extends BaseAction<User>{
 	 * 
 	 */
 	public String delAlbum()throws Exception{
-//		System.out.println("DelAlbum:model++++++++++++++"+model.getId());
 		User user=(User) ActionContext.getContext().getSession().get("user");
 		Set<Album> albums=user.getAlbums();
 		Album album=albumService.getById(model.getId());
-//		System.out.println("DelAlbum:model++++++++++++++"+model);
 		
 		for(Album a:albums) {
-//			System.out.println("----------"+a.getId());
 			if(a.getId()==album.getId())
 				albums.remove(a);
 		}
 		
-//		System.out.println("DelAlbum:albums++++++++++++++"+albums.toString());
 		user.setAlbums(albums);
-//		System.out.println("DelAlbum:user++++++++++++++"+user.getId());
 		userService.update(user);
 
 		return "edit";
@@ -511,7 +496,6 @@ public class UserAction extends BaseAction<User>{
 		
 		}
 		
-//		System.out.println("getAllbgps:+++++++++++++++over");
 		return "list";
 	}
 	
@@ -527,9 +511,8 @@ public class UserAction extends BaseAction<User>{
 		ActionContext.getContext().getSession().put("editAlbumBookid", null);
 		ActionContext.getContext().put("modelBgps", modelBgps);
 		ActionContext.getContext().getSession().put("editAlbumId", getAlbumId());
-//		System.out.println("ActionContext.getContext().getSession().get(\"editAlbumId\");"+ActionContext.getContext().getSession().get("editAlbumId"));
 		Templist();
-//		System.out.println("MakeAlbum:albumbgps++++++++++++++++++"+modelBgps);
+
 		return "makeAlbum";
 		
 	}
@@ -583,14 +566,12 @@ public class UserAction extends BaseAction<User>{
 				photo_proService.delete(p.getId());
 			}
 		}
-		//date=date.substring(1, date.length()-1);
 		System.out.println(date);
 		JSONArray result=JSONArray.fromObject(date);
 		System.out.println("size++++"+result.size());
 		Set<Photo_pro> photo_pros=new HashSet<Photo_pro>();
 		if(result.size()>0) {
 			for(int i=0;i<result.size();i++) {//遍历page
-//				String src=result.getJSONObject(i).getString("src");
 				JSONArray pageobj=(JSONArray) result.get(i);
 					if(pageobj.size()>0) {
 						for(int j=0;j<pageobj.size();j++) {//遍历每个page中的照片
@@ -619,12 +600,6 @@ public class UserAction extends BaseAction<User>{
 							System.out.println("beAlbum:photo_pro======="+photo_pro);		//存储制作中的照片信息
 							photo_proService.save(photo_pro);
 							
-							
-							
-//							System.out.println("photo===="+photo);
-//							System.out.println("filename==="+filename);
-//							System.out.println(obj.getString("x"));
-//							System.out.println(obj.getString("y"));
 							photo_pros.add(photo_pro);
 						}
 					}
@@ -635,9 +610,6 @@ public class UserAction extends BaseAction<User>{
 		System.out.println("beAlbum:photo_pros===="+photo_pros);
 		editAlbumBook.setPhoto_pros(photo_pros);
 		System.out.println("beAlbum:photo_pros===="+editAlbumBook.getPhoto_pros());
-//		albumBookService.update(editAlbumBook);
-		
-//		System.out.println(result);
 		return "success";
 	}
 	
@@ -650,7 +622,6 @@ public class UserAction extends BaseAction<User>{
 	public String Templist() throws Exception{
 		List<Album> albumList=albumService.findAll();
 		ActionContext.getContext().put("albumList", albumList);
-//		System.out.println("Templist:+++++++++++++++over");
 		return "list";
 	}
 	

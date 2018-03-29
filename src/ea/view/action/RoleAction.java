@@ -17,18 +17,6 @@ import ea.domain.Role;
 @Scope("prototype")
 public class RoleAction extends BaseAction<Role>{
 	
-//	@Resource
-//	private RoleService roleService;
-	
-//	private Long id;
-//	private String name;
-//	private String description;
-	
-//	private Role model=new Role();
-//
-//	public Role getModel() {
-//		return model;
-//	}
 	
 	private Long[] privilegeIds;
 	
@@ -53,12 +41,6 @@ public class RoleAction extends BaseAction<Role>{
 	
 	/**添加*/
 	public String add() throws Exception{
-//		//封装到对象中
-//		Role role=new Role();
-//		role.setName(model.getName());
-//		role.setDescription(model.getDescription());
-//		//保存到数据库中
-//		roleService.save(role);
 		
 		roleService.save(model);
 		

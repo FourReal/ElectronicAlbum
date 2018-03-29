@@ -98,15 +98,11 @@ public class PhotoAction extends BaseAction<Photo>{
 			System.out.println("getAllBgps:dosign++++++++++++"+getDosign());
 			System.out.println("getAllBgps:user++++++++++++"+user.getId());
 			System.out.println("getAllBgps:page++++++++++++"+getPageNow());
-	//		Long userid=(long)1;
 			List<Photo> photoList=photoService.findAllPhotosByUserid(pageNow,pageSize,user.getId());
 			if(photoList.size()>0) {   
 				ActionContext.getContext().put("photoList", photoList);
 				PageShow page=new PageShow(pageNow,photoService.findPhotoSizeByUserid(user.getId()),pageSize);
-	//			Map request=(Map) ActionContext.getContext().get("request");
-	//			request.put("page", page);
 				ActionContext.getContext().getSession().put("pagePhoto", page);
-	//			System.out.println("getAllBgps+++++++++"+page.getPageSize()+page.getPageNow());
 				
 			}
 		}
