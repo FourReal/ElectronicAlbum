@@ -12,17 +12,13 @@
 <meta charset="utf-8">
 
 <title>相册制作</title>
-
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css"
 	href="${baseURL }/css/Huploadify.css" />
 <link rel="stylesheet" type="text/css" href="css/default.css" />
 <link rel="stylesheet" type="text/css" href="css/bookblock.css" />
 <link rel="stylesheet" type="text/css" href="css/demo5.css" />
-<link href="http://how2j.cn/study/css/bootstrap/3.3.5/bootstrap.min.css"
-	rel="stylesheet">
-<link
-	href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-	rel="stylesheet">
+<link href="http://how2j.cn/study/css/bootstrap/3.3.5/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript" src="${baseURL }/js/jquery.Huploadify.js"></script>
 <script src="${baseURL }/js/jquery-ui.min.js"></script>
@@ -573,16 +569,16 @@ ul li {
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<div class="finishbtn" style="float: right; margin-right: 10px">
-				<span id="submitbtn" class="btn btn-default"><span
-					class="	glyphicon glyphicon-floppy-save"></span> 保存</span>
+				<span id="submitbtn" class="btn btn-default">
+				<span class="glyphicon glyphicon-floppy-save"></span> 保存</span>
 			</div>
 		</div>
 		<div class="panel-body">
 
 			<div class="row">
-
+				<nobr>
 				<!-- 左侧照片操作区域 -->
-				<div class="col-xs-2 " width="">
+				<div class="col-xs-2 " style="">
 					<div class="panel panel-danger">
 						<div class="panel-heading">
 							<div class="impbtngroup" align="center">
@@ -600,7 +596,7 @@ ul li {
 				</div>
 
 				<!-- 中间相册编辑区域 -->
-				<div class="col-xs-9 ">
+				<div class="col-xs-9 " style="width:1260px">
 					<div class="panel panel-danger">
 						<div class="panel-heading">
 							<div class="holder"></div>
@@ -637,7 +633,7 @@ ul li {
 					</div>
 				</div>
 
-
+				</nobr>
 
 			</div>
 

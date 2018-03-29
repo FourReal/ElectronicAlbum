@@ -54,7 +54,10 @@
             <result name="personal">/WEB-INF/jsp/userAction/personal.jsp</result>
             <result name="makeAlbum">/WEB-INF/jsp/userAction/makealb.jsp</result>
             <result name="toPhotoList">/WEB-INF/jsp/photoAction/list.jsp</result>
-            <result name="toList" type="redirectAction">user_list</result> 
+            <result name="toList" type="redirectAction">user_list</result>
+            <result name="adminloginUI">/WEB-INF/jsp/adminAction/adminlogin.jsp</result> 
+            
+            <result name="toInit">/WEB-INF/jsp/adminAction/init.jsp</result>
             <result name="addalbumok">user_list</result>
 
             <!-- 登录注销 -->

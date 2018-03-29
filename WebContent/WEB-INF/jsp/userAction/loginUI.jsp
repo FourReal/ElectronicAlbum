@@ -141,7 +141,7 @@
 
 body {
 	background: linear-gradient(rgba(255, 228, 225, 0.9),
-		rgba(255, 228, 225, 0.9)), url("myimg/tour03.jpg") no-repeat center
+		rgba(255, 228, 225, 0.9)), url("img/tour03.jpg") no-repeat center
 		center/cover;
 	font-family: "Roboto", sans-serif;
 	-webkit-font-smoothing: antialiased;

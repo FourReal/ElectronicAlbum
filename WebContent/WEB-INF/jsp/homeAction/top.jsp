@@ -44,8 +44,7 @@ window.onload = function(){
 		<div class="daohang">
 		<div class="right">
 				<ul class="header1-ul" style="float: right">
-					<li><a href="#">联系我们</a></li>
-					<li><a href="#">帮助</a></li>
+					<li><a href="home_about.action" target="_parent">关于我们</a></li>
 					<%
 						if (session.getAttribute("user") == null) {
 					%>
@@ -58,9 +57,7 @@ window.onload = function(){
 					<%
 						} else {
 					%>
-						<li><a
-						href="${pageContext.request.contextPath}/trolley_list.action" target="right"
-						target="right">我的购物车</a></li>
+
 					<li><a
 						href="${pageContext.request.contextPath}/user_logout.action"
 						target="_parent">注销</a></li>

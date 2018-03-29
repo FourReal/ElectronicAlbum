@@ -51,6 +51,37 @@ form {
 	color: #FFFFFF;
 	font-size: 16px;
 }
+
+table thead {
+	border-radius: 3px;
+	margin-top: 20px;
+	border:1px solid #ccc;
+	
+
+}
+table thead th {
+	background: #eee;
+	padding: 10px;
+	text-align: left;
+	height:20px;
+	text-align:center;
+	border:1px solid #ccc; 	
+
+}
+table tbody td {
+	padding: 10px;
+	text-align: left;
+
+	text-align:center;
+	border:1px solid #ccc;
+}
+.delete{
+color:red;
+}
+.delete:hover{
+text-decoration:none;
+color:red;
+}
 </style>
 </head>
 <body>
@@ -69,7 +100,7 @@ form {
 
 			<!--照片展示-->
 			<div class="main-cont main-album">
-				<table cellpadding="0" cellspacing="0">
+				<table cellpadding="0" cellspacing="0" border-collapse: collapse;>
 					<thead>
 						<tr>
 							<th>用户id</th>
@@ -83,9 +114,9 @@ form {
 						<s:iterator value="#adminphotos">
 							<tr>
 								<td>${ OwnerId }</td>
-								<td width="10%"><a href="#" class="pic"> <img
+								<td width="10%"><a href="#" class="pic" style="width:100px;height:100px;"> <img
 										src="/ElectronicAlbum/imgs/${PName}" name="mvUrl"
-										data-action="zoom" /></a></td>
+										data-action="zoom" style="width:100%;height:100%;"/></a></td>
 								<td>${PName}&nbsp;</td>
 								<td width="10%"><span><s:a
 											action="photo_admindelete?id=%{id}"

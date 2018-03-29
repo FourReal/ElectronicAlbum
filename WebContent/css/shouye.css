@@ -249,18 +249,18 @@ area{outline: none;}
 }
 	
 .input{
-	height: 30px;
-	width: 60px;
-	margin-top: 34px;
+	height:32px;
+	width:60px;
+	margin-top:34px;
 	border: 1px solid #dddddd;
-	line-height: 30px;
+	line-height:32px;
 	text-align: center;
-	float: left;
+	float:left;
 }
 
 .Xcontent33>img{
 	float: left;
-	margin-top: 34px;
+	margin-top:34px;
 }
 .Xagain{
 	width: 1198px;

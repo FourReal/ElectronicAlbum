@@ -38,6 +38,7 @@ import ea.domain.Role;
 import ea.domain.Trolley;
 import ea.domain.User;
 import ea.util.ImgCompress;
+import ea.util.Installer;
 import ea.util.PageShow;
 import net.sf.json.JSON;
 import net.sf.json.JSONArray;
@@ -369,6 +370,38 @@ public class UserAction extends BaseAction<User>{
 	public String loginUI() throws Exception{
 		return "loginUI";
 	}
+	
+	public String adminloginUI() throws Exception{
+		return "adminloginUI";
+	}
+	
+	/**管理员登录*/
+	public String adminlogin() throws Exception{
+		User user=userService.findByLoginNameAndPassword(model.getLoginName(),model.getPassword());
+		System.out.println("管理员登录++++++++开始");
+		if(user==null) {
+			addFieldError("login", "用户名或密码不正确！");
+			return "adminloginUI";
+		}
+		else {
+			//登录用户
+			ActionContext.getContext().getSession().put("user", user);
+			return "toInit";
+		}		
+		
+	}
+	
+	/**管理员初始化安装*/
+	public String adminInstall() throws Exception{
+		User user=(User) ActionContext.getContext().getSession().get("user");
+		if(user.isAdmin())
+		{
+			Installer installer=new Installer();
+			installer.admininstall();
+		}
+		return "success";
+	}
+	
 	
 	/**登录*/
 	public String login() throws Exception{

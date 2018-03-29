@@ -25,7 +25,7 @@
 			<!-- <div class="Xcontent15"><img src="images/shangpinxiangqing/X11.png"></div> -->
 			<div class="Xcontent17">
 				<p class="Xcontent18">售价</p>
-				<p class="Xcontent19">￥<span>无价之宝</span></p> 
+				<p class="Xcontent19">￥<span>159.99</span></p> 
 				<!-- <div class="Xcontent20">
 					<p class="Xcontent21">促销</p>
 					<img src="images/shangpinxiangqing/X12.png">

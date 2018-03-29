@@ -25,7 +25,7 @@ table thead {
 }
 
 table thead th {
-	background: #ccc;
+	background: #cd9b9b;;
 	padding: 10px;
 	text-align: left;
 }
@@ -57,7 +57,7 @@ table tbody td span {
 .add {
 	border: 1px solid #eee;
 	padding: 8px;
-	background: #ccc;
+	background: #cd9b9b;
 	border-radius: 3px;
 	width: 65px;
 	margin-bottom: 10px;

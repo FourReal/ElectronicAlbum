@@ -27,15 +27,6 @@ public class Installer {
 	public void install() {
 		Session session=sessionFactory.getCurrentSession();
 		
-		//==============================================
-		//保存超级管理员用户
-		User user=new User();
-		user.setLoginName("admin");
-		user.setName("超级管理员");
-		user.setPassword(DigestUtils.md5Hex("admin"));
-		session.save(user);
-		
-		
 		
 		//===============================================
 		//保存权限数据
@@ -93,7 +84,7 @@ public class Installer {
 		
 	}
 	
-	public static void main(String args[]) {
+	public void admininstall() {
 		ApplicationContext ac=new ClassPathXmlApplicationContext("spring.xml"); 
 		Installer installer=(Installer) ac.getBean("installer");
 		installer.install();

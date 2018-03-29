@@ -24,7 +24,7 @@
 	}
 	
 	table thead th {
-		background: #ccc;
+		background: #cd9b9b;
 		padding: 10px;
 		text-align: left;
 	
@@ -60,6 +60,7 @@
 	input {
 		border: 1px solid #ccc;
 		padding: 5px;
+		width:200px;
 		border-radius: 3px;
 		margin-right: 15px;
 	}
@@ -91,7 +92,7 @@
 		</font>
 		<s:textfield name="albumName" cssClass="InputStyle" placeholder="相册名" />
 		<s:textfield name="description" cssClass="InputStyle" placeholder="描述" />
-		<s:submit value="新增"></s:submit>
+		<s:submit value="新增" style="width:50px;background:#eee;"></s:submit>
 		</s:form>
 		
 	</div>

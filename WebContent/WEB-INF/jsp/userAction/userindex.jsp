@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>user_index</title>
+<title>印书-相册在线定制</title>
 </head>
 <frameset rows="120,*,25" framespacing="0" border="1" frameborder="yes">
 	<frame noresize name="TopMenu" scrolling="no" src="${pageContext.request.contextPath}/home_top.action">

@@ -21,7 +21,7 @@
 	box-shadow:0 1px 1px #ccc;
 	border-radius:5px;
 	position:relative;
-	margin-top:200px;
+	margin-top:100px;
   
 }
 
@@ -75,10 +75,10 @@ input {
 					<span><s:textfield name="description" cssClass="InputStyle" /></span>
 					<input type="file" name="image" value="点击选择图片" />
 				</li>
-				<s:textfield name="description_1" cssClass="InputStyle" />
+				<s:textfield name="description_1" cssClass="InputStyle" style="margin-left:20px;margin-bottom:10px;"/>
 				
 				<!-- <input type="submit" value="上传" /> -->
-				<s:submit value="提交" style="margin-left:20px;"></s:submit>
+				<s:submit value="提交" style="margin-left:20px;background: #E27575;"></s:submit>
 				
 	</ul>
 	</s:form>

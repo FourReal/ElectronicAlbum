@@ -46,10 +46,7 @@
                 <h3 style="text-align: center">我的相册<p style="font-size: 10px">（鼠标悬浮可预览相册描述）</p></h3>
                 
                 <a href="user_makeAlbum.action" class="add-photo">
-                	
-                    	<button class="">制作相册</button>
-                    
-                </a>
+                <button class="addbtn" style="width:90px; background:#FFF0F5;text-align:center;line-height:center;height:30px;border:1px solid #ccc;border-radius:3px;color:#cd9b9b;cursor:pointer;">制作 >></button></a>
                 <div class="zzsc-container">
                     <div class="container mt50">
                         <div class="row">
