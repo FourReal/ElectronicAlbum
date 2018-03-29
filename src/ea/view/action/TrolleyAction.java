@@ -149,6 +149,7 @@ public class TrolleyAction extends BaseAction<Trolley>{
 				System.out.println("Trolley:prices========"+prices[j-1]);
 			}
 		}
+		System.out.println("==============="+result.size());
 		for(int i=0;i<prices.length;i++)
 		{
 			totalprice+=prices[i];

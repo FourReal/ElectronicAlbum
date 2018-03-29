@@ -59,7 +59,7 @@
 		
 	}else{
 		
-		location.href="${pageContext.request.contextPath}/user_makeAlbum.action?albumId=3";
+		location.href="${pageContext.request.contextPath}/user_makeAlbum.action?albumId=6";
 		
 		
 	} 

@@ -51,7 +51,8 @@
 					window.location.href = "zhifu.jsp";
 				},
 				error : function(d) {
-					alert("error");
+					alert("订单完成");
+					window.location.href = "zhifu.jsp";
 				}
 			});
 
